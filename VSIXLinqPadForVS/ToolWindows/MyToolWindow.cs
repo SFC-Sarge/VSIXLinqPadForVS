@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.Imaging;
+﻿using Community.VisualStudio.Toolkit;
+using System.ComponentModel.Design;
+using Microsoft.VisualStudio.Imaging;
 
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -13,9 +15,11 @@ namespace VSIXLinqPadForVS
 
         public override Type PaneType => typeof(Pane);
 
-        public override Task<FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken)
+        public override async Task<FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken)
         {
-            return Task.FromResult<FrameworkElement>(new MyToolWindowControl());
+            Project project = await VS.Solutions.GetActiveProjectAsync();
+            ToolWindowMessenger toolWindowMessenger = await Package.GetServiceAsync<ToolWindowMessenger, ToolWindowMessenger>();
+            return new MyToolWindowControl(project, toolWindowMessenger);
         }
 
         [Guid("23e7c5a3-6e43-41e5-81fd-bf2297047dce")]
