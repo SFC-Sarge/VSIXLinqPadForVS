@@ -17,10 +17,22 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Margin="20 10 0 0" Name="LinqPadResults" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="400" />
+        <StackPanel Orientation="Vertical">
+            <Label x:Name="lblHeadline"
+                   Margin="10"
+                   HorizontalAlignment="Center">Linq Queries</Label>
+            <Button Content="Run Selected Query Lines!" Margin="20,0,20,10"
+                    Click="button1_Click"
+                    Width="auto"
+                    Height="auto"
+                    Name="button1" />
+            <StackPanel>
+                <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Margin="20 10 0 0" Name="LinqPadResults" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="400" />
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
-        </ScrollViewer>
+        </StackPanel>
     </Grid>
 </UserControl>

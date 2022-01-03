@@ -11,7 +11,7 @@ namespace VSIXLinqPadForVS
 {
     public class MyToolWindow : BaseToolWindow<MyToolWindow>
     {
-        public override string GetTitle(int toolWindowId) => "LinqPad Dump";
+        public override string GetTitle(int toolWindowId) => "My Query Tool Window";
 
         public override Type PaneType => typeof(Pane);
 
@@ -22,7 +22,7 @@ namespace VSIXLinqPadForVS
             return new MyToolWindowControl(project, toolWindowMessenger);
         }
 
-        [Guid("23e7c5a3-6e43-41e5-81fd-bf2297047dce")]
+        [Guid("a3ac07c0-309a-4679-bf3b-a2de12944d66")]
         internal class Pane : ToolWindowPane
         {
             public Pane()
