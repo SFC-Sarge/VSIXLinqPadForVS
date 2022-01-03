@@ -22,10 +22,10 @@
                    Margin="10"
                    HorizontalAlignment="Center">Linq Queries</Label>
             <Button Content="Run Selected Query Lines!" Margin="20,0,20,10"
-                    Click="button1_Click"
+                    Click="RunQuery_Click"
                     Width="auto"
                     Height="auto"
-                    Name="button1" />
+                    Name="RunQuery" />
             <StackPanel>
                 <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Vertical">

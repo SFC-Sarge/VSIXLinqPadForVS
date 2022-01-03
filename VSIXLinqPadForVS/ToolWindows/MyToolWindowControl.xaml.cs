@@ -34,7 +34,9 @@ namespace VSIXLinqPadForVS
             toolWindowMessenger.MessageReceived += OnMessageReceived;
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
+
                 await DoOutputWindowsAsync();
+                await pane.ClearAsync();
                 await UpdateLinqPadDumpAsync(Hierarchy);
             }).FireAndForget();
             VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
@@ -91,39 +93,14 @@ namespace VSIXLinqPadForVS
                 {
                     _activeProject = project;
                     await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await UpdateLinqPadDumpAsync(Hierarchy);
                 }
             }).FireAndForget();
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            // VS.MessageBox.Show("VSIXRunSelectedQuery", "Button clicked");
-            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
-            {
-                LinqPadResults.Children.Clear();
-                await pane.ClearAsync();
-                DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
-                if (docView?.TextView == null) return; //not a text window
-                if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
-                {
-                    var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
-                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    var queryResult = RunLinqPadQueryAsync(currentSelection);
-                    var selectedQueryResult = new TextBlock { Text = await queryResult, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                    LinqPadResults.Children.Add(selectedQueryResult);
-                    var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
-                    LinqPadResults.Children.Add(line);
-                }
-            }).FireAndForget();
-
-
-        }
         public async Task UpdateLinqPadDumpAsync(IVsHierarchy hierarchy)
         {
+            await pane.ClearAsync();
             await pane.WriteLineAsync($"2 * 25 = {(2 * 25).Dump<int>()}");
-            await pane.WriteLineAsync($"2 * 50 = {(2 * 50).Dump<int>()}");
-            await pane.WriteLineAsync($"2 * 75 = {(2 * 75).Dump<int>()}");
         }
 
         private async Task DoOutputWindowsAsync()
@@ -144,6 +121,28 @@ namespace VSIXLinqPadForVS
             return $"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}";
 
             //}).FireAndForget();
+
+        }
+
+        private void RunQuery_Click(object sender, RoutedEventArgs e)
+        {
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                LinqPadResults.Children.Clear();
+                await pane.ClearAsync();
+                DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
+                if (docView?.TextView == null) return; //not a text window
+                if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
+                {
+                    var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var queryResult = RunLinqPadQueryAsync(currentSelection);
+                    var selectedQueryResult = new TextBlock { Text = await queryResult, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                    LinqPadResults.Children.Add(selectedQueryResult);
+                    var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
+                    LinqPadResults.Children.Add(line);
+                }
+            }).FireAndForget();
 
         }
     }
