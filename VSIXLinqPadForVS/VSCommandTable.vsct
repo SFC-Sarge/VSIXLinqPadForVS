@@ -42,6 +42,15 @@
 					<ButtonText>Run Selected Query Statement!</ButtonText>
 				</Strings>
 			</Button>
+			<Button guid="VSIXLinqPadForVS" id="DisplayLinqPadMethodResults" priority="0x0002" type="Button">
+				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
+				<Icon guid="ImageCatalogGuid" id="LinkValidator"/>
+				<CommandFlag>IconIsMoniker</CommandFlag>
+				<!--<CommandFlag>IconAndText</CommandFlag>-->
+				<Strings>
+					<ButtonText>Run Selected Query Method!</ButtonText>
+				</Strings>
+			</Button>
 		</Buttons>
 	</Commands>
 
@@ -51,6 +60,7 @@
 			<IDSymbol name="TWindowToolbar" value="0x1000" />
 			<IDSymbol name="TWindowToolbarGroup" value="0x1050" />
 			<IDSymbol name="DisplayLinqPadStatementsResults" value="0x0111" />
+			<IDSymbol name="DisplayLinqPadMethodResults" value="0x0112" />
 		</GuidSymbol>
 	</Symbols>
 </CommandTable>

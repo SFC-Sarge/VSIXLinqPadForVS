@@ -1,9 +1,9 @@
-﻿namespace VSIXLinqPadForVS.Commands
+﻿namespace VSIXLinqPadForVS
 {
-    [Command(PackageIds.DisplayLinqPadStatementsResults)]
-    internal sealed class LinqPadStatements : BaseCommand<LinqPadStatements>
+    [Command(PackageIds.DisplayLinqPadMethodResults)]
+    internal sealed class LinqPadMethod : BaseCommand<LinqPadMethod>
     {
-        private const string runSelectedLinqStatement = "Run Selected Linq Statement.";
+        private const string runSelectedLinqMethod = "Run Selected Linq Method.";
 
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
@@ -12,7 +12,7 @@
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 ToolWindowMessenger messenger = await Package.GetServiceAsync<ToolWindowMessenger, ToolWindowMessenger>();
-                messenger.Send(runSelectedLinqStatement);
+                messenger.Send(runSelectedLinqMethod);
             }).FireAndForget();
         }
     }

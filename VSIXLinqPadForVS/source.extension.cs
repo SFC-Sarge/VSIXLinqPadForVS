@@ -11,7 +11,7 @@ namespace VSIXLinqPadForVS
         public const string Name = "VSIXLinqPadForVS";
         public const string Description = @"Using LinqPad inside of Visual Studio ToolWindow to run linq queries.";
         public const string Language = "en-US";
-        public const string Version = "1.12";
+        public const string Version = "1.16";
         public const string Author = "Danny McNaught";
         public const string Tags = "";
     }
