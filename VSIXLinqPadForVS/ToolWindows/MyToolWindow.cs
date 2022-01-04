@@ -11,7 +11,7 @@ namespace VSIXLinqPadForVS
 {
     public class MyToolWindow : BaseToolWindow<MyToolWindow>
     {
-        public override string GetTitle(int toolWindowId) => "My Query Tool Window";
+        public override string GetTitle(int toolWindowId) => "My Linq Query Tool Window";
 
         public override Type PaneType => typeof(Pane);
 

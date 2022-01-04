@@ -59,12 +59,15 @@ namespace VSIXLinqPadForVS
                         break;
                 }
             }).FireAndForget();
-
         }
         private void OnAfterCloseSolution()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            //SelectionChanged(null, null);
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                await pane.ClearAsync();
+                LinqPadResults.Children.Clear();
+            }).FireAndForget();
         }
 
         public async Task RunLinqStatementAsync()
@@ -75,9 +78,19 @@ namespace VSIXLinqPadForVS
                 await pane.ClearAsync();
                 LinqPadResults.Children.Clear();
                 DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
-                if (docView?.TextView == null) return; //not a text window
+                if (docView?.TextView == null)
+                {
+                    var NothingSelectedResult = new TextBlock { Text = "No Active Document View or Linq Selection!", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                    LinqPadResults.Children.Add(NothingSelectedResult);
+                    await pane.WriteLineAsync("No Active Document View or Linq Selection!");
+                    return;
+                }
                 if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
                 {
+                    await pane.WriteLineAsync("Running Selected Linq Query.\r\nPlease Wait!");
+                    var runningQueryResult = new TextBlock { Text = "Running Selected Linq Query.\r\nPlease Wait!", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                    LinqPadResults.Children.Add(runningQueryResult);
+
                     try
                     {
                         var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
@@ -100,7 +113,8 @@ namespace VSIXLinqPadForVS
                         process.Start();
                         queryResult = await process.StandardOutput.ReadToEndAsync();
                         process.WaitForExit();
-
+                        await pane.ClearAsync();
+                        LinqPadResults.Children.Clear();
                         await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results = {queryResult}");
                         var selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\nCurrent Selection Query Results = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                         LinqPadResults.Children.Add(selectedQueryResult);
@@ -113,6 +127,12 @@ namespace VSIXLinqPadForVS
                         LinqPadResults.Children.Add(exceptionResult);
                         await pane.WriteLineAsync($"Exception LinqPad.Util.Run Call. {exceptionResult.Text}");
                     }
+                }
+                else
+                {
+                    var NothingSelectedResult = new TextBlock { Text = "No Active Document View or Linq Selection!", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                    LinqPadResults.Children.Add(NothingSelectedResult);
+                    await pane.WriteLineAsync("No Active Document View or Linq Selection!");
                 }
             }).FireAndForget();
         }

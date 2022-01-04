@@ -35,7 +35,7 @@
 			</Button>
 			<Button guid="VSIXLinqPadForVS" id="DisplayLinqPadStatementsResults" priority="0x0001" type="Button">
 				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
-				<Icon guid="ImageCatalogGuid" id="DynamicDiscoveryDocument"/>
+				<Icon guid="ImageCatalogGuid" id="Linq"/>
 				<CommandFlag>IconIsMoniker</CommandFlag>
 				<!--<CommandFlag>IconAndText</CommandFlag>-->
 				<Strings>
