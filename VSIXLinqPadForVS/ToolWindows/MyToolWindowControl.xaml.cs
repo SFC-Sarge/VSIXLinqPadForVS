@@ -37,8 +37,8 @@ namespace VSIXLinqPadForVS
             {
                 await DoOutputWindowsAsync();
             }).FireAndForget();
-            VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
-            VS.Events.DocumentEvents.BeforeDocumentWindowShow += BeforeDocumentWindowShow;
+            //VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
+            //VS.Events.DocumentEvents.BeforeDocumentWindowShow += BeforeDocumentWindowShow;
             VS.Events.SolutionEvents.OnAfterCloseSolution += OnAfterCloseSolution;
             dirLPRun7 = System.IO.Path.GetDirectoryName(typeof(MyToolWindow).Assembly.Location);
             fileLPRun7 = System.IO.Path.Combine(dirLPRun7, "ToolWindows", "LPRun7-x64.exe");
@@ -50,11 +50,10 @@ namespace VSIXLinqPadForVS
             {
                 switch (e)
                 {
-                    case "Dump Selected Linq Query":
-                        await UpdateLinqPadDumpAsync(Hierarchy);
+                    case "Run Selected Linq Statement":
+                        await RunLinqStatementAsync();
                         break;
-                    case "Dump ToolWindow Linq Query":
-                        await UpdateLinqPadDumpAsync(Hierarchy);
+                    case "Run Selected Linq File":
                         break;
                     default:
                         break;
@@ -62,53 +61,15 @@ namespace VSIXLinqPadForVS
             }).FireAndForget();
 
         }
-        private void BeforeDocumentWindowShow(DocumentView docView)
-        {
-            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
-            {
-                if (docView?.Document?.FilePath != _activeFile)
-                {
-                    _activeFile = docView?.Document?.FilePath;
-                    var ext = System.IO.Path.GetExtension(docView?.Document?.FilePath);
-                    fileExtension = ext;
-                    await UpdateLinqPadDumpAsync(Hierarchy);
-                }
-
-            }).FireAndForget();
-        }
         private void OnAfterCloseSolution()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            SelectionChanged(null, null);
-        }
-        private void SelectionChanged(object sender, Community.VisualStudio.Toolkit.SelectionChangedEventArgs e)
-        {
-            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
-            {
-                Project project = await VS.Solutions.GetActiveProjectAsync();
-
-                if (project != _activeProject)
-                {
-                    _activeProject = project;
-                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                }
-            }).FireAndForget();
+            //SelectionChanged(null, null);
         }
 
-        public async Task UpdateLinqPadDumpAsync(IVsHierarchy hierarchy)
+        public async Task RunLinqStatementAsync()
         {
-            await pane.ClearAsync();
-            //await pane.WriteLineAsync($"2 * 25 = {(2 * 25).Dump<int>()}");
-        }
-
-        private async Task DoOutputWindowsAsync()
-        {
-            pane = await VS.Windows.CreateOutputWindowPaneAsync("LinqPad Dump");
-            return;
-        }
-
-        private void RunQuery_Click(object sender, RoutedEventArgs e)
-        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
                 await pane.ClearAsync();
@@ -154,7 +115,13 @@ namespace VSIXLinqPadForVS
                     }
                 }
             }).FireAndForget();
-
         }
+
+        private async Task DoOutputWindowsAsync()
+        {
+            pane = await VS.Windows.CreateOutputWindowPaneAsync("LinqPad Dump");
+            return;
+        }
+
     }
 }

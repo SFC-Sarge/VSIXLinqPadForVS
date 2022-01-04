@@ -28,6 +28,8 @@ namespace VSIXLinqPadForVS
             public Pane()
             {
                 BitmapImageMoniker = KnownMonikers.ToolWindow;
+                ToolBar = new CommandID(PackageGuids.VSIXLinqPadForVS, PackageIds.TWindowToolbar);
+
             }
         }
     }
