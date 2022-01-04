@@ -3,12 +3,10 @@ using LINQPad.FSharpExtensions;
 
 using Microsoft.VisualStudio.Shell.Interop;
 
-using System.IO;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
-
-using static System.Net.WebRequestMethods;
 
 namespace VSIXLinqPadForVS
 {
@@ -156,6 +154,7 @@ namespace VSIXLinqPadForVS
         {
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
+                await pane.ClearAsync();
                 LinqPadResults.Children.Clear();
                 DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
                 if (docView?.TextView == null) return; //not a text window
@@ -168,24 +167,27 @@ namespace VSIXLinqPadForVS
                         string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
                         string queryString = $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();";
                         System.IO.File.WriteAllText(tempQueryPath, queryString);
-                        var queryResult1 = await Util.Run(tempQueryPath, QueryResultFormat.Text).AsStringAsync().Dump();
-                        if (queryResult1 != null && queryResult1 != "")
-                        {
-                            queryResult = queryResult1;
-                            await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
-                            await pane.ClearAsync();
-                            var selectedQueryResult = new TextBlock { Text = queryResult, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                            LinqPadResults.Children.Add(selectedQueryResult);
-                            var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
-                            LinqPadResults.Children.Add(line);
-                        }
-                        else
-                        {
-                            var FailureResult = new TextBlock { Text = "Failed LinqPad.Util.Run Call.", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                            LinqPadResults.Children.Add(FailureResult);
-                            await pane.WriteLineAsync($"Failed LinqPad.Util.Run Call. {FailureResult.Text}");
 
-                        }
+                        using Process process = new();
+                        process.StartInfo = new ProcessStartInfo()
+                        {
+                            UseShellExecute = false,
+                            CreateNoWindow = true,
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                            FileName = @"D:\Program Files\LINQPad7-Beta\LPRun7-x64.exe",
+                            Arguments = $"-fx=6.0 {tempQueryPath}",
+                            RedirectStandardError = true,
+                            RedirectStandardOutput = true
+                        };
+                        process.Start();
+                        queryResult = await process.StandardOutput.ReadToEndAsync();
+                        process.WaitForExit();
+
+                        await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results = {queryResult}");
+                        var selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\nCurrent Selection Query Results = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                        LinqPadResults.Children.Add(selectedQueryResult);
+                        var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
+                        LinqPadResults.Children.Add(line);
                     }
                     catch (Exception ex)
                     {
