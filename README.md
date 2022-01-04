@@ -55,6 +55,36 @@ The Toolwindow Toolbar button calls the following using process:
 
 and returns the query results to the **My Linq Query Tool Window** and **LinqPad Dump** windows.
 
+>Important Note: When running a selected Linq Query Statement you must have the value to be returned assigned to "result". This is becuase, I have not been able to determine from a multi-line statement which result you want returned so which ever statement run will only return the "result". 
+>i.e. The following code snippet has a result variable: var result. This is the result and get returned, if this is not named result then you will get an empty return value from the Linq Query Statement.
+
+This example works and returns a result.
+
+```csharp
+    List<string> vegetables = new List<string> { "Cucumber", "Tomato", "Broccoli" };
+
+    var result = vegetables.Cast<string>();
+```
+
+The above query returns:
+
+![Working Statement](https://user-images.githubusercontent.com/67446778/148125528-55657e42-7621-4d28-86b9-55a7be497dd0.png)
+
+
+This example does not work since the var value has the value not a variable called result.
+
+```csharp
+    List<string> vegetables = new List<string> { "Cucumber", "Tomato", "Broccoli" };
+
+    var value = vegetables.Cast<string>();
+```
+
+The above query returns nothing but the script.
+
+![Not Working Statement](https://user-images.githubusercontent.com/67446778/148125718-ac97ef7f-343c-4304-84e3-1816ecebd929.png)
+
+>Note: The above statement issue is not a problem for the Method selection since it returns all the `Debug.WriteLine` statements listed in the selected method.
+
 ### Sample results from the following document view method selection:
 
 ![Linq Method Selection](https://user-images.githubusercontent.com/67446778/148121805-81419e3a-054d-4d7b-8f61-e3f3ce5557cb.png)
