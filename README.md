@@ -2,7 +2,9 @@
 
 LinqPad for Visual Studio is a Visual Studio 2022 Extension, that allows developer to run a selected linq query or linq method in the active document, and display those results in a Visual Studio ToolWindow.
 
-This works by using LPRun7-x64.exe to run the query and return the script and results of the script to the Toolwindow called:
+>Note: This is not a replacement for [LinqPad](https://www.linqpad.net/), which in my opinon is the best Linq Query builder/tester on the market. I recommend you try LinqPad and then purchase a license for it.
+
+This works by using "LinqPad Launchers for Command-Line Support"! LPRun7-x64.exe runs the query and then returns the script and results of the script to the Visual Studio 2022 Toolwindow called:
 
 >**My Linq Query Tool Window**
 
@@ -88,7 +90,7 @@ and returns the query results to the **My Linq Query Tool Window** and **LinqPad
 ![Query Statement Results in LinqPad Dump window](https://user-images.githubusercontent.com/67446778/148123386-17154680-8a19-4171-a382-df701d6139f8.png)
 
 
-### LPRun7 Info
+### [LPRun7](https://www.linqpad.net/) Info
 
 ![LPRun7](https://user-images.githubusercontent.com/67446778/148120780-69d97423-63e8-4a08-8638-a9ceb6dd0f39.png)
 
