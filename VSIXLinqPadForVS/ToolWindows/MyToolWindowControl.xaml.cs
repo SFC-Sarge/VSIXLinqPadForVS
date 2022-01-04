@@ -174,13 +174,13 @@ namespace VSIXLinqPadForVS
                 try
                 {
                     var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
-                    var currentSelectionLength = currentSelection.Length;
-                        currentSelection = currentSelection.Insert(currentSelectionLength - 1, resultDump);
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                         string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{linqExtension}";
-                        string queryString = $"{queryKindMethod}\r\n{currentSelection}\r\n{resultDump};";
+                        string methodName = currentSelection.Substring(0, currentSelection.IndexOf("\r"));
+                        string methodNameComplete = methodName.Substring(methodName.LastIndexOf(" ") + 1, methodName.LastIndexOf(")") - methodName.LastIndexOf(" "));
+                        string methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
+                        string queryString = $"{queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}";
                         File.WriteAllText(tempQueryPath, queryString);
-
                         using Process process = new();
                         process.StartInfo = new ProcessStartInfo()
                         {
@@ -197,8 +197,8 @@ namespace VSIXLinqPadForVS
                         process.WaitForExit();
                         await pane.ClearAsync();
                         LinqPadResults.Children.Clear();
-                        await pane.WriteLineAsync($"{currentSelection} \r\n\r\n{currentSelectionQueryMethod} = {queryResult}");
-                        var selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{currentSelectionQueryMethod} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                        await pane.WriteLineAsync($"{queryString} \r\n\r\n{currentSelectionQueryMethod} =\r\n{queryResult}");
+                        var selectedQueryResult = new TextBlock { Text = $"{queryString} \r\n\r\n{currentSelectionQueryMethod} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                         LinqPadResults.Children.Add(selectedQueryResult);
                         var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                         LinqPadResults.Children.Add(line);
