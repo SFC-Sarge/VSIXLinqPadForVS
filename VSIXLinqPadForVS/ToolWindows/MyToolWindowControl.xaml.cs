@@ -1,8 +1,5 @@
-﻿using LINQPad;
-using LINQPad.FSharpExtensions;
-
+﻿using System.IO;
 using Microsoft.VisualStudio.Shell.Interop;
-
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +17,9 @@ namespace VSIXLinqPadForVS
         public Project _activeProject;
         public string _activeFile;
         public string queryResult = null;
+        public string dirLPRun7 = null;
+        public string fileLPRun7 = null;
+
         public MyToolWindowControl(Project activeProject, ToolWindowMessenger toolWindowMessenger)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -35,14 +35,13 @@ namespace VSIXLinqPadForVS
             toolWindowMessenger.MessageReceived += OnMessageReceived;
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-
                 await DoOutputWindowsAsync();
-                //await pane.ClearAsync();
-                await UpdateLinqPadDumpAsync(Hierarchy);
             }).FireAndForget();
             VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += BeforeDocumentWindowShow;
             VS.Events.SolutionEvents.OnAfterCloseSolution += OnAfterCloseSolution;
+            dirLPRun7 = System.IO.Path.GetDirectoryName(typeof(MyToolWindow).Assembly.Location);
+            fileLPRun7 = System.IO.Path.Combine(dirLPRun7, "ToolWindows", "LPRun7-x64.exe");
 
         }
         private void OnMessageReceived(object sender, string e)
@@ -71,9 +70,7 @@ namespace VSIXLinqPadForVS
                 {
                     _activeFile = docView?.Document?.FilePath;
                     var ext = System.IO.Path.GetExtension(docView?.Document?.FilePath);
-                    //await UpdateFilesAsync(docView.TextBuffer.ContentType, ext);
                     fileExtension = ext;
-                    //await UpdateFilesAsync(ext);
                     await UpdateLinqPadDumpAsync(Hierarchy);
                 }
 
@@ -100,8 +97,8 @@ namespace VSIXLinqPadForVS
 
         public async Task UpdateLinqPadDumpAsync(IVsHierarchy hierarchy)
         {
-            //await pane.ClearAsync();
-            await pane.WriteLineAsync($"2 * 25 = {(2 * 25).Dump<int>()}");
+            await pane.ClearAsync();
+            //await pane.WriteLineAsync($"2 * 25 = {(2 * 25).Dump<int>()}");
         }
 
         private async Task DoOutputWindowsAsync()
@@ -109,46 +106,6 @@ namespace VSIXLinqPadForVS
             pane = await VS.Windows.CreateOutputWindowPaneAsync("LinqPad Dump");
             return;
         }
-        //private void RunLinqPadQuery(string currentSelection)
-        //{
-        //    string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
-        //    File.WriteAllText(tempQueryPath, $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();");
-        //    var queryResult1 = Util.Run(tempQueryPath, QueryResultFormat.Text).AsString().Dump();
-        //    //var queryResult1 = Util.Run(tempQueryPath, QueryResultFormat.Text);
-        //    queryResult1.Dump();
-        //    //queryResult1.AsString().Dump();
-        //    //queryResult1.AsString().DumpTrace();
-        //    //queryResult = queryResult1;
-        //    pane.WriteLine($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
-        //}
-
-        //private async void RunLinqPadQuery(string currentSelection)
-        //{
-        //    string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
-        //    File.WriteAllText(tempQueryPath, $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();");
-        //    var queryResult1 = await Util.Run(tempQueryPath, QueryResultFormat.Text).AsStringAsync().Dump();
-        //    //var queryResult1 = Util.Run(tempQueryPath, QueryResultFormat.Text);
-        //    queryResult1.Dump();
-        //    //queryResult1.AsString().Dump();
-        //    //queryResult1.AsString().DumpTrace();
-        //    //queryResult = queryResult1;
-        //    //await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
-        //}
-
-        //private async System.Threading.Tasks.Task<string> RunLinqPadQueryAsync(string currentSelection)
-        //{
-        //    //ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
-        //    //{
-        //    string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
-        //    File.WriteAllText(tempQueryPath, $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();");
-        //    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-        //    var queryResult1 = await Util.Run(tempQueryPath, QueryResultFormat.Text).AsStringAsync().Dump().Dump();
-        //    await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
-        //    return $"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}";
-
-        //    //}).FireAndForget();
-
-        //}
 
         private void RunQuery_Click(object sender, RoutedEventArgs e)
         {
@@ -166,7 +123,7 @@ namespace VSIXLinqPadForVS
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                         string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
                         string queryString = $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();";
-                        System.IO.File.WriteAllText(tempQueryPath, queryString);
+                        File.WriteAllText(tempQueryPath, queryString);
 
                         using Process process = new();
                         process.StartInfo = new ProcessStartInfo()
@@ -174,7 +131,7 @@ namespace VSIXLinqPadForVS
                             UseShellExecute = false,
                             CreateNoWindow = true,
                             WindowStyle = ProcessWindowStyle.Hidden,
-                            FileName = @"D:\Program Files\LINQPad7-Beta\LPRun7-x64.exe",
+                            FileName = fileLPRun7,
                             Arguments = $"-fx=6.0 {tempQueryPath}",
                             RedirectStandardError = true,
                             RedirectStandardOutput = true
