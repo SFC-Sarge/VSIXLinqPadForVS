@@ -1,4 +1,5 @@
 ﻿using LINQPad;
+using LINQPad.FSharpExtensions;
 
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -6,6 +7,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
+
+using static System.Net.WebRequestMethods;
 
 namespace VSIXLinqPadForVS
 {
@@ -18,7 +21,7 @@ namespace VSIXLinqPadForVS
         public string fileExtension = null;
         public Project _activeProject;
         public string _activeFile;
-
+        public string queryResult = null;
         public MyToolWindowControl(Project activeProject, ToolWindowMessenger toolWindowMessenger)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -36,7 +39,7 @@ namespace VSIXLinqPadForVS
             {
 
                 await DoOutputWindowsAsync();
-                await pane.ClearAsync();
+                //await pane.ClearAsync();
                 await UpdateLinqPadDumpAsync(Hierarchy);
             }).FireAndForget();
             VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
@@ -99,7 +102,7 @@ namespace VSIXLinqPadForVS
 
         public async Task UpdateLinqPadDumpAsync(IVsHierarchy hierarchy)
         {
-            await pane.ClearAsync();
+            //await pane.ClearAsync();
             await pane.WriteLineAsync($"2 * 25 = {(2 * 25).Dump<int>()}");
         }
 
@@ -108,39 +111,88 @@ namespace VSIXLinqPadForVS
             pane = await VS.Windows.CreateOutputWindowPaneAsync("LinqPad Dump");
             return;
         }
+        //private void RunLinqPadQuery(string currentSelection)
+        //{
+        //    string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
+        //    File.WriteAllText(tempQueryPath, $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();");
+        //    var queryResult1 = Util.Run(tempQueryPath, QueryResultFormat.Text).AsString().Dump();
+        //    //var queryResult1 = Util.Run(tempQueryPath, QueryResultFormat.Text);
+        //    queryResult1.Dump();
+        //    //queryResult1.AsString().Dump();
+        //    //queryResult1.AsString().DumpTrace();
+        //    //queryResult = queryResult1;
+        //    pane.WriteLine($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
+        //}
 
-        private async System.Threading.Tasks.Task<string> RunLinqPadQueryAsync(string currentSelection)
-        {
-            //ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
-            //{
-            string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
-            File.WriteAllText(tempQueryPath, $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();");
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var queryResult1 = await Util.Run(tempQueryPath, QueryResultFormat.Text).AsStringAsync().Dump();
-            await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
-            return $"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}";
+        //private async void RunLinqPadQuery(string currentSelection)
+        //{
+        //    string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
+        //    File.WriteAllText(tempQueryPath, $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();");
+        //    var queryResult1 = await Util.Run(tempQueryPath, QueryResultFormat.Text).AsStringAsync().Dump();
+        //    //var queryResult1 = Util.Run(tempQueryPath, QueryResultFormat.Text);
+        //    queryResult1.Dump();
+        //    //queryResult1.AsString().Dump();
+        //    //queryResult1.AsString().DumpTrace();
+        //    //queryResult = queryResult1;
+        //    //await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
+        //}
 
-            //}).FireAndForget();
+        //private async System.Threading.Tasks.Task<string> RunLinqPadQueryAsync(string currentSelection)
+        //{
+        //    //ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+        //    //{
+        //    string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
+        //    File.WriteAllText(tempQueryPath, $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();");
+        //    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+        //    var queryResult1 = await Util.Run(tempQueryPath, QueryResultFormat.Text).AsStringAsync().Dump().Dump();
+        //    await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
+        //    return $"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}";
 
-        }
+        //    //}).FireAndForget();
+
+        //}
 
         private void RunQuery_Click(object sender, RoutedEventArgs e)
         {
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
                 LinqPadResults.Children.Clear();
-                await pane.ClearAsync();
                 DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
                 if (docView?.TextView == null) return; //not a text window
                 if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
                 {
-                    var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
-                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    var queryResult = RunLinqPadQueryAsync(currentSelection);
-                    var selectedQueryResult = new TextBlock { Text = await queryResult, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                    LinqPadResults.Children.Add(selectedQueryResult);
-                    var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
-                    LinqPadResults.Children.Add(line);
+                    try
+                    {
+                        var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
+                        await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                        string tempQueryPath = System.IO.Path.GetTempFileName() + ".linq";
+                        string queryString = $"<Query Kind='Statements' />\r\n{currentSelection}\r\nresult.Dump();";
+                        System.IO.File.WriteAllText(tempQueryPath, queryString);
+                        var queryResult1 = await Util.Run(tempQueryPath, QueryResultFormat.Text).AsStringAsync().Dump();
+                        if (queryResult1 != null && queryResult1 != "")
+                        {
+                            queryResult = queryResult1;
+                            await pane.WriteLineAsync($"{currentSelection} \r\n\r\nCurrent Selection Query Results are:\r\n{queryResult1}");
+                            await pane.ClearAsync();
+                            var selectedQueryResult = new TextBlock { Text = queryResult, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            LinqPadResults.Children.Add(selectedQueryResult);
+                            var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
+                            LinqPadResults.Children.Add(line);
+                        }
+                        else
+                        {
+                            var FailureResult = new TextBlock { Text = "Failed LinqPad.Util.Run Call.", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            LinqPadResults.Children.Add(FailureResult);
+                            await pane.WriteLineAsync($"Failed LinqPad.Util.Run Call. {FailureResult.Text}");
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        var exceptionResult = new TextBlock { Text = ex.Message, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                        LinqPadResults.Children.Add(exceptionResult);
+                        await pane.WriteLineAsync($"Exception LinqPad.Util.Run Call. {exceptionResult.Text}");
+                    }
                 }
             }).FireAndForget();
 
