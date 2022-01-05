@@ -230,11 +230,11 @@ namespace VSIXLinqPadForVS
                 }
             }).FireAndForget();
         }
-        public async Task<DocumentView?> OpenDocumentWithSpecificEditorAsync(string file, Guid editorType, Guid LogicalView)
+        public async Task<DocumentView> OpenDocumentWithSpecificEditorAsync(string file, Guid editorType, Guid LogicalView)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            VsShellUtilities.OpenDocumentWithSpecificEditor(ServiceProvider.GlobalProvider, file, editorType, LogicalView, out _, out _, out IVsWindowFrame? frame);
-            IVsTextView? nativeView = VsShellUtilities.GetTextView(frame);
+            VsShellUtilities.OpenDocumentWithSpecificEditor(ServiceProvider.GlobalProvider, file, editorType, LogicalView, out _, out _, out IVsWindowFrame frame);
+            IVsTextView nativeView = VsShellUtilities.GetTextView(frame);
             return await nativeView.ToDocumentViewAsync();
         }
         public async Task RunEditorLinqQueryAsync()
