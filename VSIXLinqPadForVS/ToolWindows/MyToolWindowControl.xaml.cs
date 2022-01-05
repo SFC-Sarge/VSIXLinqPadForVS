@@ -141,6 +141,9 @@ namespace VSIXLinqPadForVS
                         LinqPadResults.Children.Add(selectedQueryResult);
                         var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                         LinqPadResults.Children.Add(line);
+                        Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
+                        await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
+
                     }
                     catch (Exception ex)
                     {
@@ -257,11 +260,26 @@ namespace VSIXLinqPadForVS
 
                     try
                     {
-                        var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                        var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
                         string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{linqExtension}";
-                        string queryString = $"{queryKindStatement}\r\n{currentSelection}\r\n{resultDump};";
-                        File.WriteAllText(tempQueryPath, queryString);
+                        if (!currentSelection.StartsWith("<Query Kind="))
+                            {
+                            string methodName = currentSelection.Substring(0, currentSelection.IndexOf("\r"));
+                            string methodNameComplete = methodName.Substring(methodName.LastIndexOf(" ") + 1, methodName.LastIndexOf(")") - methodName.LastIndexOf(" "));
+                            string methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
+                            string queryString = $"{queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}";
+                            File.WriteAllText(tempQueryPath, queryString);
+                        }
+                        else if (currentSelection.StartsWith("<Query Kind="))
+                        {
+                            File.WriteAllText(tempQueryPath, currentSelection);
+                        }
+                        else
+                        {
+                            string queryString = $"{queryKindStatement}\r\n{currentSelection}\r\n{resultDump};";
+                            File.WriteAllText(tempQueryPath, queryString);
+                        }
 
                         using Process process = new();
                         process.StartInfo = new ProcessStartInfo()
@@ -285,6 +303,9 @@ namespace VSIXLinqPadForVS
                         LinqPadResults.Children.Add(selectedQueryResult);
                         var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                         LinqPadResults.Children.Add(line);
+                        Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
+                        await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
+
                     }
                     catch (Exception ex)
                     {

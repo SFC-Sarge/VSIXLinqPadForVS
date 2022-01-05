@@ -20,15 +20,8 @@
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
-                <StackPanel>
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Margin="20 10 0 0" Name="LinqPadResults" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="400" />
-                        <StackPanel Margin="20 10 0 0" Name="LinqPadEditor" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="400">
-                            <avalonEdit:TextEditor Name="LinqEditor" FontFamily="Cascadia Code" FontSize="10" SyntaxHighlighting="C#" Text="Hello" Width="auto" MinWidth="100" MinHeight="100" Height="auto" MaxWidth="400"></avalonEdit:TextEditor>
-                            <!--<DocumentViewer Name="LinqEditor" FontFamily="Cascadia Code" FontSize="10" Width="auto" MinHeight="100" MinWidth="100" MaxWidth="300"></DocumentViewer>-->
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
+                <StackPanel Margin="20 10 0 0" Name="LinqPadResults" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="400" />
+                <StackPanel Margin="20 10 0 0" Name="LinqPadEditor" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="400" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
