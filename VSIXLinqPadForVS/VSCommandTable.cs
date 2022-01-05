@@ -25,5 +25,6 @@ namespace VSIXLinqPadForVS
         public const int TWindowToolbarGroup = 0x1050;
         public const int DisplayLinqPadStatementsResults = 0x0111;
         public const int DisplayLinqPadMethodResults = 0x0112;
+        public const int EditorLinqPad = 0x0114;
     }
 }

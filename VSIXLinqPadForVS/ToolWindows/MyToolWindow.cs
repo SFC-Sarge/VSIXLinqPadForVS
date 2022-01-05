@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace VSIXLinqPadForVS
 {
@@ -29,7 +31,6 @@ namespace VSIXLinqPadForVS
             {
                 BitmapImageMoniker = KnownMonikers.ToolWindow;
                 ToolBar = new CommandID(PackageGuids.VSIXLinqPadForVS, PackageIds.TWindowToolbar);
-
             }
         }
     }
