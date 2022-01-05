@@ -70,7 +70,6 @@ The above query works and returns:
 
 ![Working Statement](https://user-images.githubusercontent.com/67446778/148125528-55657e42-7621-4d28-86b9-55a7be497dd0.png)
 
-
 This example does not work since the `var value` has the value, not a variable called result.
 
 ```csharp
