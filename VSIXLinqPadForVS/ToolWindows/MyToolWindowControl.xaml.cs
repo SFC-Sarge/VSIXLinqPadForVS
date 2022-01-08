@@ -22,7 +22,7 @@ namespace VSIXLinqPadForVS
         private const string runningSelectQueryMethod = "Running Selected Linq Query Method.\r\nPlease Wait!";
         private const string queryKindStatement = "<Query Kind='Statements' />";
         private const string queryKindMethod = "<Query Kind='Program' />";
-        private const string linqExtension = ".cs";
+        private const string linqExtension = ".linqResult";
         private const string exceptionIn = "Exception in ";
         private const string exceptionCall = "Call. ";
         private const string fileLPRun7Args = "-fx=6.0";
@@ -117,7 +117,7 @@ namespace VSIXLinqPadForVS
                         var currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                         string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{linqExtension}";
-                        string queryString = $"{queryKindStatement}\r\n{currentSelection}\r\n{resultDump};";
+                        string queryString = $"{queryKindStatement}\r\n{currentSelection}\r\n{resultDump};".Trim();
                         File.WriteAllText(tempQueryPath, queryString);
 
                         using Process process = new();
@@ -141,9 +141,13 @@ namespace VSIXLinqPadForVS
                         LinqPadResults.Children.Add(selectedQueryResult);
                         var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                         LinqPadResults.Children.Add(line);
-                        Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
-                        await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
+                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{linqExtension}";
+                        File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{currentSelectionQuery} = {queryResult}".Trim());
 
+                        Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
+                        //Guid guid_microsoft_csharp_editor = Guid.Empty;
+                        await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
+                        //await VS.Documents.OpenAsync(tempQueryPath);
                     }
                     catch (Exception ex)
                     {
@@ -189,7 +193,7 @@ namespace VSIXLinqPadForVS
                         string methodName = currentSelection.Substring(0, currentSelection.IndexOf("\r"));
                         string methodNameComplete = methodName.Substring(methodName.LastIndexOf(" ") + 1, methodName.LastIndexOf(")") - methodName.LastIndexOf(" "));
                         string methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
-                        string queryString = $"{queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}";
+                        string queryString = $"{queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}".Trim();
                         File.WriteAllText(tempQueryPath, queryString);
                         using Process process = new();
                         process.StartInfo = new ProcessStartInfo()
@@ -212,8 +216,13 @@ namespace VSIXLinqPadForVS
                         LinqPadResults.Children.Add(selectedQueryResult);
                         var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                         LinqPadResults.Children.Add(line);
+                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{linqExtension}";
+                        File.WriteAllText(tempQueryPath, $"{queryString} \r\n\r\n{currentSelectionQueryMethod} = {queryResult}".Trim());
+
                         Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
+                        //Guid guid_microsoft_csharp_editor = Guid.Empty;
                         await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
+                        //await VS.Documents.OpenAsync(tempQueryPath);
                     }
                     catch (Exception ex)
                     {
@@ -268,7 +277,7 @@ namespace VSIXLinqPadForVS
                             string methodName = currentSelection.Substring(0, currentSelection.IndexOf("\r"));
                             string methodNameComplete = methodName.Substring(methodName.LastIndexOf(" ") + 1, methodName.LastIndexOf(")") - methodName.LastIndexOf(" "));
                             string methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
-                            string queryString = $"{queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}";
+                            string queryString = $"{queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}".Trim();
                             File.WriteAllText(tempQueryPath, queryString);
                         }
                         else if (currentSelection.StartsWith("<Query Kind="))
@@ -303,9 +312,12 @@ namespace VSIXLinqPadForVS
                         LinqPadResults.Children.Add(selectedQueryResult);
                         var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                         LinqPadResults.Children.Add(line);
+                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{linqExtension}";
+                        File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{currentSelectionQuery} = {queryResult}".Trim());
                         Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
+                        //Guid guid_microsoft_csharp_editor = Guid.Empty;
                         await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
-
+                        //await VS.Documents.OpenAsync(tempQueryPath);
                     }
                     catch (Exception ex)
                     {

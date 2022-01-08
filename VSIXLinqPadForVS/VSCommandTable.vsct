@@ -18,6 +18,9 @@
 		</Menus>
 
 		<Groups>
+			<Group guid="VSIXLinqPadForVS" id="EditorGroup" priority="100">
+				<Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
+			</Group>
 			<Group guid="VSIXLinqPadForVS" id="TWindowToolbarGroup" priority="0x0000">
 				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbar" />
 			</Group>
@@ -60,10 +63,47 @@
 					<ButtonText>Run Editor Linq Query!</ButtonText>
 				</Strings>
 			</Button>
+			<Button guid="VSIXLinqPadForVS" id="ToggleSync" priority="100" type="Button">
+				<Parent guid="VSIXLinqPadForVS" id="EditorGroup" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<Strings>
+					<ButtonText>Enable Preview Sync</ButtonText>
+					<LocCanonicalName>.Linq.EnablePreviewSync</LocCanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="VSIXLinqPadForVS" id="MakeBold" priority="100" type="Button">
+				<Parent guid="VSIXLinqPadForVS" id="EditorGroup" />
+				<CommandFlag>CommandWellOnly</CommandFlag>
+				<Strings>
+					<ButtonText>Make Bold</ButtonText>
+					<LocCanonicalName>.Linq.MakeBold</LocCanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="VSIXLinqPadForVS" id="MakeItalic" priority="100" type="Button">
+				<Parent guid="VSIXLinqPadForVS" id="EditorGroup" />
+				<CommandFlag>CommandWellOnly</CommandFlag>
+				<Strings>
+					<ButtonText>Make Italic</ButtonText>
+					<LocCanonicalName>.Linq.MakeItalic</LocCanonicalName>
+				</Strings>
+			</Button>
+
 		</Buttons>
 	</Commands>
 
+	<VisibilityConstraints>
+		<VisibilityItem guid="VSIXLinqPadForVS" id="ToggleSync" context="EditorFactory" />
+	</VisibilityConstraints>
+
+	<KeyBindings>
+		<KeyBinding guid="VSIXLinqPadForVS" id="MakeBold" editor="EditorFactory" key1="B" mod1="Control" />
+		<KeyBinding guid="VSIXLinqPadForVS" id="MakeItalic" editor="EditorFactory" key1="I" mod1="Control" />
+	</KeyBindings>
+
 	<Symbols>
+		<GuidSymbol name="EditorFactory" value="{83177EAC-72F6-4D5E-B8CB-9C7874CAB500}" />
 		<GuidSymbol name="VSIXLinqPadForVS" value="{a8059166-5701-4a3b-ab88-bf1a8831dcf1}">
 			<IDSymbol name="MyCommand" value="0x0100" />
 			<IDSymbol name="TWindowToolbar" value="0x1000" />
@@ -71,6 +111,10 @@
 			<IDSymbol name="DisplayLinqPadStatementsResults" value="0x0111" />
 			<IDSymbol name="DisplayLinqPadMethodResults" value="0x0112" />
 			<IDSymbol name="EditorLinqPad" value="0x0114" />
+			<IDSymbol name="EditorGroup" value="0x0001"/>
+			<IDSymbol name="ToggleSync" value="0x1001"/>
+			<IDSymbol name="MakeBold" value="0x1010"/>
+			<IDSymbol name="MakeItalic" value="0x1020"/>
 		</GuidSymbol>
 	</Symbols>
 </CommandTable>
