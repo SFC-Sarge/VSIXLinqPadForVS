@@ -21,9 +21,14 @@
 			<Group guid="VSIXLinqPadForVS" id="TWindowToolbarGroup" priority="0x0000">
 				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbar" />
 			</Group>
+			<Group guid="EditorFactory" id="EditorGroup" priority="100">
+				<Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
+			</Group>
+
 		</Groups>
 
 		<Buttons>
+
 			<Button guid="VSIXLinqPadForVS" id="MyCommand" priority="0x0100" type="Button">
 				<Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
 				<Icon guid="ImageCatalogGuid" id="ToolWindow" />
@@ -64,6 +69,10 @@
 	</Commands>
 
 	<Symbols>
+		<GuidSymbol name="EditorFactory" value="{83177EAC-72F6-4D5E-B8CB-9C7874CAB500}">
+			<IDSymbol name="EditorGroup" value="0x0001"/>
+			<IDSymbol name="ToggleSync" value="0x1000"/>
+		</GuidSymbol>
 		<GuidSymbol name="VSIXLinqPadForVS" value="{a8059166-5701-4a3b-ab88-bf1a8831dcf1}">
 			<IDSymbol name="MyCommand" value="0x0100" />
 			<IDSymbol name="TWindowToolbar" value="0x1000" />
@@ -71,6 +80,7 @@
 			<IDSymbol name="DisplayLinqPadStatementsResults" value="0x0111" />
 			<IDSymbol name="DisplayLinqPadMethodResults" value="0x0112" />
 			<IDSymbol name="EditorLinqPad" value="0x0114" />
+
 		</GuidSymbol>
 	</Symbols>
 </CommandTable>

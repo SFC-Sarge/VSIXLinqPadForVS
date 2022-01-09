@@ -67,6 +67,12 @@
     <Compile Include="Commands\LinqPadStatements.cs" />
     <Compile Include="Commands\LinqQueryEditor.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Language\LinqEditor.cs" />
+    <Compile Include="Language\LinqEditorClassifier.cs" />
+    <Compile Include="Language\LinqEditorClassifierClassificationDefinition.cs" />
+    <Compile Include="Language\LinqEditorClassifierFormat.cs" />
+    <Compile Include="Language\LinqEditorClassifierProvider.cs" />
+    <Compile Include="Options\AdvancedOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
     <Compile Include="ToolWindowMessenger.cs" />
