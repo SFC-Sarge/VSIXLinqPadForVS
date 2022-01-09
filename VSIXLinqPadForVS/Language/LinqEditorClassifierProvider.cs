@@ -23,6 +23,7 @@ namespace VSIXLinqPadForVS
         [Import]
         private IClassificationTypeRegistryService classificationRegistry;
 
+
 #pragma warning restore 649
 
         #region IClassifierProvider

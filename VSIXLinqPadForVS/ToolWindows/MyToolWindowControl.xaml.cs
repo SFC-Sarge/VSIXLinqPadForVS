@@ -126,11 +126,11 @@ namespace VSIXLinqPadForVS
                         tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
                         System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
 
-                        //Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
+                        Guid guid_microsoft_csharp_editor = new Guid("{A6C744A8-0E4A-4FC6-886A-064283054674}");
                         //Guid guid_microsoft_csharp_editor = Guid.Empty;
-                        //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
+                        await OpenDocumentWithSpecificEditorAsync(tempQueryPath, guid_microsoft_csharp_editor, Guid.Empty);
                         //await VS.Documents.OpenAsync(tempQueryPath);
-                         await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
+                        await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
                    }
                     catch (Exception ex)
                     {
