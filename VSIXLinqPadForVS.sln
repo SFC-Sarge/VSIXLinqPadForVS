@@ -7,7 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSIXLinqPadForVS", "VSIXLin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84594C22-0C26-4170-B8BA-C6FC9FEC58F3}"
 	ProjectSection(SolutionItems) = preProject
-		markdown-cheat-sheet.md = markdown-cheat-sheet.md
 		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
