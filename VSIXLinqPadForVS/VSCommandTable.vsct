@@ -1,86 +1,195 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-	<Extern href="stdidcmd.h"/>
-	<Extern href="vsshlids.h"/>
-	<Include href="KnownImageIds.vsct"/>
-	<Include href="VSGlobals.vsct"/>
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+  <Include href="VSGlobals.vsct"/>
 
-	<Commands package="VSIXLinqPadForVS">
-		<!--This section defines the elements the user can interact with, like a menu command or a button or combo box in a toolbar. -->
-		<Menus>
-			<Menu guid="VSIXLinqPadForVS" id="TWindowToolbar" type="ToolWindowToolbar">
-				<CommandFlag>DefaultDocked</CommandFlag>
-				<Strings>
-					<ButtonText>Tool Window Toolbar</ButtonText>
-				</Strings>
-			</Menu>
-		</Menus>
+  <Commands package="VSIXLinqPadForVS">
+    <!--This section defines the elements the user can interact with, like a menu command or a button or combo box in a toolbar. -->
+    <Menus>
+      <Menu guid="VSIXLinqPadForVS" id="TWindowToolbar" type="ToolWindowToolbar">
+        <CommandFlag>DefaultDocked</CommandFlag>
+        <Strings>
+          <ButtonText>Tool Window Toolbar</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
 
-		<Groups>
-			<Group guid="VSIXLinqPadForVS" id="TWindowToolbarGroup" priority="0x0000">
-				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbar" />
-			</Group>
-			<Group guid="EditorFactory" id="EditorGroup" priority="100">
-				<Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
-			</Group>
+    <Groups>
+      <Group guid="VSIXLinqPadForVS" id="TWindowToolbarGroup" priority="0x0000">
+        <Parent guid="VSIXLinqPadForVS" id="TWindowToolbar" />
+      </Group>
+      <Group guid="LinqEditor2022" id="EditorGroup" priority="9000">
+        <Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
+      <Group guid="LinqEditor2022" id="ReferenceGroup" priority="9010">
+        <Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
+      <Group guid="LinqEditor2022" id="SettingsGroup" priority="9020">
+        <Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
 
-		</Groups>
+    </Groups>
 
-		<Buttons>
+    <Buttons>
 
-			<Button guid="VSIXLinqPadForVS" id="MyCommand" priority="0x0100" type="Button">
-				<Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
-				<Icon guid="ImageCatalogGuid" id="ToolWindow" />
-				<CommandFlag>IconIsMoniker</CommandFlag>
-				<Strings>
-					<ButtonText>My Query Tool Window</ButtonText>
-					<LocCanonicalName>.View.MyToolWindow</LocCanonicalName>
-				</Strings>
-			</Button>
-			<Button guid="VSIXLinqPadForVS" id="DisplayLinqPadStatementsResults" priority="0x0001" type="Button">
-				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
-				<Icon guid="ImageCatalogGuid" id="Linq"/>
-				<CommandFlag>IconIsMoniker</CommandFlag>
-				<!--<CommandFlag>IconAndText</CommandFlag>-->
-				<Strings>
-					<ButtonText>Run Selected Query Statement!</ButtonText>
-				</Strings>
-			</Button>
-			<Button guid="VSIXLinqPadForVS" id="DisplayLinqPadMethodResults" priority="0x0002" type="Button">
-				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
-				<Icon guid="ImageCatalogGuid" id="LinkValidator"/>
-				<CommandFlag>IconIsMoniker</CommandFlag>
-				<!--<CommandFlag>IconAndText</CommandFlag>-->
-				<Strings>
-					<ButtonText>Run Selected Query Method!</ButtonText>
-				</Strings>
-			</Button>
-			<Button guid="VSIXLinqPadForVS" id="EditorLinqPad" priority="0x0003" type="Button">
-				<Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
-				<Icon guid="ImageCatalogGuid" id="Editor"/>
-				<CommandFlag>IconIsMoniker</CommandFlag>
-				<!--<CommandFlag>IconAndText</CommandFlag>-->
-				<Strings>
-					<ButtonText>Run Editor Linq Query!</ButtonText>
-				</Strings>
-			</Button>
-		</Buttons>
-	</Commands>
+      <Button guid="VSIXLinqPadForVS" id="MyCommand" priority="0x0100" type="Button">
+        <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
+        <Icon guid="ImageCatalogGuid" id="ToolWindow" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>My Query Tool Window</ButtonText>
+          <LocCanonicalName>.View.MyToolWindow</LocCanonicalName>
+        </Strings>
+      </Button>
+      <Button guid="VSIXLinqPadForVS" id="DisplayLinqPadStatementsResults" priority="0x0001" type="Button">
+        <Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="Linq"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <!--<CommandFlag>IconAndText</CommandFlag>-->
+        <Strings>
+          <ButtonText>Run Selected Query Statement!</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="VSIXLinqPadForVS" id="DisplayLinqPadMethodResults" priority="0x0002" type="Button">
+        <Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="LinkValidator"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <!--<CommandFlag>IconAndText</CommandFlag>-->
+        <Strings>
+          <ButtonText>Run Selected Query Method!</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="VSIXLinqPadForVS" id="EditorLinqPad" priority="0x0003" type="Button">
+        <Parent guid="VSIXLinqPadForVS" id="TWindowToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="Editor"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <!--<CommandFlag>IconAndText</CommandFlag>-->
+        <Strings>
+          <ButtonText>Run Editor Linq Query!</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="LinqEditor2022" id="ToggleSync" priority="100" type="Button">
+        <Parent guid="LinqEditor2022" id="EditorGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Enable Preview Sync</ButtonText>
+          <LocCanonicalName>.Linq.EnablePreviewSync</LocCanonicalName>
+        </Strings>
+      </Button>
 
-	<Symbols>
-		<GuidSymbol name="EditorFactory" value="{83177EAC-72F6-4D5E-B8CB-9C7874CAB500}">
-			<IDSymbol name="EditorGroup" value="0x0001"/>
-			<IDSymbol name="ToggleSync" value="0x1000"/>
-		</GuidSymbol>
-		<GuidSymbol name="VSIXLinqPadForVS" value="{a8059166-5701-4a3b-ab88-bf1a8831dcf1}">
-			<IDSymbol name="MyCommand" value="0x0100" />
-			<IDSymbol name="TWindowToolbar" value="0x1000" />
-			<IDSymbol name="TWindowToolbarGroup" value="0x1050" />
-			<IDSymbol name="DisplayLinqPadStatementsResults" value="0x0111" />
-			<IDSymbol name="DisplayLinqPadMethodResults" value="0x0112" />
-			<IDSymbol name="EditorLinqPad" value="0x0114" />
+      <Button guid="LinqEditor2022" id="Refresh" priority="150" type="Button">
+        <Parent guid="LinqEditor2022" id="EditorGroup" />
+        <Icon guid="ImageCatalogGuid" id="Refresh"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Refresh Preview</ButtonText>
+          <LocCanonicalName>.Linq.Refresh</LocCanonicalName>
+        </Strings>
+      </Button>
 
-		</GuidSymbol>
-	</Symbols>
+      <Button guid="LinqEditor2022" id="InsertLink" priority="200" type="Button">
+        <Parent guid="LinqEditor2022" id="EditorGroup" />
+        <Icon guid="ImageCatalogGuid" id="AddLink"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Insert Link</ButtonText>
+          <LocCanonicalName>.Linq.InsertLink</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="LinqEditor2022" id="MakeBold" priority="100" type="Button">
+        <Parent guid="LinqEditor2022" id="EditorGroup" />
+        <CommandFlag>CommandWellOnly</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Make Bold</ButtonText>
+          <LocCanonicalName>.Linq.MakeBold</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="LinqEditor2022" id="MakeItalic" priority="100" type="Button">
+        <Parent guid="LinqEditor2022" id="EditorGroup" />
+        <CommandFlag>CommandWellOnly</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Make Italic</ButtonText>
+          <LocCanonicalName>.Linq.MakeItalic</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="LinqEditor2022" id="ShowKeybindings" priority="300" type="Button">
+        <Parent guid="LinqEditor2022" id="ReferenceGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Keyboard Shortcut Reference</ButtonText>
+          <LocCanonicalName>.Linq.ShowKeyboardShortcuts</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="LinqEditor2022" id="ShowMarkdownReference" priority="300" type="Button">
+        <Parent guid="LinqEditor2022" id="ReferenceGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Linq Cheat Sheet</ButtonText>
+          <LocCanonicalName>.Linq.ShowCheatSheet</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="LinqEditor2022" id="OpenSettings" priority="6000" type="Button">
+        <Parent guid="LinqEditor2022" id="SettingsGroup" />
+        <Icon guid="ImageCatalogGuid" id="Settings"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Linq Settings</ButtonText>
+          <LocCanonicalName>.Linq.OpenSettings</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <VisibilityConstraints>
+    <VisibilityItem guid="LinqEditor2022" id="ToggleSync" context="EditorFactory" />
+    <VisibilityItem guid="LinqEditor2022" id="Refresh" context="EditorFactory" />
+    <VisibilityItem guid="LinqEditor2022" id="ShowKeybindings" context="EditorFactory" />
+    <VisibilityItem guid="LinqEditor2022" id="ShowMarkdownReference" context="EditorFactory" />
+    <VisibilityItem guid="LinqEditor2022" id="OpenSettings" context="EditorFactory" />
+  </VisibilityConstraints>
+
+  <KeyBindings>
+    <KeyBinding guid="LinqEditor2022" id="MakeBold" editor="EditorFactory" key1="B" mod1="Control" />
+    <KeyBinding guid="LinqEditor2022" id="MakeItalic" editor="EditorFactory" key1="I" mod1="Control" />
+    <KeyBinding guid="LinqEditor2022" id="InsertLink" editor="EditorFactory" key1="K" mod1="Control Alt" />
+    <KeyBinding guid="LinqEditor2022" id="Refresh" editor="EditorFactory" key1="R" mod1="Control Alt" />
+  </KeyBindings>
+
+  <Symbols>
+    <GuidSymbol name="EditorFactory" value="{B4510b54-a648-4d69-a6c5-f68cbdf07546}" />
+    <GuidSymbol name="LinqEditor2022" value="{Bb1dfe17-2eb2-4fcc-8054-b6ab002a579d}">
+      <IDSymbol name="EditorGroup" value="0x0001"/>
+      <IDSymbol name="ReferenceGroup" value="0x0002"/>
+      <IDSymbol name="SettingsGroup" value="0x0003"/>
+      <IDSymbol name="ToggleSync" value="0x1000"/>
+      <IDSymbol name="MakeBold" value="0x1010"/>
+      <IDSymbol name="MakeItalic" value="0x1020"/>
+      <IDSymbol name="InsertLink" value="0x1030"/>
+      <IDSymbol name="OpenSettings" value="0x1040"/>
+      <IDSymbol name="ShowKeybindings" value="0x1050"/>
+      <IDSymbol name="ShowMarkdownReference" value="0x1060"/>
+      <IDSymbol name="Refresh" value="0x1070"/>
+    </GuidSymbol>
+    <GuidSymbol name="VSIXLinqPadForVS" value="{a8059166-5701-4a3b-ab88-bf1a8831dcf1}">
+      <IDSymbol name="MyCommand" value="0x0100" />
+      <IDSymbol name="TWindowToolbar" value="0x1000" />
+      <IDSymbol name="TWindowToolbarGroup" value="0x1050" />
+      <IDSymbol name="DisplayLinqPadStatementsResults" value="0x0111" />
+      <IDSymbol name="DisplayLinqPadMethodResults" value="0x0112" />
+      <IDSymbol name="EditorLinqPad" value="0x0114" />
+    </GuidSymbol>
+  </Symbols>
 </CommandTable>

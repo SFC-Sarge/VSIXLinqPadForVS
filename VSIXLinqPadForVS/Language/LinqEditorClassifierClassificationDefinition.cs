@@ -10,28 +10,30 @@ namespace VSIXLinqPadForVS
     /// <summary>
     /// Classification type definition export for LinqEditorClassifier
     /// </summary>
-    internal static class LinqEditorClassifierClassificationDefinition
+    public static class LinqEditorClassifierClassificationDefinition
     {
         public const string LinqBold = "linq_bold";
+        public const string LinqItalic = "linq_italic";
+        public const string LinqComment = PredefinedClassificationTypeNames.Comment;
+
 
         // This disables "The field is never used" compiler's warning. Justification: the field is used by MEF.
 #pragma warning disable 169
 
-        /// <summary>
-        /// Defines the "LinqEditorClassifier" classification type.
-        /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("LinqEditorClassifier")]
-        private static ClassificationTypeDefinition typeDefinition;
-
-        [Export]
         [FileExtension(".linq")]
         [ContentType("CSharp")]
-        internal static FileExtensionToContentTypeDefinition LinqFileExtensionDefinition { get; set; }
+        public static FileExtensionToContentTypeDefinition LinqFileExtensionDefinition { get; set; }
 
         [Export, Name(LinqBold)]
         [BaseDefinition(PredefinedClassificationTypeNames.Text)]
         public static ClassificationTypeDefinition LinqClassificationBold { get; set; }
+
+        [Export, Name(LinqItalic)]
+        [BaseDefinition(PredefinedClassificationTypeNames.Text)]
+        public static ClassificationTypeDefinition LinqClassificationItalic { get; set; }
+
 
         [Export(typeof(EditorFormatDefinition))]
         [ClassificationType(ClassificationTypeNames = LinqEditorClassifierClassificationDefinition.LinqBold)]
@@ -44,6 +46,19 @@ namespace VSIXLinqPadForVS
                 DisplayName = "Linq Bold";
             }
         }
+
+        [Export(typeof(EditorFormatDefinition))]
+        [ClassificationType(ClassificationTypeNames = LinqEditorClassifierClassificationDefinition.LinqItalic)]
+        [Name(LinqEditorClassifierClassificationDefinition.LinqItalic)]
+        internal sealed class LinqItalicFormatDefinition : ClassificationFormatDefinition
+        {
+            public LinqItalicFormatDefinition()
+            {
+                IsItalic = true;
+                DisplayName = "Linq Italic";
+            }
+        }
+
 
 #pragma warning restore 169
     }

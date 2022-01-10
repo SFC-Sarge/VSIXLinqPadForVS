@@ -10,6 +10,7 @@ namespace VSIXLinqPadForVS
         public LinqEditor(object site) : base(site)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
+            LinqEditorClassifierClassificationDefinition.LinqFileExtensionDefinition = new Microsoft.VisualStudio.Utilities.FileExtensionToContentTypeDefinition();
         }
 
         public override string Name => Constants.LanguageName;
