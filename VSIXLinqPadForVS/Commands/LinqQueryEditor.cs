@@ -5,7 +5,7 @@ namespace VSIXLinqPadForVS
     [Command(PackageIds.EditorLinqPad)]
     internal sealed class LinqQueryEditor : BaseCommand<LinqQueryEditor>
 {
-        private const string runEditorLinqQuery = "Run Editor Linq Query.";
+        private const string _runEditorLinqQuery = "Run Editor Linq Query.";
 
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
@@ -14,7 +14,7 @@ namespace VSIXLinqPadForVS
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 ToolWindowMessenger messenger = await Package.GetServiceAsync<ToolWindowMessenger, ToolWindowMessenger>();
-                messenger.Send(runEditorLinqQuery);
+                messenger.Send(_runEditorLinqQuery);
             }).FireAndForget();
         }
     }

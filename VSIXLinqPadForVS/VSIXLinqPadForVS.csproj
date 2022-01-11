@@ -63,17 +63,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\CommentCommand.cs" />
+    <Compile Include="Commands\EmphasizeTextCommand.cs" />
+    <Compile Include="Commands\EnablePreviewSyncCommand.cs" />
+    <Compile Include="Commands\IndentationCommand.cs" />
+    <Compile Include="Commands\InsertLinkCommand.cs" />
     <Compile Include="Commands\LinqPadMethod.cs" />
     <Compile Include="Commands\LinqPadStatements.cs" />
     <Compile Include="Commands\LinqQueryEditor.cs" />
+    <Compile Include="Commands\OpenSettingsCommand.cs" />
+    <Compile Include="Commands\PasteImageCommand.cs" />
+    <Compile Include="Commands\RefreshCommand.cs" />
+    <Compile Include="Commands\ShowKeybindingsCommand.cs" />
+    <Compile Include="Commands\ShowLinqReferenceCommand.cs" />
+    <Compile Include="Commands\SmartIndentCommand.cs" />
+    <Compile Include="Commands\ToggleTaskCommand.cs" />
+    <Compile Include="Commands\UncommentCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DragDrop\LinqDropHandler.cs" />
+    <Compile Include="DragDrop\LinqDropHandlerProvider.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Language\EditorFeatures.cs" />
     <Compile Include="Language\LinqEditor.cs" />
     <Compile Include="Language\LinqEditorClassifier.cs" />
     <Compile Include="Language\LinqEditorClassifierClassificationDefinition.cs" />
     <Compile Include="Language\LinqEditorClassifierProvider.cs" />
+    <Compile Include="Margin\Browser.cs" />
+    <Compile Include="Margin\BrowserMargin.cs" />
+    <Compile Include="Margin\BrowserMarginProvider.cs" />
     <Compile Include="Options\AdvancedOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
@@ -96,6 +114,12 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
+    <Content Include="Margin\highlight-dark.css" />
+    <Content Include="Margin\highlight.css" />
+    <Content Include="Margin\md-template.html" />
+    <Content Include="Margin\prism-dark.css" />
+    <Content Include="Margin\prism.css" />
+    <Content Include="Margin\prism.js" />
     <Content Include="ToolWindows\LINQPad.Runtime.dll">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

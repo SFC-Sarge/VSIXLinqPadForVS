@@ -41,7 +41,7 @@ namespace VSIXLinqPadForVS
             LinqEditor = new(this);
             RegisterEditorFactory(LinqEditor);
 
-            SetInternetExplorerRegistryKey();
+            //SetInternetExplorerRegistryKey();
 
             AddService(typeof(ToolWindowMessenger), (_, _, _) => Task.FromResult<object>(new ToolWindowMessenger()));
             await this.RegisterCommandsAsync();

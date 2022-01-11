@@ -3,7 +3,7 @@
     [Command(PackageIds.DisplayLinqPadMethodResults)]
     internal sealed class LinqPadMethod : BaseCommand<LinqPadMethod>
     {
-        private const string runSelectedLinqMethod = "Run Selected Linq Method.";
+        private const string _runSelectedLinqMethod = "Run Selected Linq Method.";
 
         protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
@@ -12,7 +12,7 @@
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 ToolWindowMessenger messenger = await Package.GetServiceAsync<ToolWindowMessenger, ToolWindowMessenger>();
-                messenger.Send(runSelectedLinqMethod);
+                messenger.Send(_runSelectedLinqMethod);
             }).FireAndForget();
         }
     }
