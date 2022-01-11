@@ -32,6 +32,7 @@ namespace VSIXLinqPadForVS
     [ProvideEditorFactory(typeof(LinqEditor), 0, false, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
     [ProvideEditorLogicalView(typeof(LinqEditor), VSConstants.LOGVIEWID.TextView_string, IsTrusted = true)]
     [Guid(PackageGuids.VSIXLinqPadForVSString)]
+    //[Guid(PackageGuids.LinqEditor2022String)]
     public sealed class VSIXLinqPadForVSPackage : ToolkitPackage
     {
         internal static LinqEditor LinqEditor { get; private set; }
@@ -41,7 +42,7 @@ namespace VSIXLinqPadForVS
             LinqEditor = new(this);
             RegisterEditorFactory(LinqEditor);
 
-            //SetInternetExplorerRegistryKey();
+            SetInternetExplorerRegistryKey();
 
             AddService(typeof(ToolWindowMessenger), (_, _, _) => Task.FromResult<object>(new ToolWindowMessenger()));
             await this.RegisterCommandsAsync();

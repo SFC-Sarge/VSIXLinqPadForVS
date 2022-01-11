@@ -1,18 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using LinqEditor2022;
-using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion;
-using Microsoft.VisualStudio.Shell.TableManager;
-using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.BraceCompletion;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Tagging;
-using Microsoft.VisualStudio.Threading;
 using Microsoft.VisualStudio.Utilities;
 
 namespace VSIXLinqPadForVS
@@ -95,7 +89,7 @@ namespace VSIXLinqPadForVS
         protected override void Created(DocumentView docView)
         {
             _document = docView.TextBuffer.GetDocument();
-_docView ??= docView;
+            _docView ??= docView;
             _dataSource ??= new TableDataSource(docView.TextBuffer.ContentType.DisplayName);
 
             _docView.TextView.Options.SetOptionValue(DefaultTextViewHostOptions.GlyphMarginName, false);
