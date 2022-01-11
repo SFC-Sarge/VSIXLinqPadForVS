@@ -1,14 +1,10 @@
-﻿using System.IO;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.TextManager.Interop;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
-using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace VSIXLinqPadForVS
 {
@@ -120,18 +116,28 @@ namespace VSIXLinqPadForVS
                         process.WaitForExit();
                         await pane.ClearAsync();
                         LinqPadResults.Children.Clear();
-                        await pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
-                        TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                        LinqPadResults.Children.Add(selectedQueryResult);
-                        Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
-                        LinqPadResults.Children.Add(line);
+                        if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
+                        {
+                            await pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
+                        }
+                        if (AdvancedOptions.Instance.EnableToolWindowResults == true)
+                        {
+                            TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            LinqPadResults.Children.Add(selectedQueryResult);
+                            Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
+                            LinqPadResults.Children.Add(line);
+                        }
                         tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
                         System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
 
-                        //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, myEditorView);
-                        //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, Guid.Empty);
-                        await VS.Documents.OpenAsync(tempQueryPath);
-                        //await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
+                        if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)
+                        {
+                            await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
+                        }
+                        else
+                        {
+                            await VS.Documents.OpenAsync(tempQueryPath);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -153,24 +159,24 @@ namespace VSIXLinqPadForVS
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-            await pane.ClearAsync();
-            LinqPadResults.Children.Clear();
-            DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
-            if (docView?.TextView == null)
-            {
-                    TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocumentMethod, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                LinqPadResults.Children.Add(NothingSelectedResult);
-                await pane.WriteLineAsync(Constants.noActiveDocumentMethod);
-                return;
-            }
-            if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
-            {
-                await pane.WriteLineAsync(Constants.runningSelectQueryMethod);
-                    TextBlock runningQueryResult = new TextBlock { Text = Constants.runningSelectQueryMethod, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                LinqPadResults.Children.Add(runningQueryResult);
-
-                try
+                await pane.ClearAsync();
+                LinqPadResults.Children.Clear();
+                DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
+                if (docView?.TextView == null)
                 {
+                    TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocumentMethod, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                    LinqPadResults.Children.Add(NothingSelectedResult);
+                    await pane.WriteLineAsync(Constants.noActiveDocumentMethod);
+                    return;
+                }
+                if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
+                {
+                    await pane.WriteLineAsync(Constants.runningSelectQueryMethod);
+                    TextBlock runningQueryResult = new TextBlock { Text = Constants.runningSelectQueryMethod, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                    LinqPadResults.Children.Add(runningQueryResult);
+
+                    try
+                    {
                         string currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                         string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
@@ -195,18 +201,29 @@ namespace VSIXLinqPadForVS
                         process.WaitForExit();
                         await pane.ClearAsync();
                         LinqPadResults.Children.Clear();
-                        await pane.WriteLineAsync($"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} =\r\n{queryResult}");
-                        TextBlock selectedQueryResult = new TextBlock { Text = $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                        LinqPadResults.Children.Add(selectedQueryResult);
-                        Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
-                        LinqPadResults.Children.Add(line);
+                        if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
+                        {
+                            await pane.WriteLineAsync($"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} =\r\n{queryResult}");
+                        }
+                        if (AdvancedOptions.Instance.EnableToolWindowResults == true)
+                        {
+                            TextBlock selectedQueryResult = new TextBlock { Text = $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            LinqPadResults.Children.Add(selectedQueryResult);
+                            Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
+                            LinqPadResults.Children.Add(line);
+                        }
+
                         tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
                         System.IO.File.WriteAllText(tempQueryPath, $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}".Trim());
 
-                        //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, myEditorView);
-                        //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, Guid.Empty);
-                        //await VS.Documents.OpenAsync(tempQueryPath);
-                        await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
+                        if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)
+                        {
+                            await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
+                        }
+                        else
+                        {
+                            await VS.Documents.OpenAsync(tempQueryPath);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -257,7 +274,7 @@ namespace VSIXLinqPadForVS
                         string currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
                         string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
                         if (!currentSelection.StartsWith("<Query Kind="))
-                            {
+                        {
                             string methodName = currentSelection.Substring(0, currentSelection.IndexOf("\r"));
                             string methodNameComplete = methodName.Substring(methodName.LastIndexOf(" ") + 1, methodName.LastIndexOf(")") - methodName.LastIndexOf(" "));
                             string methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
@@ -291,17 +308,29 @@ namespace VSIXLinqPadForVS
 
                         await pane.ClearAsync();
                         LinqPadResults.Children.Clear();
-                        await pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
-                        TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                        LinqPadResults.Children.Add(selectedQueryResult);
-                        Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
-                        LinqPadResults.Children.Add(line);
+                        if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
+                        {
+                            await pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
+                        }
+                        if (AdvancedOptions.Instance.EnableToolWindowResults == true)
+                        {
+                            TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            LinqPadResults.Children.Add(selectedQueryResult);
+                            Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
+                            LinqPadResults.Children.Add(line);
+                        }
                         tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
                         System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
+
                         //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, myEditorView);
-                        //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, Guid.Empty);
-                        await VS.Documents.OpenAsync(tempQueryPath);
-                        //await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
+                        if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)
+                        {
+                            await VS.Documents.OpenInPreviewTabAsync(tempQueryPath);
+                        }
+                        else
+                        {
+                            await VS.Documents.OpenAsync(tempQueryPath);
+                        }
                     }
                     catch (Exception ex)
                     {
