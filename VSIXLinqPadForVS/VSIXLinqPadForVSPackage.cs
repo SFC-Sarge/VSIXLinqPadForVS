@@ -4,7 +4,9 @@ global using System;
 global using Task = System.Threading.Tasks.Task;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Utilities;
 using Microsoft.Win32;
+using System.ComponentModel.Composition;
 using System.Runtime.InteropServices;
 using System.Threading;
 

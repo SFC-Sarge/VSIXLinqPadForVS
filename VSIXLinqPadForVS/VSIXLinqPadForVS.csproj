@@ -67,6 +67,7 @@
     <Compile Include="Commands\LinqPadStatements.cs" />
     <Compile Include="Commands\LinqQueryEditor.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Language\FileAndContentTypeDefinitions.cs" />
     <Compile Include="Language\LinqEditor.cs" />
     <Compile Include="Options\AdvancedOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
