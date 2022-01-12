@@ -10,15 +10,13 @@ namespace VSIXLinqPadForVS
 {
     public partial class MyToolWindowControl : UserControl
     {
-        OutputWindowPane pane = null;
+        OutputWindowPane _pane = null;
         public ToolWindowMessenger ToolWindowMessenger = null;
         public Project _activeProject;
         public string _activeFile;
         public string queryResult = null;
         public string dirLPRun7 = null;
         public string fileLPRun7 = null;
-        public Guid myEditor = new Guid(PackageGuids.EditorFactoryString);
-
 
         public MyToolWindowControl(Project activeProject, ToolWindowMessenger toolWindowMessenger)
         {
@@ -66,7 +64,7 @@ namespace VSIXLinqPadForVS
             ThreadHelper.ThrowIfNotOnUIThread();
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                await pane.ClearAsync();
+                await _pane.ClearAsync();
                 LinqPadResults.Children.Clear();
             }).FireAndForget();
         }
@@ -76,19 +74,19 @@ namespace VSIXLinqPadForVS
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                await pane.ClearAsync();
+                await _pane.ClearAsync();
                 LinqPadResults.Children.Clear();
                 DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
                 if (docView?.TextView == null)
                 {
                     TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocument, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(NothingSelectedResult);
-                    await pane.WriteLineAsync(Constants.noActiveDocument);
+                    await _pane.WriteLineAsync(Constants.noActiveDocument);
                     return;
                 }
                 if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
                 {
-                    await pane.WriteLineAsync(Constants.runningSelectQuery);
+                    await _pane.WriteLineAsync(Constants.runningSelectQuery);
                     TextBlock runningQueryResult = new TextBlock { Text = Constants.runningSelectQuery, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(runningQueryResult);
 
@@ -114,11 +112,11 @@ namespace VSIXLinqPadForVS
                         process.Start();
                         queryResult = await process.StandardOutput.ReadToEndAsync();
                         process.WaitForExit();
-                        await pane.ClearAsync();
+                        await _pane.ClearAsync();
                         LinqPadResults.Children.Clear();
                         if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
                         {
-                            await pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
+                            await _pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
                         }
                         if (AdvancedOptions.Instance.EnableToolWindowResults == true)
                         {
@@ -143,14 +141,14 @@ namespace VSIXLinqPadForVS
                     {
                         TextBlock exceptionResult = new TextBlock { Text = ex.Message, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                         LinqPadResults.Children.Add(exceptionResult);
-                        await pane.WriteLineAsync($"{Constants.exceptionIn} {fileLPRun7} {Constants.exceptionCall} {exceptionResult.Text}");
+                        await _pane.WriteLineAsync($"{Constants.exceptionIn} {fileLPRun7} {Constants.exceptionCall} {exceptionResult.Text}");
                     }
                 }
                 else
                 {
                     TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocument, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(NothingSelectedResult);
-                    await pane.WriteLineAsync(Constants.noActiveDocument);
+                    await _pane.WriteLineAsync(Constants.noActiveDocument);
                 }
             }).FireAndForget();
         }
@@ -159,19 +157,19 @@ namespace VSIXLinqPadForVS
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                await pane.ClearAsync();
+                await _pane.ClearAsync();
                 LinqPadResults.Children.Clear();
                 DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
                 if (docView?.TextView == null)
                 {
                     TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocumentMethod, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(NothingSelectedResult);
-                    await pane.WriteLineAsync(Constants.noActiveDocumentMethod);
+                    await _pane.WriteLineAsync(Constants.noActiveDocumentMethod);
                     return;
                 }
                 if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
                 {
-                    await pane.WriteLineAsync(Constants.runningSelectQueryMethod);
+                    await _pane.WriteLineAsync(Constants.runningSelectQueryMethod);
                     TextBlock runningQueryResult = new TextBlock { Text = Constants.runningSelectQueryMethod, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(runningQueryResult);
 
@@ -199,11 +197,11 @@ namespace VSIXLinqPadForVS
                         process.Start();
                         queryResult = await process.StandardOutput.ReadToEndAsync();
                         process.WaitForExit();
-                        await pane.ClearAsync();
+                        await _pane.ClearAsync();
                         LinqPadResults.Children.Clear();
                         if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
                         {
-                            await pane.WriteLineAsync($"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} =\r\n{queryResult}");
+                            await _pane.WriteLineAsync($"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} =\r\n{queryResult}");
                         }
                         if (AdvancedOptions.Instance.EnableToolWindowResults == true)
                         {
@@ -229,14 +227,14 @@ namespace VSIXLinqPadForVS
                     {
                         TextBlock exceptionResult = new TextBlock { Text = ex.Message, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                         LinqPadResults.Children.Add(exceptionResult);
-                        await pane.WriteLineAsync($"{Constants.exceptionIn} {fileLPRun7} {Constants.exceptionCall} {exceptionResult.Text}");
+                        await _pane.WriteLineAsync($"{Constants.exceptionIn} {fileLPRun7} {Constants.exceptionCall} {exceptionResult.Text}");
                     }
                 }
                 else
                 {
                     TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocumentMethod, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(NothingSelectedResult);
-                    await pane.WriteLineAsync(Constants.noActiveDocumentMethod);
+                    await _pane.WriteLineAsync(Constants.noActiveDocumentMethod);
                 }
             }).FireAndForget();
         }
@@ -252,19 +250,19 @@ namespace VSIXLinqPadForVS
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                await pane.ClearAsync();
+                await _pane.ClearAsync();
                 LinqPadResults.Children.Clear();
                 DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync();
                 if (docView?.TextView == null)
                 {
                     TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocument, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(NothingSelectedResult);
-                    await pane.WriteLineAsync(Constants.noActiveDocument);
+                    await _pane.WriteLineAsync(Constants.noActiveDocument);
                     return;
                 }
                 if (docView.TextView.Selection != null && !docView.TextView.Selection.IsEmpty)
                 {
-                    await pane.WriteLineAsync(Constants.runningSelectQuery);
+                    await _pane.WriteLineAsync(Constants.runningSelectQuery);
                     TextBlock runningQueryResult = new TextBlock { Text = Constants.runningSelectQuery, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(runningQueryResult);
 
@@ -306,11 +304,11 @@ namespace VSIXLinqPadForVS
                         queryResult = await process.StandardOutput.ReadToEndAsync();
                         process.WaitForExit();
 
-                        await pane.ClearAsync();
+                        await _pane.ClearAsync();
                         LinqPadResults.Children.Clear();
                         if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
                         {
-                            await pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
+                            await _pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
                         }
                         if (AdvancedOptions.Instance.EnableToolWindowResults == true)
                         {
@@ -336,21 +334,21 @@ namespace VSIXLinqPadForVS
                     {
                         TextBlock exceptionResult = new TextBlock { Text = ex.Message, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                         LinqPadResults.Children.Add(exceptionResult);
-                        await pane.WriteLineAsync($"{Constants.exceptionIn} {fileLPRun7} {Constants.exceptionCall} {exceptionResult.Text}");
+                        await _pane.WriteLineAsync($"{Constants.exceptionIn} {fileLPRun7} {Constants.exceptionCall} {exceptionResult.Text}");
                     }
                 }
                 else
                 {
                     TextBlock NothingSelectedResult = new TextBlock { Text = Constants.noActiveDocument, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                     LinqPadResults.Children.Add(NothingSelectedResult);
-                    await pane.WriteLineAsync(Constants.noActiveDocument);
+                    await _pane.WriteLineAsync(Constants.noActiveDocument);
                 }
             }).FireAndForget();
         }
 
         private async Task DoOutputWindowsAsync()
         {
-            pane = await VS.Windows.CreateOutputWindowPaneAsync(Constants.linpPadDump);
+            _pane = await VS.Windows.CreateOutputWindowPaneAsync(Constants.linpPadDump);
             return;
         }
 

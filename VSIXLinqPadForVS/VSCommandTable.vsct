@@ -21,9 +21,6 @@
       <Group guid="VSIXLinqPadForVS" id="TWindowToolbarGroup" priority="0x0000">
         <Parent guid="VSIXLinqPadForVS" id="TWindowToolbar" />
       </Group>
-      <Group guid="LinqEditor2022" id="EditorGroup" priority="9000">
-        <Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
-      </Group>
     </Groups>
 
     <Buttons>
@@ -68,10 +65,6 @@
   </Commands>
 
   <Symbols>
-    <GuidSymbol name="EditorFactory" value="{B4510b54-a648-4d69-a6c5-f68cbdf07546}" />
-    <GuidSymbol name="LinqEditor2022" value="{Bb1dfe17-2eb2-4fcc-8054-b6ab002a579d}">
-      <IDSymbol name="EditorGroup" value="0x0001"/>
-    </GuidSymbol>
     <GuidSymbol name="VSIXLinqPadForVS" value="{a8059166-5701-4a3b-ab88-bf1a8831dcf1}">
       <IDSymbol name="MyCommand" value="0x0100" />
       <IDSymbol name="TWindowToolbar" value="0x1000" />

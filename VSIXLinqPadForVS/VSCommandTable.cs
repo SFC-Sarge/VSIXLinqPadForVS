@@ -12,12 +12,6 @@ namespace VSIXLinqPadForVS
     /// </summary>
     internal sealed partial class PackageGuids
     {
-        public const string EditorFactoryString = "b4510b54-a648-4d69-a6c5-f68cbdf07546";
-        public static Guid EditorFactory = new Guid(EditorFactoryString);
-
-        public const string LinqEditor2022String = "bb1dfe17-2eb2-4fcc-8054-b6ab002a579d";
-        public static Guid LinqEditor2022 = new Guid(LinqEditor2022String);
-
         public const string VSIXLinqPadForVSString = "a8059166-5701-4a3b-ab88-bf1a8831dcf1";
         public static Guid VSIXLinqPadForVS = new Guid(VSIXLinqPadForVSString);
     }
@@ -26,7 +20,6 @@ namespace VSIXLinqPadForVS
     /// </summary>
     internal sealed partial class PackageIds
     {
-        public const int EditorGroup = 0x0001;
         public const int MyCommand = 0x0100;
         public const int TWindowToolbar = 0x1000;
         public const int TWindowToolbarGroup = 0x1050;
