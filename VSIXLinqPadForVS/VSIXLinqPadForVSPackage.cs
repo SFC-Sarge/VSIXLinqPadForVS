@@ -21,9 +21,11 @@ namespace VSIXLinqPadForVS
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.VSIXLinqPadForVSString)]
 
-    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedOptions), Constants.LanguageName, "Results", "Advanced", null, 0)]
+    [ProvideLanguageService(typeof(LinqEditor), Constants.LanguageName, 0, ShowHotURLs = false, DefaultToNonHotURLs = true, EnableLineNumbers = true, EnableAsyncCompletion = true, EnableCommenting = true, ShowCompletion = true, AutoOutlining = true, CodeSense = true)]
+    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedOptions), Constants.LanguageName, "", "Advanced", null, 0)]
     [ProvideLanguageExtension(typeof(LinqEditor), Constants.FileExtension)]
     [ProvideEditorExtension(typeof(LinqEditor), Constants.FileExtension, 50)]
+    [ProvideFileIcon(Constants.FileExtension, "KnownMonikers.RegistrationScript")]
     [ProvideEditorFactory(typeof(LinqEditor), 0, false, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
     [ProvideEditorLogicalView(typeof(LinqEditor), VSConstants.LOGVIEWID.TextView_string, IsTrusted = true)]
     public sealed class VSIXLinqPadForVSPackage : ToolkitPackage

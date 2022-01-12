@@ -69,7 +69,7 @@
 
   <Symbols>
     <GuidSymbol name="EditorFactory" value="{7F7100EE-7A1B-473F-88DF-36BFA8D65A3B}" />
-    <GuidSymbol name="VSIXLinqPadForVS" value="{3F1A46FD-BE36-4A1C-A5F8-92F10BAD882D}">
+    <GuidSymbol name="VSIXLinqPadForVS" value="{a8059166-5701-4a3b-ab88-bf1a8831dcf1}">
       <IDSymbol name="MyCommand" value="0x0100" />
       <IDSymbol name="TWindowToolbar" value="0x1000" />
       <IDSymbol name="TWindowToolbarGroup" value="0x1050" />
