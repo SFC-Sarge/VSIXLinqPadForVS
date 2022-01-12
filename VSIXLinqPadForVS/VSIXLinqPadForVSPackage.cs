@@ -17,13 +17,23 @@ namespace VSIXLinqPadForVS
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.SolutionHasMultipleProjects_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.NoSolution_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.EmptySolution_string)]
-    [ProvideOptionPage(typeof(OptionsProvider.AdvancedLinqOptions), Constants.LanguageName, "Advanced", 0, 0, true)]
+    [ProvideFileIcon(Constants.FileExtension, "KnownMonikers.RegistrationScript")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.VSIXLinqPadForVSString)]
+
+    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedOptions), Constants.LanguageName, "Results", "Advanced", null, 0)]
+    [ProvideLanguageExtension(typeof(LinqEditor), Constants.FileExtension)]
+    [ProvideEditorExtension(typeof(LinqEditor), Constants.FileExtension, 50)]
+    [ProvideEditorFactory(typeof(LinqEditor), 0, false, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
+    [ProvideEditorLogicalView(typeof(LinqEditor), VSConstants.LOGVIEWID.TextView_string, IsTrusted = true)]
     public sealed class VSIXLinqPadForVSPackage : ToolkitPackage
     {
+        internal static LinqEditor LinqEditor { get; private set; }
+
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            LinqEditor = new(this);
+            RegisterEditorFactory(LinqEditor);
 
             AddService(typeof(ToolWindowMessenger), (_, _, _) => Task.FromResult<object>(new ToolWindowMessenger()));
             await this.RegisterCommandsAsync();

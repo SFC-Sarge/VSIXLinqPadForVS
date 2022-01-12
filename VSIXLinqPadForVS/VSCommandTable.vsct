@@ -18,6 +18,9 @@
     </Menus>
 
     <Groups>
+      <Group guid="VSIXLinqPadForVS" id="EditorGroup" priority="9000">
+        <Parent guid="guidSHLMainMenu" id ="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
       <Group guid="VSIXLinqPadForVS" id="TWindowToolbarGroup" priority="0x0000">
         <Parent guid="VSIXLinqPadForVS" id="TWindowToolbar" />
       </Group>
@@ -65,13 +68,15 @@
   </Commands>
 
   <Symbols>
-    <GuidSymbol name="VSIXLinqPadForVS" value="{a8059166-5701-4a3b-ab88-bf1a8831dcf1}">
+    <GuidSymbol name="EditorFactory" value="{7F7100EE-7A1B-473F-88DF-36BFA8D65A3B}" />
+    <GuidSymbol name="VSIXLinqPadForVS" value="{3F1A46FD-BE36-4A1C-A5F8-92F10BAD882D}">
       <IDSymbol name="MyCommand" value="0x0100" />
       <IDSymbol name="TWindowToolbar" value="0x1000" />
       <IDSymbol name="TWindowToolbarGroup" value="0x1050" />
       <IDSymbol name="DisplayLinqPadStatementsResults" value="0x0111" />
       <IDSymbol name="DisplayLinqPadMethodResults" value="0x0112" />
       <IDSymbol name="EditorLinqPad" value="0x0114" />
+      <IDSymbol name="EditorGroup" value="0x0001"/>
     </GuidSymbol>
   </Symbols>
 </CommandTable>
