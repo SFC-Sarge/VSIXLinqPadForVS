@@ -17,6 +17,7 @@ namespace VSIXLinqPadForVS
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.SolutionHasMultipleProjects_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.NoSolution_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.EmptySolution_string)]
+    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedLinqOptions), Constants.LanguageName, "", "Advanced", null, 0)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.VSIXLinqPadForVSString)]
     public sealed class VSIXLinqPadForVSPackage : ToolkitPackage

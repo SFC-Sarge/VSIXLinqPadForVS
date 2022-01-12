@@ -6,10 +6,10 @@ namespace VSIXLinqPadForVS
     internal partial class OptionsProvider
     {
         [ComVisible(true)]
-        public class AdvancedOptions : BaseOptionPage<VSIXLinqPadForVS.AdvancedOptions> { }
+        public class AdvancedLinqOptions : BaseOptionPage<VSIXLinqPadForVS.AdvancedLinqOptions> { }
     }
 
-    public class AdvancedOptions : BaseOptionModel<AdvancedOptions>
+    public class AdvancedLinqOptions : BaseOptionModel<AdvancedLinqOptions>
     {
         [Category("Preview Window")]
         [DisplayName("Open Linq Query and result in Visual Studio Preview Tab")]
