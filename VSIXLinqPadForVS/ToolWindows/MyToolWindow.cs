@@ -9,7 +9,7 @@ using System.Windows;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.ToolWindows
 {
     public class MyToolWindow : BaseToolWindow<MyToolWindow>
     {

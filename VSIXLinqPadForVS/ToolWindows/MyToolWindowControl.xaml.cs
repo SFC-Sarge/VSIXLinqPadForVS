@@ -1,12 +1,23 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shapes;
+using VSIXLinqPadForVS.Options;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using Microsoft.VisualStudio.Shell;
+using OutputWindowPane = Community.VisualStudio.Toolkit.OutputWindowPane;
+using Project = Community.VisualStudio.Toolkit.Project;
+using Process = System.Diagnostics.Process;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.ToolWindows
 {
     public partial class MyToolWindowControl : UserControl
     {
@@ -32,6 +43,7 @@ namespace VSIXLinqPadForVS
             ToolWindowMessenger = toolWindowMessenger;
             toolWindowMessenger.MessageReceived += OnMessageReceived;
             VS.Events.SolutionEvents.OnAfterCloseSolution += OnAfterCloseSolution;
+
             dirLPRun7 = System.IO.Path.GetDirectoryName(typeof(MyToolWindow).Assembly.Location);
             fileLPRun7 = System.IO.Path.Combine(dirLPRun7, Constants.solutionToolWindowsFolderName, Constants.lPRun7Executable);
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
@@ -94,7 +106,7 @@ namespace VSIXLinqPadForVS
                     {
                         string currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                        string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
+                        string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
                         string queryString = $"{Constants.queryKindStatement}\r\n{currentSelection}\r\n{Constants.resultDump};".Trim();
                         System.IO.File.WriteAllText(tempQueryPath, queryString);
 
@@ -125,7 +137,7 @@ namespace VSIXLinqPadForVS
                             Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                             LinqPadResults.Children.Add(line);
                         }
-                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
+                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
                         System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
 
                         if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)
@@ -177,7 +189,7 @@ namespace VSIXLinqPadForVS
                     {
                         string currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                        string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
+                        string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
                         string methodName = currentSelection.Substring(0, currentSelection.IndexOf("\r"));
                         string methodNameComplete = methodName.Substring(methodName.LastIndexOf(" ") + 1, methodName.LastIndexOf(")") - methodName.LastIndexOf(" "));
                         string methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
@@ -211,7 +223,7 @@ namespace VSIXLinqPadForVS
                             LinqPadResults.Children.Add(line);
                         }
 
-                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
+                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
                         System.IO.File.WriteAllText(tempQueryPath, $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}".Trim());
 
                         if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)
@@ -270,7 +282,7 @@ namespace VSIXLinqPadForVS
                     {
                         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                         string currentSelection = docView.TextView.Selection.StreamSelectionSpan.GetText().Trim().Replace("  ", "").Trim();
-                        string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
+                        string tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
                         if (!currentSelection.StartsWith("<Query Kind="))
                         {
                             string methodName = currentSelection.Substring(0, currentSelection.IndexOf("\r"));
@@ -289,7 +301,7 @@ namespace VSIXLinqPadForVS
                             System.IO.File.WriteAllText(tempQueryPath, queryString);
                         }
 
-                        using Process process = new();
+                        using System.Diagnostics.Process process = new();
                         process.StartInfo = new ProcessStartInfo()
                         {
                             UseShellExecute = false,
@@ -317,7 +329,7 @@ namespace VSIXLinqPadForVS
                             Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                             LinqPadResults.Children.Add(line);
                         }
-                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.FileExtension}";
+                        tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
                         System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
 
                         //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, myEditorView);
@@ -351,6 +363,29 @@ namespace VSIXLinqPadForVS
             _pane = await VS.Windows.CreateOutputWindowPaneAsync(Constants.linpPadDump);
             return;
         }
+        //private static async Task<string> ReplaceTokensAsync(Project project, string name, string relative, string templateFile)
+        //{
+        //    if (string.IsNullOrEmpty(templateFile))
+        //    {
+        //        return templateFile;
+        //    }
+
+        //    var rootNs = project.GetRootNamespace();
+        //    var ns = string.IsNullOrEmpty(rootNs) ? "MyNamespace" : rootNs;
+
+        //    if (!string.IsNullOrEmpty(relative))
+        //    {
+        //        ns += "." + ProjectHelpers.CleanNameSpace(relative);
+        //    }
+
+        //    using (var reader = new StreamReader(templateFile))
+        //    {
+        //        var content = await reader.ReadToEndAsync();
+
+        //        return content.Replace("{namespace}", ns)
+        //                      .Replace("{itemname}", name);
+        //    }
+        //}
 
     }
 }

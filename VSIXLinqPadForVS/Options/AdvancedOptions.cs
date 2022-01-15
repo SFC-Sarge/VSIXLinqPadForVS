@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.Options
 {
     internal partial class OptionsProvider
     {
         [ComVisible(true)]
-        public class AdvancedOptions : BaseOptionPage<VSIXLinqPadForVS.AdvancedOptions> { }
+        public class AdvancedOptions : BaseOptionPage<Options.AdvancedOptions> { }
     }
 
     public class AdvancedOptions : BaseOptionModel<AdvancedOptions>

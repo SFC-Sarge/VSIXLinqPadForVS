@@ -3,7 +3,8 @@
     internal class Constants
     {
         public const string LanguageName = "LingPad";
-        public const string FileExtension = ".linq";
+        public const string LinqExt = ".linq";
+        public static string[] CommentChars = new[] { "///", "//" };
         public const string noActiveDocument = "No Active Document View or Linq Selection!\r\nPlease Select Linq Statement in Active Document,\r\nthen try again!";
         public const string runningSelectQuery = "Running Selected Linq Query.\r\nPlease Wait!";
         public const string resultDump = "result.Dump()";

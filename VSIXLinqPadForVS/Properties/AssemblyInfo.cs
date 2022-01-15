@@ -17,7 +17,7 @@ using VSIXLinqPadForVS;
 [assembly: AssemblyVersion(Vsix.Version)]
 [assembly: AssemblyFileVersion(Vsix.Version)]
 
-namespace System.Runtime.CompilerServices
+namespace VSIXLinqPadForVS.Properties
 {
     public class IsExternalInit { }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Shapes;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.Commands
 {
     [Command(PackageIds.EditorLinqPad)]
     internal sealed class LinqQueryEditor : BaseCommand<LinqQueryEditor>

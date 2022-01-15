@@ -63,13 +63,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\Commenting.cs" />
+    <Compile Include="Commands\Formatting.cs" />
     <Compile Include="Commands\LinqPadMethod.cs" />
     <Compile Include="Commands\LinqPadStatements.cs" />
     <Compile Include="Commands\LinqQueryEditor.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Language\FileAndContentTypeDefinitions.cs" />
-    <Compile Include="Language\LinqEditor.cs" />
+    <Compile Include="Editor\DropdownBars.cs" />
+    <Compile Include="Editor\EditorFeatures.cs" />
+    <Compile Include="Editor\IntelliSense.cs" />
+    <Compile Include="Editor\LanguageFactory.cs" />
+    <Compile Include="Editor\TokenTagger.cs" />
     <Compile Include="Options\AdvancedOptions.cs" />
+    <Compile Include="Parser\Document.cs" />
+    <Compile Include="Parser\DocumentParser.cs" />
+    <Compile Include="Parser\DocumentValidator.cs" />
+    <Compile Include="Parser\Entry.cs" />
+    <Compile Include="Parser\ItemType.cs" />
+    <Compile Include="Parser\ParseItem.cs" />
+    <Compile Include="Parser\PredefinedVariables.cs" />
+    <Compile Include="Parser\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
     <Compile Include="ToolWindowMessenger.cs" />
@@ -86,6 +99,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\LICENSE">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>
@@ -140,8 +156,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Community.VisualStudio.Toolkit.16">
+      <Version>16.0.394</Version>
+    </PackageReference>
     <PackageReference Include="Community.VisualStudio.VSCT" Version="16.0.29.6" PrivateAssets="all" />
-    <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.369" ExcludeAssets="Runtime" />
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.5232" />
   </ItemGroup>
   <ItemGroup />

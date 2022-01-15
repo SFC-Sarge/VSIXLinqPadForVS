@@ -1,4 +1,6 @@
-﻿namespace VSIXLinqPadForVS
+﻿using VSIXLinqPadForVS.ToolWindows;
+
+namespace VSIXLinqPadForVS.Commands
 {
     [Command(PackageIds.MyCommand)]
     internal sealed class MyToolWindowCommand : BaseCommand<MyToolWindowCommand>

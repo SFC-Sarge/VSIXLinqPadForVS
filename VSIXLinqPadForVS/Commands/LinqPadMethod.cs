@@ -1,4 +1,4 @@
-﻿namespace VSIXLinqPadForVS
+﻿namespace VSIXLinqPadForVS.Commands
 {
     [Command(PackageIds.DisplayLinqPadMethodResults)]
     internal sealed class LinqPadMethod : BaseCommand<LinqPadMethod>
