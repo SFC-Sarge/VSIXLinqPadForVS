@@ -13,7 +13,7 @@ namespace VSIXLinqPadForVS.Editor
         public LanguageFactory(object site) : base(site)
         { }
 
-        public override string Name => Constants.LanguageName;
+        public override string Name => Constants.PkgdefLanguageName;
 
         public override string[] FileExtensions { get; } = new[] { Constants.LinqExt };
 

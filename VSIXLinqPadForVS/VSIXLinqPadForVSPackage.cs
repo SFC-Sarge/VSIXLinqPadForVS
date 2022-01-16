@@ -21,17 +21,21 @@ namespace VSIXLinqPadForVS
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.SolutionHasMultipleProjects_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.NoSolution_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.EmptySolution_string)]
-    [ProvideFileIcon(Constants.LinqExt, "KnownMonikers.RegistrationScript")]
+    [ProvideFileIcon(Constants.PkgDefExt, "KnownMonikers.RegistrationScript")]
+    [ProvideFileIcon(Constants.PkgUndefExt, "KnownMonikers.RegistrationScript")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.VSIXLinqPadForVSString)]
 
-    [ProvideLanguageService(typeof(LanguageFactory), Constants.LanguageName, 0, ShowHotURLs = false, DefaultToNonHotURLs = true, EnableLineNumbers = true, EnableAsyncCompletion = true, EnableCommenting = true, ShowCompletion = true, AutoOutlining = true, CodeSense = true)]
-    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedOptions), Constants.LanguageName, "", "Advanced", null, 0)]
-    [ProvideLanguageExtension(typeof(LanguageFactory), Constants.LinqExt)]
+    [ProvideLanguageService(typeof(LanguageFactory), Constants.PkgdefLanguageName, 0, ShowHotURLs = false, DefaultToNonHotURLs = true, EnableLineNumbers = true, EnableAsyncCompletion = true, EnableCommenting = true, ShowCompletion = true, AutoOutlining = true, CodeSense = true)]
+    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedOptions), Constants.PkgdefLanguageName, "", "Advanced", null, 0)]
+    [ProvideLanguageExtension(typeof(LanguageFactory), Constants.PkgDefExt)]
+    [ProvideLanguageExtension(typeof(LanguageFactory), Constants.PkgUndefExt)]
 
     [ProvideEditorFactory(typeof(LanguageFactory), 738, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
+    [ProvideEditorExtension(typeof(LanguageFactory), Constants.PkgDefExt, 65535, NameResourceID = 738)]
+    [ProvideEditorExtension(typeof(LanguageFactory), Constants.PkgUndefExt, 65535, NameResourceID = 738)]
     [ProvideEditorLogicalView(typeof(LanguageFactory), VSConstants.LOGVIEWID.TextView_string, IsTrusted = true)]
-    [ProvideEditorExtension(typeof(LanguageFactory), Constants.LinqExt, 50)]
+    [ProvideEditorExtension(typeof(LanguageFactory), Constants.PkgDefExt, 50)]
     public sealed class VSIXLinqPadForVSPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)

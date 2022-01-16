@@ -12,7 +12,7 @@ namespace VSIXLinqPadForVS.Editor
 {
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IClassificationTag))]
-    [ContentType(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
     public class SyntaxHighligting : TokenClassificationTaggerBase
     {
         public override Dictionary<object, string> ClassificationMap { get; } = new()
@@ -29,18 +29,18 @@ namespace VSIXLinqPadForVS.Editor
 
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IStructureTag))]
-    [ContentType(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
     public class Outlining : TokenOutliningTaggerBase
     { }
 
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IErrorTag))]
-    [ContentType(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
     public class ErrorSquigglies : TokenErrorTaggerBase
     { }
 
     [Export(typeof(IAsyncQuickInfoSourceProvider))]
-    [ContentType(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
     internal sealed class Tooltips : TokenQuickInfoBase
     { }
 
@@ -50,13 +50,13 @@ namespace VSIXLinqPadForVS.Editor
     [BracePair('{', '}')]
     [BracePair('"', '"')]
     [BracePair('$', '$')]
-    [ContentType(Constants.LanguageName)]
-    [ProvideBraceCompletion(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
+    [ProvideBraceCompletion(Constants.PkgdefLanguageName)]
     internal sealed class BraceCompletion : BraceCompletionBase
     { }
 
     [Export(typeof(IAsyncCompletionCommitManagerProvider))]
-    [ContentType(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
     internal sealed class CompletionCommitManager : CompletionCommitManagerBase
     {
         public override IEnumerable<char> CommitChars => new char[] { ' ', '\'', '"', ',', '.', ';', ':', '\\', '$' };
@@ -64,7 +64,7 @@ namespace VSIXLinqPadForVS.Editor
 
     [Export(typeof(IViewTaggerProvider))]
     [TagType(typeof(TextMarkerTag))]
-    [ContentType(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
     internal sealed class BraceMatchingTaggerProvider : BraceMatchingBase
     {
         // This will match parenthesis, curly brackets, and square brackets by default.
@@ -72,7 +72,7 @@ namespace VSIXLinqPadForVS.Editor
     }
 
     [Export(typeof(IViewTaggerProvider))]
-    [ContentType(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
     [TagType(typeof(TextMarkerTag))]
     public class SameWordHighlighter : SameWordHighlighterBase
     { }

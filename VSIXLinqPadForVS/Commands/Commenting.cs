@@ -23,7 +23,7 @@ namespace VSIXLinqPadForVS.Commands
             {
                 DocumentView doc = await VS.Documents.GetActiveDocumentViewAsync();
 
-                if (doc?.TextBuffer != null && doc.TextBuffer.ContentType.IsOfType(Constants.LanguageName))
+                if (doc?.TextBuffer != null && doc.TextBuffer.ContentType.IsOfType(Constants.PkgdefLanguageName))
                 {
                     action(doc);
                     return CommandProgression.Stop;

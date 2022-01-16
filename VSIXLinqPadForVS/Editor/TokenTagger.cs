@@ -15,8 +15,8 @@ namespace VSIXLinqPadForVS.Editor
 {
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(TokenTag))]
-    [ContentType(Constants.LanguageName)]
-    [Name(Constants.LanguageName)]
+    [ContentType(Constants.PkgdefLanguageName)]
+    [Name(Constants.PkgdefLanguageName)]
     internal sealed class TokenTaggerProvider : ITaggerProvider
     {
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag =>
