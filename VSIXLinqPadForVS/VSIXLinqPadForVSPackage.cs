@@ -2,15 +2,8 @@
 global using Microsoft.VisualStudio.Shell;
 global using System;
 global using Task = System.Threading.Tasks.Task;
-using EnvDTE;
-using EnvDTE80;
-using Microsoft;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Utilities;
-using Microsoft.Win32;
-using System.ComponentModel.Composition;
 using System.ComponentModel.Design;
 using System.Runtime.InteropServices;
 using System.Threading;
