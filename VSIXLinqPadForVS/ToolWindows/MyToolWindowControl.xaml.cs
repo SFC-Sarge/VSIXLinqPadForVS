@@ -128,17 +128,20 @@ namespace VSIXLinqPadForVS.ToolWindows
                         LinqPadResults.Children.Clear();
                         if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
                         {
-                            await _pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
+                            //await _pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
+                            await _pane.WriteLineAsync($"{Constants.currentSelectionQuery} = {queryResult}");
                         }
                         if (AdvancedOptions.Instance.EnableToolWindowResults == true)
                         {
-                            TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            //TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            TextBlock selectedQueryResult = new TextBlock { Text = $"{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                             LinqPadResults.Children.Add(selectedQueryResult);
                             Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                             LinqPadResults.Children.Add(line);
                         }
                         tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
-                        System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
+                        //System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
+                        System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection}".Trim());
 
                         if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)
                         {
@@ -213,18 +216,21 @@ namespace VSIXLinqPadForVS.ToolWindows
                         LinqPadResults.Children.Clear();
                         if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
                         {
-                            await _pane.WriteLineAsync($"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} =\r\n{queryResult}");
+                            //await _pane.WriteLineAsync($"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} =\r\n{queryResult}");
+                            await _pane.WriteLineAsync($"{Constants.currentSelectionQueryMethod} =\r\n{queryResult}");
                         }
                         if (AdvancedOptions.Instance.EnableToolWindowResults == true)
                         {
-                            TextBlock selectedQueryResult = new TextBlock { Text = $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            //TextBlock selectedQueryResult = new TextBlock { Text = $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            TextBlock selectedQueryResult = new TextBlock { Text = $"{Constants.currentSelectionQueryMethod} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                             LinqPadResults.Children.Add(selectedQueryResult);
                             Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                             LinqPadResults.Children.Add(line);
                         }
 
                         tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
-                        System.IO.File.WriteAllText(tempQueryPath, $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}".Trim());
+                        //System.IO.File.WriteAllText(tempQueryPath, $"{queryString} \r\n\r\n{Constants.currentSelectionQueryMethod} = {queryResult}".Trim());
+                        System.IO.File.WriteAllText(tempQueryPath, $"{queryString}".Trim());
 
                         if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)
                         {
@@ -320,17 +326,20 @@ namespace VSIXLinqPadForVS.ToolWindows
                         LinqPadResults.Children.Clear();
                         if (AdvancedOptions.Instance.UseLinqPadDumpWindow == true)
                         {
+                            //await _pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
                             await _pane.WriteLineAsync($"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}");
                         }
                         if (AdvancedOptions.Instance.EnableToolWindowResults == true)
                         {
-                            TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            //TextBlock selectedQueryResult = new TextBlock { Text = $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                            TextBlock selectedQueryResult = new TextBlock { Text = $"{Constants.currentSelectionQuery} = {queryResult}", TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                             LinqPadResults.Children.Add(selectedQueryResult);
                             Line line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                             LinqPadResults.Children.Add(line);
                         }
                         tempQueryPath = $"{System.IO.Path.GetTempFileName()}{Constants.LinqExt}";
-                        System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
+                        //System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection} \r\n\r\n{Constants.currentSelectionQuery} = {queryResult}".Trim());
+                        System.IO.File.WriteAllText(tempQueryPath, $"{currentSelection}".Trim());
 
                         //await OpenDocumentWithSpecificEditorAsync(tempQueryPath, myEditor, myEditorView);
                         if (AdvancedOptions.Instance.OpenInVSPreviewTab == true)

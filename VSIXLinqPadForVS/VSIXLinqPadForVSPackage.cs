@@ -57,13 +57,13 @@ namespace VSIXLinqPadForVS
 
             AddService(typeof(ToolWindowMessenger), (_, _, _) => Task.FromResult<object>(new ToolWindowMessenger()));
             ((IServiceContainer)this).AddService(typeof(LanguageFactory), language, true);
-            ((IServiceContainer)this).AddService(typeof(LinqLanguageFactory), Linqlanguage, true);
+            //((IServiceContainer)this).AddService(typeof(LinqLanguageFactory), Linqlanguage, true);
 
             await this.RegisterCommandsAsync();
             await Formatting.InitializeAsync();
             await Commenting2.InitializeAsync();
-            await LinqFormatting.InitializeAsync();
-            await LinqCommenting2.InitializeAsync();
+            //await LinqFormatting.InitializeAsync();
+            //await LinqCommenting2.InitializeAsync();
 
             this.RegisterToolWindows();
         }
