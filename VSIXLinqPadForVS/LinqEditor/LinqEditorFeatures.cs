@@ -13,7 +13,7 @@ namespace VSIXLinqPadForVS.LinqEditor
 {
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IClassificationTag))]
-    [ContentType(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
     public class LinqSyntaxHighligting : TokenClassificationTaggerBase
     {
         public override Dictionary<object, string> ClassificationMap { get; } = new()
@@ -30,18 +30,18 @@ namespace VSIXLinqPadForVS.LinqEditor
 
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IStructureTag))]
-    [ContentType(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
     public class LinqOutlining : TokenOutliningTaggerBase
     { }
 
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IErrorTag))]
-    [ContentType(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
     public class LinqErrorSquigglies : TokenErrorTaggerBase
     { }
 
     [Export(typeof(IAsyncQuickInfoSourceProvider))]
-    [ContentType(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
     internal sealed class LinqTooltips : TokenQuickInfoBase
     { }
 
@@ -51,13 +51,13 @@ namespace VSIXLinqPadForVS.LinqEditor
     [BracePair('{', '}')]
     [BracePair('"', '"')]
     [BracePair('$', '$')]
-    [ContentType(Constants.PkgdefLanguageName)]
-    [ProvideBraceCompletion(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
+    [ProvideBraceCompletion(Constants.LinqLanguageName)]
     internal sealed class LinqBraceCompletion : BraceCompletionBase
     { }
 
     [Export(typeof(IAsyncCompletionCommitManagerProvider))]
-    [ContentType(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
     internal sealed class LinqCompletionCommitManager : CompletionCommitManagerBase
     {
         public override IEnumerable<char> CommitChars => new char[] { ' ', '\'', '"', ',', '.', ';', ':', '\\', '$' };
@@ -65,7 +65,7 @@ namespace VSIXLinqPadForVS.LinqEditor
 
     [Export(typeof(IViewTaggerProvider))]
     [TagType(typeof(TextMarkerTag))]
-    [ContentType(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
     internal sealed class LinqBraceMatchingTaggerProvider : BraceMatchingBase
     {
         // This will match parenthesis, curly brackets, and square brackets by default.
@@ -73,7 +73,7 @@ namespace VSIXLinqPadForVS.LinqEditor
     }
 
     [Export(typeof(IViewTaggerProvider))]
-    [ContentType(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
     [TagType(typeof(TextMarkerTag))]
     public class LinqSameWordHighlighter : SameWordHighlighterBase
     { }

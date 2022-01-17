@@ -21,8 +21,8 @@ using VSIXLinqPadForVS.LinqParser;
 namespace VSIXLinqPadForVS.LinqEditor
 {
     [Export(typeof(IAsyncCompletionSourceProvider))]
-    [ContentType(Constants.PkgdefLanguageName)]
-    [Name(Constants.PkgdefLanguageName)]
+    [ContentType(Constants.LinqLanguageName)]
+    [Name(Constants.LinqLanguageName)]
     public class LinqIntelliSense : IAsyncCompletionSourceProvider
     {
         public IAsyncCompletionSource GetOrCreate(ITextView textView) =>

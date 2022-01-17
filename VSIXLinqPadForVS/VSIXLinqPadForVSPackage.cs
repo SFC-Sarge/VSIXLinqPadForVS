@@ -42,8 +42,8 @@ namespace VSIXLinqPadForVS
     [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedOptions), Constants.LinqLanguageName, "", "Advanced", null, 0)]
     [ProvideLanguageExtension(typeof(LinqLanguageFactory), Constants.LinqExt)]
 
-    [ProvideEditorFactory(typeof(LinqLanguageFactory), 738, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
-    [ProvideEditorExtension(typeof(LinqLanguageFactory), Constants.LinqExt, 65535, NameResourceID = 738)]
+    [ProvideEditorFactory(typeof(LinqLanguageFactory), 739, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
+    [ProvideEditorExtension(typeof(LinqLanguageFactory), Constants.LinqExt, 65536, NameResourceID = 739)]
     [ProvideEditorLogicalView(typeof(LinqLanguageFactory), VSConstants.LOGVIEWID.TextView_string, IsTrusted = true)]
 
     public sealed class VSIXLinqPadForVSPackage : ToolkitPackage
@@ -57,7 +57,7 @@ namespace VSIXLinqPadForVS
 
             AddService(typeof(ToolWindowMessenger), (_, _, _) => Task.FromResult<object>(new ToolWindowMessenger()));
             ((IServiceContainer)this).AddService(typeof(LanguageFactory), language, true);
-            ((IServiceContainer)this).AddService(typeof(LinqLanguageFactory), language, true);
+            ((IServiceContainer)this).AddService(typeof(LinqLanguageFactory), Linqlanguage, true);
 
             await this.RegisterCommandsAsync();
             await Formatting.InitializeAsync();
