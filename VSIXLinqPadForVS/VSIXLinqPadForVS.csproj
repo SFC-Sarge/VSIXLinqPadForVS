@@ -63,7 +63,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\LinqCommenting.cs" />
     <Compile Include="Commands\Commenting.cs" />
+    <Compile Include="Commands\LinqFormatting.cs" />
     <Compile Include="Commands\Formatting.cs" />
     <Compile Include="Commands\LinqPadMethod.cs" />
     <Compile Include="Commands\LinqPadStatements.cs" />
@@ -74,6 +76,19 @@
     <Compile Include="Editor\IntelliSense.cs" />
     <Compile Include="Editor\LanguageFactory.cs" />
     <Compile Include="Editor\TokenTagger.cs" />
+    <Compile Include="LinqEditor\LinqDropdownBars.cs" />
+    <Compile Include="LinqEditor\LinqEditorFeatures.cs" />
+    <Compile Include="LinqEditor\LinqIntelliSense.cs" />
+    <Compile Include="LinqEditor\LinqLanguageFactory.cs" />
+    <Compile Include="LinqEditor\LinqTokenTagger.cs" />
+    <Compile Include="LinqParser\LinqDocument.cs" />
+    <Compile Include="LinqParser\LinqDocumentParser.cs" />
+    <Compile Include="LinqParser\LinqDocumentValidator.cs" />
+    <Compile Include="LinqParser\LinqEntry.cs" />
+    <Compile Include="LinqParser\LinqItemType.cs" />
+    <Compile Include="LinqParser\LinqParseItem.cs" />
+    <Compile Include="LinqParser\LinqPredefinedVariables.cs" />
+    <Compile Include="LinqParser\LinqProperty.cs" />
     <Compile Include="Options\AdvancedOptions.cs" />
     <Compile Include="Parser\Document.cs" />
     <Compile Include="Parser\DocumentParser.cs" />
@@ -103,7 +118,6 @@
       <Link>Resources\LICENSE</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <None Include="Parser\PredefinedVariables.json" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>

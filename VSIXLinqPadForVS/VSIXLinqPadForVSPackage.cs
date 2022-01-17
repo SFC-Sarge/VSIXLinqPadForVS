@@ -11,6 +11,7 @@ using VSIXLinqPadForVS.Commands;
 using VSIXLinqPadForVS.Editor;
 using VSIXLinqPadForVS.Options;
 using VSIXLinqPadForVS.ToolWindows;
+using VSIXLinqPadForVS.LinqEditor;
 
 namespace VSIXLinqPadForVS
 {
@@ -36,17 +37,33 @@ namespace VSIXLinqPadForVS
     [ProvideEditorExtension(typeof(LanguageFactory), Constants.PkgUndefExt, 65535, NameResourceID = 738)]
     [ProvideEditorLogicalView(typeof(LanguageFactory), VSConstants.LOGVIEWID.TextView_string, IsTrusted = true)]
     [ProvideEditorExtension(typeof(LanguageFactory), Constants.PkgDefExt, 50)]
+
+    [ProvideLanguageService(typeof(LinqLanguageFactory), Constants.LinqLanguageName, 0, ShowHotURLs = false, DefaultToNonHotURLs = true, EnableLineNumbers = true, EnableAsyncCompletion = true, EnableCommenting = true, ShowCompletion = true, AutoOutlining = true, CodeSense = true)]
+    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.AdvancedOptions), Constants.LinqLanguageName, "", "Advanced", null, 0)]
+    [ProvideLanguageExtension(typeof(LinqLanguageFactory), Constants.LinqExt)]
+
+    [ProvideEditorFactory(typeof(LinqLanguageFactory), 738, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
+    [ProvideEditorExtension(typeof(LinqLanguageFactory), Constants.LinqExt, 65535, NameResourceID = 738)]
+    [ProvideEditorLogicalView(typeof(LinqLanguageFactory), VSConstants.LOGVIEWID.TextView_string, IsTrusted = true)]
+
     public sealed class VSIXLinqPadForVSPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             LanguageFactory language = new(this);
             RegisterEditorFactory(language);
+            LinqLanguageFactory Linqlanguage = new(this);
+            RegisterEditorFactory(Linqlanguage);
+
             AddService(typeof(ToolWindowMessenger), (_, _, _) => Task.FromResult<object>(new ToolWindowMessenger()));
             ((IServiceContainer)this).AddService(typeof(LanguageFactory), language, true);
+            ((IServiceContainer)this).AddService(typeof(LinqLanguageFactory), language, true);
+
             await this.RegisterCommandsAsync();
             await Formatting.InitializeAsync();
             await Commenting2.InitializeAsync();
+            await LinqFormatting.InitializeAsync();
+            await LinqCommenting2.InitializeAsync();
 
             this.RegisterToolWindows();
         }

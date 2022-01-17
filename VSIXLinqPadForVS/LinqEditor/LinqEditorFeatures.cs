@@ -7,42 +7,42 @@ using Microsoft.VisualStudio.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
-using VSIXLinqPadForVS.Parser;
+using VSIXLinqPadForVS.LinqParser;
 
-namespace VSIXLinqPadForVS.Editor
+namespace VSIXLinqPadForVS.LinqEditor
 {
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IClassificationTag))]
     [ContentType(Constants.PkgdefLanguageName)]
-    public class SyntaxHighligting : TokenClassificationTaggerBase
+    public class LinqSyntaxHighligting : TokenClassificationTaggerBase
     {
         public override Dictionary<object, string> ClassificationMap { get; } = new()
         {
-            { ItemType.RegistryKey, PredefinedClassificationTypeNames.SymbolDefinition },
-            { ItemType.String, PredefinedClassificationTypeNames.String },
-            { ItemType.Literal, PredefinedClassificationTypeNames.Literal },
-            { ItemType.Comment, PredefinedClassificationTypeNames.Comment },
-            { ItemType.Reference, PredefinedClassificationTypeNames.SymbolReference },
-            { ItemType.Operator, PredefinedClassificationTypeNames.Operator },
-            { ItemType.Preprocessor, PredefinedClassificationTypeNames.PreprocessorKeyword },
+            { LinqItemType.RegistryKey, PredefinedClassificationTypeNames.SymbolDefinition },
+            { LinqItemType.String, PredefinedClassificationTypeNames.String },
+            { LinqItemType.Literal, PredefinedClassificationTypeNames.Literal },
+            { LinqItemType.Comment, PredefinedClassificationTypeNames.Comment },
+            { LinqItemType.Reference, PredefinedClassificationTypeNames.SymbolReference },
+            { LinqItemType.Operator, PredefinedClassificationTypeNames.Operator },
+            { LinqItemType.Preprocessor, PredefinedClassificationTypeNames.PreprocessorKeyword },
         };
     }
 
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IStructureTag))]
     [ContentType(Constants.PkgdefLanguageName)]
-    public class Outlining : TokenOutliningTaggerBase
+    public class LinqOutlining : TokenOutliningTaggerBase
     { }
 
     [Export(typeof(ITaggerProvider))]
     [TagType(typeof(IErrorTag))]
     [ContentType(Constants.PkgdefLanguageName)]
-    public class ErrorSquigglies : TokenErrorTaggerBase
+    public class LinqErrorSquigglies : TokenErrorTaggerBase
     { }
 
     [Export(typeof(IAsyncQuickInfoSourceProvider))]
     [ContentType(Constants.PkgdefLanguageName)]
-    internal sealed class Tooltips : TokenQuickInfoBase
+    internal sealed class LinqTooltips : TokenQuickInfoBase
     { }
 
     [Export(typeof(IBraceCompletionContextProvider))]
@@ -53,12 +53,12 @@ namespace VSIXLinqPadForVS.Editor
     [BracePair('$', '$')]
     [ContentType(Constants.PkgdefLanguageName)]
     [ProvideBraceCompletion(Constants.PkgdefLanguageName)]
-    internal sealed class BraceCompletion : BraceCompletionBase
+    internal sealed class LinqBraceCompletion : BraceCompletionBase
     { }
 
     [Export(typeof(IAsyncCompletionCommitManagerProvider))]
     [ContentType(Constants.PkgdefLanguageName)]
-    internal sealed class CompletionCommitManager : CompletionCommitManagerBase
+    internal sealed class LinqCompletionCommitManager : CompletionCommitManagerBase
     {
         public override IEnumerable<char> CommitChars => new char[] { ' ', '\'', '"', ',', '.', ';', ':', '\\', '$' };
     }
@@ -66,7 +66,7 @@ namespace VSIXLinqPadForVS.Editor
     [Export(typeof(IViewTaggerProvider))]
     [TagType(typeof(TextMarkerTag))]
     [ContentType(Constants.PkgdefLanguageName)]
-    internal sealed class BraceMatchingTaggerProvider : BraceMatchingBase
+    internal sealed class LinqBraceMatchingTaggerProvider : BraceMatchingBase
     {
         // This will match parenthesis, curly brackets, and square brackets by default.
         // Override the BraceList property to modify the list of braces to match.
@@ -75,6 +75,6 @@ namespace VSIXLinqPadForVS.Editor
     [Export(typeof(IViewTaggerProvider))]
     [ContentType(Constants.PkgdefLanguageName)]
     [TagType(typeof(TextMarkerTag))]
-    public class SameWordHighlighter : SameWordHighlighterBase
+    public class LinqSameWordHighlighter : SameWordHighlighterBase
     { }
 }
