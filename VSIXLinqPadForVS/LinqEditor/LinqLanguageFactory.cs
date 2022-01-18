@@ -1,6 +1,10 @@
 using Microsoft.VisualStudio.Package;
 using Microsoft.VisualStudio.TextManager.Interop;
+using System.ComponentModel.Composition;
+using Microsoft.VisualStudio.Utilities;
+
 using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.Text.Classification;
 
 namespace VSIXLinqPadForVS.LinqEditor
 {
@@ -8,12 +12,30 @@ namespace VSIXLinqPadForVS.LinqEditor
     [Guid(PackageGuids.EditorFactoryString)]
     internal sealed class LinqLanguageFactory : LanguageBase
     {
+        [Export]
+        [Name("Linq")]
+        [BaseDefinition("code")]
+        [BaseDefinition("Intellisense")]
+        [BaseDefinition("CSharp")]
+        internal static ContentTypeDefinition LinqContentTypeDefinition { get; set; }
+
+        [Export]
+        [FileExtension(Constants.LinqExt)]
+        [ContentType(Constants.LinqLanguageName)]
+        internal static FileExtensionToContentTypeDefinition LinqFileExtensionDefinition { get; set; }
+
+        [Export]
+        [Name("csharp.linq")]
+        [BaseDefinition("CSharp")]
+        internal static ClassificationTypeDefinition CSharpLinqDefinition { get; set; }
+
+
         private LinqDropdownBars _dropdownBars;
 
         public LinqLanguageFactory(object site) : base(site)
         { }
 
-        public override string Name => Constants.PkgdefLanguageName;
+        public override string Name => Constants.LinqLanguageName;
 
         public override string[] FileExtensions { get; } = new[] { Constants.LinqExt };
 

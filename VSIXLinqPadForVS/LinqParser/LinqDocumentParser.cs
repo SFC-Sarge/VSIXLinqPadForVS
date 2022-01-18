@@ -40,7 +40,39 @@ namespace VSIXLinqPadForVS.LinqParser
                 items.Add(ToParseItem(line, start, LinqItemType.Comment, false));
             }
             // Preprocessor
-            else if (trimmedLine.StartsWith("#include"))
+            else if (trimmedLine.StartsWith("private"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("public"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("static"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("void"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("Debug."))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("<Query Kind="))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("var"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("{"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("}"))
             {
                 items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
             }
@@ -69,6 +101,10 @@ namespace VSIXLinqPadForVS.LinqParser
                 items.Add(name);
                 items.Add(equals);
                 items.Add(value);
+            }
+            else if (trimmedLine.Length > 0 && trimmedLine.EndsWith(";", StringComparison.Ordinal))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
             }
             // Unknown
             else if (trimmedLine.Length > 0)

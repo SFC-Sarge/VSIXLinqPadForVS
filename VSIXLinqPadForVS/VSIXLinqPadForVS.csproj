@@ -71,6 +71,10 @@
     <Compile Include="Commands\LinqPadStatements.cs" />
     <Compile Include="Commands\LinqQueryEditor.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="LinqEditor\LinqEditorClassifier.cs" />
+    <Compile Include="LinqEditor\LinqEditorClassifierClassificationDefinition.cs" />
+    <Compile Include="LinqEditor\LinqEditorClassifierFormat.cs" />
+    <Compile Include="LinqEditor\LinqEditorClassifierProvider.cs" />
     <Compile Include="Editor\DropdownBars.cs" />
     <Compile Include="Editor\EditorFeatures.cs" />
     <Compile Include="Editor\IntelliSense.cs" />
@@ -176,6 +180,9 @@
       <Version>17.0.394</Version>
     </PackageReference>
     <PackageReference Include="Community.VisualStudio.VSCT" Version="16.0.29.6" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Text.UI.Wpf">
+      <Version>17.0.491</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.5234">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
