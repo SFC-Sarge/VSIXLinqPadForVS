@@ -36,7 +36,7 @@ namespace VSIXLinqPadForVS
         public HighlightWordFormatDefinition()
         {
             this.BackgroundColor = Colors.LightBlue;
-            this.ForegroundColor = Colors.DarkBlue;
+            this.ForegroundColor = Colors.LightBlue;
             this.DisplayName = "Highlight Word";
             this.ZOrder = 5;
         }
