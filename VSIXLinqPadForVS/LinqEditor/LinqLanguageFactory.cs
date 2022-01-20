@@ -1,10 +1,10 @@
 using Microsoft.VisualStudio.Package;
+using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.TextManager.Interop;
-using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Utilities;
 
+using System.ComponentModel.Composition;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.Text.Classification;
 
 namespace VSIXLinqPadForVS.LinqEditor
 {
@@ -30,7 +30,7 @@ namespace VSIXLinqPadForVS.LinqEditor
         internal static ClassificationTypeDefinition CSharpLinqDefinition { get; set; }
 
 
-        private LinqDropdownBars _dropdownBars;
+        private LinqEditorDropdownBars _dropdownBars;
 
         public LinqLanguageFactory(object site) : base(site)
         { }
@@ -42,7 +42,7 @@ namespace VSIXLinqPadForVS.LinqEditor
         public override TypeAndMemberDropdownBars CreateDropDownHelper(IVsTextView textView)
         {
             _dropdownBars?.Dispose();
-            _dropdownBars = new LinqDropdownBars(textView, this);
+            _dropdownBars = new LinqEditorDropdownBars(textView, this);
 
             return _dropdownBars;
         }

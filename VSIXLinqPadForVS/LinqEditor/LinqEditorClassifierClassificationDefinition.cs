@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.Utilities;
 
 using System.ComponentModel.Composition;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.LinqEditor
 {
     /// <summary>
-    /// Classification type definition export for EditorClassifier1
+    /// Classification type definition export for LinqEditorClassifier
     /// </summary>
     internal static class LinqEditorClassifierClassificationDefinition
     {
@@ -14,7 +14,7 @@ namespace VSIXLinqPadForVS
 #pragma warning disable 169
 
         /// <summary>
-        /// Defines the "EditorClassifier1" classification type.
+        /// Defines the "LinqEditorClassifier" classification type.
         /// </summary>
         [Export(typeof(ClassificationTypeDefinition))]
         [Name("LinqEditorClassifier")]

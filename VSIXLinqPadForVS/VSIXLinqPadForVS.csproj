@@ -71,6 +71,8 @@
     <Compile Include="Commands\LinqPadStatements.cs" />
     <Compile Include="Commands\LinqQueryEditor.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="LinqEditor\LinqEditorLightBulb.cs" />
+    <Compile Include="LinqEditor\LinqEditorBraceMatching.cs" />
     <Compile Include="LinqEditor\LinqEditorClassifier.cs" />
     <Compile Include="LinqEditor\LinqEditorClassifierClassificationDefinition.cs" />
     <Compile Include="LinqEditor\LinqEditorClassifierFormat.cs" />
@@ -80,11 +82,15 @@
     <Compile Include="Editor\IntelliSense.cs" />
     <Compile Include="Editor\LanguageFactory.cs" />
     <Compile Include="Editor\TokenTagger.cs" />
-    <Compile Include="LinqEditor\LinqDropdownBars.cs" />
+    <Compile Include="LinqEditor\LinqEditorDropdownBars.cs" />
     <Compile Include="LinqEditor\LinqEditorFeatures.cs" />
-    <Compile Include="LinqEditor\LinqIntelliSense.cs" />
+    <Compile Include="LinqEditor\LinqEditorIntelliSense.cs" />
     <Compile Include="LinqEditor\LinqLanguageFactory.cs" />
+    <Compile Include="LinqEditor\LinqLowerCaseSuggestedAction.cs" />
+    <Compile Include="LinqEditor\LinqOutliningTagger.cs" />
+    <Compile Include="LinqEditor\LinqOutliningTaggerProvider.cs" />
     <Compile Include="LinqEditor\LinqTokenTagger.cs" />
+    <Compile Include="LinqEditor\LinqUpperCaseSuggestedAction.cs" />
     <Compile Include="LinqParser\LinqDocument.cs" />
     <Compile Include="LinqParser\LinqDocumentParser.cs" />
     <Compile Include="LinqParser\LinqDocumentValidator.cs" />

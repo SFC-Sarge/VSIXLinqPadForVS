@@ -2,20 +2,20 @@
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion;
 using Microsoft.VisualStudio.Language.Intellisense.AsyncCompletion.Data;
-using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Adornments;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Utilities;
 using Microsoft.Win32;
-using System;
+
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 using VSIXLinqPadForVS.LinqParser;
 
 namespace VSIXLinqPadForVS.LinqEditor
@@ -23,7 +23,7 @@ namespace VSIXLinqPadForVS.LinqEditor
     [Export(typeof(IAsyncCompletionSourceProvider))]
     [Name(Constants.LinqLanguageName)]
     [ContentType(Constants.LinqLanguageName)]
-    public class LinqIntelliSense : IAsyncCompletionSourceProvider
+    public class LinqEditorIntelliSense : IAsyncCompletionSourceProvider
     {
         public IAsyncCompletionSource GetOrCreate(ITextView textView) =>
             textView.Properties.GetOrCreateSingletonProperty(() => new AsyncLinqCompletionSource());
@@ -109,7 +109,7 @@ namespace VSIXLinqPadForVS.LinqEditor
                 SnapshotSpan tokenSpan = new SnapshotSpan(triggerLocation.Snapshot, item);
                 return new CompletionStartData(CompletionParticipation.ProvidesItems, tokenSpan);
             }
-            else if (item?.Type == LinqItemType.RegistryKey && item.Text.IndexOf("$rootkey$", StringComparison.OrdinalIgnoreCase) > -1)
+            else if (item?.Type == LinqItemType.RegistryKey && item.Text.IndexOf("var", StringComparison.OrdinalIgnoreCase) > -1)
             {
                 int column = triggerLocation.Position - item.Span.Start;
 
@@ -120,8 +120,8 @@ namespace VSIXLinqPadForVS.LinqEditor
 
                 int start = item.Text.LastIndexOf('\\', column - 1) + 1;
                 int end = item.Text.IndexOf('\\', column);
-                int close = item.Text.IndexOf(']', column);
-                int textEnd = item.Text.IndexOf(']', column);
+                int close = item.Text.IndexOf('}', column);
+                int textEnd = item.Text.IndexOf('}', column);
                 end = end >= start ? end : close;
                 end = end >= start ? end : textEnd;
                 end = end >= start ? end : item.Text.TrimEnd().Length;

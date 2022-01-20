@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.Language.StandardClassification;
 using Microsoft.VisualStudio.Text.BraceCompletion;
 using Microsoft.VisualStudio.Text.Tagging;
 using Microsoft.VisualStudio.Utilities;
+
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
@@ -25,6 +26,11 @@ namespace VSIXLinqPadForVS.LinqEditor
             { LinqItemType.Reference, PredefinedClassificationTypeNames.SymbolReference },
             { LinqItemType.Operator, PredefinedClassificationTypeNames.Operator },
             { LinqItemType.Preprocessor, PredefinedClassificationTypeNames.PreprocessorKeyword },
+            { LinqItemType.Identifier, PredefinedClassificationTypeNames.Identifier },
+            { LinqItemType.Keyword, PredefinedClassificationTypeNames.Keyword },
+            { LinqItemType.Number, PredefinedClassificationTypeNames.Number },
+            { LinqItemType.WhiteSpace, PredefinedClassificationTypeNames.WhiteSpace },
+            { LinqItemType.Punctuation, PredefinedClassificationTypeNames.Punctuation },
         };
     }
 
@@ -45,16 +51,20 @@ namespace VSIXLinqPadForVS.LinqEditor
     internal sealed class LinqTooltips : TokenQuickInfoBase
     { }
 
+
+
     [Export(typeof(IBraceCompletionContextProvider))]
-    [BracePair('(', ')')]
-    [BracePair('[', ']')]
     [BracePair('{', '}')]
-    [BracePair('"', '"')]
-    [BracePair('$', '$')]
+    [BracePair('[', ']')]
+    [BracePair('(', ')')]
+    //[BracePair('"', '"')]
+    //[BracePair('$', '$')]
     [ContentType(Constants.LinqLanguageName)]
+    [TagType(typeof(TextMarkerTag))]
     [ProvideBraceCompletion(Constants.LinqLanguageName)]
     internal sealed class LinqBraceCompletion : BraceCompletionBase
-    { }
+    {
+    }
 
     [Export(typeof(IAsyncCompletionCommitManagerProvider))]
     [ContentType(Constants.LinqLanguageName)]
@@ -62,7 +72,6 @@ namespace VSIXLinqPadForVS.LinqEditor
     {
         public override IEnumerable<char> CommitChars => new char[] { ' ', '\'', '"', ',', '.', ';', ':', '\\', '$' };
     }
-
     [Export(typeof(IViewTaggerProvider))]
     [TagType(typeof(TextMarkerTag))]
     [ContentType(Constants.LinqLanguageName)]
@@ -73,8 +82,8 @@ namespace VSIXLinqPadForVS.LinqEditor
     }
 
     [Export(typeof(IViewTaggerProvider))]
-    [ContentType(Constants.LinqLanguageName)]
     [TagType(typeof(TextMarkerTag))]
+    [ContentType(Constants.LinqLanguageName)]
     public class LinqSameWordHighlighter : SameWordHighlighterBase
     { }
 }

@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.Utilities;
 using System.ComponentModel.Composition;
 using System.Windows.Media;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.LinqEditor
 {
     /// <summary>
-    /// Defines an editor format for the EditorClassifier1 type that has a purple background
+    /// Defines an editor format for the LinqEditorClassifier type that has a purple background
     /// and is underlined.
     /// </summary>
     [Export(typeof(EditorFormatDefinition))]
@@ -18,7 +18,7 @@ namespace VSIXLinqPadForVS
     internal sealed class LinqEditorClassifierFormat : ClassificationFormatDefinition
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditorClassifier1Format"/> class.
+        /// Initializes a new instance of the <see cref="LinqEditorClassifierFormat"/> class.
         /// </summary>
         public LinqEditorClassifierFormat()
         {
@@ -35,11 +35,26 @@ namespace VSIXLinqPadForVS
     {
         public HighlightWordFormatDefinition()
         {
-            this.BackgroundColor = Colors.LightBlue;
+            this.BackgroundColor = Colors.DarkBlue;
             this.ForegroundColor = Colors.LightBlue;
             this.DisplayName = "Highlight Word";
             this.ZOrder = 5;
         }
     }
+    [Export(typeof(EditorFormatDefinition))]
+    [ClassificationType(ClassificationTypeNames = "LinqEditorClassifier")]
+    [Name("MarkerFormatDefinition/RedMarkerFormatDefinition")]
+    [UserVisible(true)]
+    internal class RedMarkerFormatDefinition : MarkerFormatDefinition
+    {
+        public RedMarkerFormatDefinition()
+        {
+            this.BackgroundColor = Colors.Red;
+            this.ForegroundColor = Colors.Blue;
+            this.DisplayName = "Red Marker"; //this value should be localized
+            this.ZOrder = 5;
+        }
+    }
+
 
 }

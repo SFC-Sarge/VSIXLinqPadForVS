@@ -1,13 +1,12 @@
 ﻿using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 
-using System;
 using System.Collections.Generic;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.LinqEditor
 {
     /// <summary>
-    /// Classifier that classifies all text as an instance of the "EditorClassifier1" classification type.
+    /// Classifier that classifies all text as an instance of the "LinqEditorClassifier" classification type.
     /// </summary>
     internal class LinqEditorClassifier : IClassifier
     {
@@ -17,12 +16,12 @@ namespace VSIXLinqPadForVS
         private readonly IClassificationType classificationType;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditorClassifier1"/> class.
+        /// Initializes a new instance of the <see cref="LinqEditorClassifier"/> class.
         /// </summary>
         /// <param name="registry">Classification registry.</param>
         internal LinqEditorClassifier(IClassificationTypeRegistryService registry)
         {
-            this.classificationType = registry.GetClassificationType("LinqEditorClassifier");
+            classificationType = registry.GetClassificationType("LinqEditorClassifier");
         }
 
         #region IClassifier

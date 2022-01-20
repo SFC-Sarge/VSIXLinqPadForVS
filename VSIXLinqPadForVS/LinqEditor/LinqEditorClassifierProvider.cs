@@ -4,13 +4,13 @@ using Microsoft.VisualStudio.Utilities;
 
 using System.ComponentModel.Composition;
 
-namespace VSIXLinqPadForVS
+namespace VSIXLinqPadForVS.LinqEditor
 {
     /// <summary>
     /// Classifier provider. It adds the classifier to the set of classifiers.
     /// </summary>
     [Export(typeof(IClassifierProvider))]
-    [ContentType("text")] // This classifier applies to all text files.
+    [ContentType(Constants.LinqLanguageName)] // This classifier applies to all Linq Language files.
     internal class LinqEditorClassifierProvider : IClassifierProvider
     {
         // Disable "Field is never assigned to..." compiler's warning. Justification: the field is assigned by MEF.

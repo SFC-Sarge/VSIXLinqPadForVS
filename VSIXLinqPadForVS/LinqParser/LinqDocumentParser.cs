@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -65,6 +64,42 @@ namespace VSIXLinqPadForVS.LinqParser
                 items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
             }
             else if (trimmedLine.StartsWith("var"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("string"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("int"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("double"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("Enumerable"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("enum"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("class"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("struct"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("foreach"))
+            {
+                items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
+            }
+            else if (trimmedLine.StartsWith("IEnumerable"))
             {
                 items.Add(ToParseItem(line, start, LinqItemType.Preprocessor, false));
             }

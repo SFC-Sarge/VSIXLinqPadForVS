@@ -11,6 +11,11 @@
         Unknown,
         Entry,
         Property,
-        Preprocessor
+        Preprocessor,
+        Identifier,
+        Keyword,
+        Number,
+        WhiteSpace,
+        Punctuation
     }
 }

@@ -9,7 +9,7 @@ using VSIXLinqPadForVS.LinqParser;
 
 namespace VSIXLinqPadForVS.LinqEditor
 {
-    internal class LinqDropdownBars : TypeAndMemberDropdownBars, IDisposable
+    internal class LinqEditorDropdownBars : TypeAndMemberDropdownBars, IDisposable
     {
         private readonly LanguageService _languageService;
         private readonly IWpfTextView _textView;
@@ -17,7 +17,7 @@ namespace VSIXLinqPadForVS.LinqEditor
         private bool _disposed;
         private bool _bufferHasChanged;
 
-        public LinqDropdownBars(IVsTextView textView, LanguageService languageService) : base(languageService)
+        public LinqEditorDropdownBars(IVsTextView textView, LanguageService languageService) : base(languageService)
         {
             _languageService = languageService;
             _textView = textView.ToIWpfTextView();
