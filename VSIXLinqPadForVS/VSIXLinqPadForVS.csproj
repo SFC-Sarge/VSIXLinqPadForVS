@@ -64,9 +64,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Commands\LinqCommenting.cs" />
-    <Compile Include="Commands\Commenting.cs" />
     <Compile Include="Commands\LinqFormatting.cs" />
-    <Compile Include="Commands\Formatting.cs" />
     <Compile Include="Commands\LinqPadMethod.cs" />
     <Compile Include="Commands\LinqPadStatements.cs" />
     <Compile Include="Commands\LinqQueryEditor.cs" />
@@ -77,11 +75,6 @@
     <Compile Include="LinqEditor\LinqEditorClassifierClassificationDefinition.cs" />
     <Compile Include="LinqEditor\LinqEditorClassifierFormat.cs" />
     <Compile Include="LinqEditor\LinqEditorClassifierProvider.cs" />
-    <Compile Include="Editor\DropdownBars.cs" />
-    <Compile Include="Editor\EditorFeatures.cs" />
-    <Compile Include="Editor\IntelliSense.cs" />
-    <Compile Include="Editor\LanguageFactory.cs" />
-    <Compile Include="Editor\TokenTagger.cs" />
     <Compile Include="LinqEditor\LinqEditorDropdownBars.cs" />
     <Compile Include="LinqEditor\LinqEditorFeatures.cs" />
     <Compile Include="LinqEditor\LinqEditorIntelliSense.cs" />
@@ -100,14 +93,6 @@
     <Compile Include="LinqParser\LinqPredefinedVariables.cs" />
     <Compile Include="LinqParser\LinqProperty.cs" />
     <Compile Include="Options\AdvancedOptions.cs" />
-    <Compile Include="Parser\Document.cs" />
-    <Compile Include="Parser\DocumentParser.cs" />
-    <Compile Include="Parser\DocumentValidator.cs" />
-    <Compile Include="Parser\Entry.cs" />
-    <Compile Include="Parser\ItemType.cs" />
-    <Compile Include="Parser\ParseItem.cs" />
-    <Compile Include="Parser\PredefinedVariables.cs" />
-    <Compile Include="Parser\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
     <Compile Include="ToolWindowMessenger.cs" />
