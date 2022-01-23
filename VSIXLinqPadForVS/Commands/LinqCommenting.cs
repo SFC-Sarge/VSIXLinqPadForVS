@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Formatting;
-using System;
+
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -23,7 +22,7 @@ namespace VSIXLinqPadForVS.Commands
             {
                 DocumentView doc = await VS.Documents.GetActiveDocumentViewAsync();
 
-                if (doc?.TextBuffer != null && doc.TextBuffer.ContentType.IsOfType(Constants.PkgdefLanguageName))
+                if (doc?.TextBuffer != null && doc.TextBuffer.ContentType.IsOfType(Constants.LinqLanguageName))
                 {
                     action(doc);
                     return CommandProgression.Stop;

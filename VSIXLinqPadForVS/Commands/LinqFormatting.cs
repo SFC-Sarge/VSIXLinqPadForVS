@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Text;
-using System;
+﻿using Microsoft.VisualStudio.Text;
+
 using System.Linq;
 using System.Text;
+
 using VSIXLinqPadForVS.LinqParser;
 
 namespace VSIXLinqPadForVS.Commands
@@ -18,7 +18,7 @@ namespace VSIXLinqPadForVS.Commands
                 {
                     DocumentView doc = await VS.Documents.GetActiveDocumentViewAsync();
 
-                    if (doc?.TextBuffer != null && doc.TextBuffer.ContentType.IsOfType(Constants.PkgdefLanguageName))
+                    if (doc?.TextBuffer != null && doc.TextBuffer.ContentType.IsOfType(Constants.LinqLanguageName))
                     {
                         LinqFormat(doc.TextBuffer);
                         return CommandProgression.Stop;
@@ -63,14 +63,38 @@ namespace VSIXLinqPadForVS.Commands
                     }
 
                 }
+                else if (item.Type == LinqItemType.Preprocessor)
+                {
+                    sb.AppendLine(item.Text.Trim());
+                }
+                else if (item.Type == LinqItemType.Literal)
+                {
+                    sb.AppendLine(item.Text.Trim());
+                }
+                else if (item.Type == LinqItemType.Punctuation)
+                {
+                    sb.AppendLine(item.Text.Trim());
+                }
                 else if (item.Type == LinqItemType.Comment)
+                {
+                    sb.AppendLine(item.Text.Trim());
+                }
+                else if (item.Type == LinqItemType.Keyword)
+                {
+                    sb.AppendLine(item.Text.Trim());
+                }
+                else if (item.Type == LinqItemType.Identifier)
+                {
+                    sb.AppendLine(item.Text.Trim());
+                }
+                else if (item.Type == LinqItemType.Number)
                 {
                     sb.AppendLine(item.Text.Trim());
                 }
             }
 
             Span wholeDocSpan = new Span(0, buffer.CurrentSnapshot.Length);
-            buffer.Replace(wholeDocSpan, sb.ToString().Trim());
+            buffer.Replace(wholeDocSpan, sb.ToString());
         }
 
         private static LinqEntry NextEntry(LinqEntry current)

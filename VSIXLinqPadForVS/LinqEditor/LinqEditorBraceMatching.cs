@@ -75,9 +75,16 @@ namespace VSIXLinqPadForVS.LinqEditor
             {
                 currentChar = currentChar.TranslateTo(spans[0].Snapshot, PointTrackingMode.Positive);
             }
-
             //get the current char and the previous char
-            char currentText = currentChar.GetChar();
+            char currentText = new();
+            try
+            {
+                currentText = currentChar.GetChar();
+            }
+            catch (Exception)
+            {
+                //Need to figure out why this is throw first time called.
+            }
             SnapshotPoint lastChar = currentChar == 0 ? currentChar : currentChar - 1; //if currentChar is 0 (beginning of buffer), don't move it back
             char lastText = lastChar.GetChar();
             SnapshotSpan pairSpan = new SnapshotSpan();

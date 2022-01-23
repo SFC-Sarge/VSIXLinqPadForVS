@@ -49,7 +49,7 @@ namespace VSIXLinqPadForVS.LinqEditor
 
         public override void SetDefaultPreferences(LanguagePreferences preferences)
         {
-            preferences.EnableCodeSense = false;
+            preferences.EnableCodeSense = true;
             preferences.EnableMatchBraces = true;
             preferences.EnableMatchBracesAtCaret = true;
             preferences.EnableShowMatchingBrace = true;
@@ -57,9 +57,9 @@ namespace VSIXLinqPadForVS.LinqEditor
             preferences.HighlightMatchingBraceFlags = _HighlightMatchingBraceFlags.HMB_USERECTANGLEBRACES;
             preferences.LineNumbers = true;
             preferences.MaxErrorMessages = 100;
-            preferences.AutoOutlining = false;
+            preferences.AutoOutlining = true;
             preferences.MaxRegionTime = 2000;
-            preferences.InsertTabs = false;
+            preferences.InsertTabs = true;
             preferences.IndentSize = 2;
             preferences.IndentStyle = IndentingStyle.Smart;
             preferences.ShowNavigationBar = true;

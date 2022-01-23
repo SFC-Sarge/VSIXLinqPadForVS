@@ -160,7 +160,7 @@ namespace VSIXLinqPadForVS.ToolWindows
                             case LinqType.Statement:
                                 tempQueryPath = $"{Path.GetTempFileName()}{Constants.LinqExt}";
                                 queryString = $"{Constants.queryKindStatement}\r\n{currentSelection}\r\n{Constants.resultDump};".Trim();
-                                File.WriteAllText(tempQueryPath, queryString);
+                                File.WriteAllText(tempQueryPath, $"{queryString}");
                                 break;
                             case LinqType.Method:
                                 tempQueryPath = $"{Path.GetTempFileName()}{Constants.LinqExt}";
@@ -169,7 +169,7 @@ namespace VSIXLinqPadForVS.ToolWindows
                                 methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
                                 queryString = $"{Constants.queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}".Trim();
 
-                                File.WriteAllText(tempQueryPath, queryString);
+                                File.WriteAllText(tempQueryPath, $"{queryString}");
                                 break;
                             case LinqType.File:
 
@@ -180,16 +180,16 @@ namespace VSIXLinqPadForVS.ToolWindows
                                     methodNameComplete = methodName.Substring(methodName.LastIndexOf(" ") + 1, methodName.LastIndexOf(")") - methodName.LastIndexOf(" "));
                                     methodCallLine = "{\r\n" + $"{methodNameComplete}" + ";\r\n}";
                                     queryString = $"{Constants.queryKindMethod}\r\nvoid Main()\r\n{methodCallLine}\r\n{currentSelection}".Trim();
-                                    File.WriteAllText(tempQueryPath, queryString);
+                                    File.WriteAllText(tempQueryPath, $"{queryString}");
                                 }
                                 else if (currentSelection.StartsWith("<Query Kind="))
                                 {
-                                    File.WriteAllText(tempQueryPath, currentSelection);
+                                    File.WriteAllText(tempQueryPath, $"{currentSelection}");
                                 }
                                 else
                                 {
                                     queryString = $"{Constants.queryKindStatement}\r\n{currentSelection}\r\n{Constants.resultDump};";
-                                    File.WriteAllText(tempQueryPath, queryString);
+                                    File.WriteAllText(tempQueryPath, $"{queryString}");
                                 }
                                 break;
                             case LinqType.None:

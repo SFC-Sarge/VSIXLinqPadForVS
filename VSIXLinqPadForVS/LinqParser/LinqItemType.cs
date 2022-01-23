@@ -14,6 +14,7 @@
         Preprocessor,
         Identifier,
         Keyword,
+        Contextual_keyword,
         Number,
         WhiteSpace,
         Punctuation

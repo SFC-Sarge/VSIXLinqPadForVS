@@ -1,10 +1,8 @@
-﻿using Microsoft.Build.Framework.XamlTypes;
-using Microsoft.VisualStudio.Text;
+﻿using Microsoft.VisualStudio.Text;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using VSIXLinqPadForVS.LinqParser;
 
 namespace VSIXLinqPadForVS.LinqParser
 {
@@ -15,7 +13,7 @@ namespace VSIXLinqPadForVS.LinqParser
         {
             RegistryKey = registryKey;
         }
-public LinqParseItem RegistryKey { get; }
+        public LinqParseItem RegistryKey { get; }
         public List<LinqProperty> Properties { get; } = new();
 
         public override Span Span
