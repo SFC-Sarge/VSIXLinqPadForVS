@@ -84,13 +84,17 @@
     <Compile Include="LinqEditor\LinqOutliningTaggerProvider.cs" />
     <Compile Include="LinqEditor\LinqTokenTagger.cs" />
     <Compile Include="LinqEditor\LinqUpperCaseSuggestedAction.cs" />
+    <Compile Include="LinqParser\LinqContextualKeywords.cs" />
     <Compile Include="LinqParser\LinqDocument.cs" />
     <Compile Include="LinqParser\LinqDocumentParser.cs" />
     <Compile Include="LinqParser\LinqDocumentValidator.cs" />
     <Compile Include="LinqParser\LinqEntry.cs" />
+    <Compile Include="LinqParser\LinqImportKeyword.cs" />
     <Compile Include="LinqParser\LinqItemType.cs" />
+    <Compile Include="LinqParser\LinqKeywords.cs" />
     <Compile Include="LinqParser\LinqParseItem.cs" />
     <Compile Include="LinqParser\LinqPredefinedVariables.cs" />
+    <Compile Include="LinqParser\LinqPreProcSymbols.cs" />
     <Compile Include="LinqParser\LinqProperty.cs" />
     <Compile Include="Options\AdvancedOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

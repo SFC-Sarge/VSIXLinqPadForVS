@@ -13,8 +13,8 @@
         Property,
         Preprocessor,
         Identifier,
-        Keyword,
-        Contextual_keyword,
+        CSharp_Keywords,
+        CSharp_ContextualKeywords,
         Number,
         WhiteSpace,
         Punctuation

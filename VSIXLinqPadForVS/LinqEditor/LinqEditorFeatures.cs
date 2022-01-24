@@ -27,7 +27,7 @@ namespace VSIXLinqPadForVS.LinqEditor
             { LinqItemType.Operator, PredefinedClassificationTypeNames.Operator },
             { LinqItemType.Preprocessor, PredefinedClassificationTypeNames.PreprocessorKeyword },
             { LinqItemType.Identifier, PredefinedClassificationTypeNames.Identifier },
-            { LinqItemType.Keyword, PredefinedClassificationTypeNames.Keyword },
+            { LinqItemType.CSharp_Keywords, PredefinedClassificationTypeNames.Keyword },
             { LinqItemType.Number, PredefinedClassificationTypeNames.Number },
             { LinqItemType.WhiteSpace, PredefinedClassificationTypeNames.WhiteSpace },
             { LinqItemType.Punctuation, PredefinedClassificationTypeNames.Punctuation },

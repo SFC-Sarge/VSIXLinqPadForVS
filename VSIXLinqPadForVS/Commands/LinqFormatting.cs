@@ -79,7 +79,7 @@ namespace VSIXLinqPadForVS.Commands
                 {
                     sb.AppendLine(item.Text.Trim());
                 }
-                else if (item.Type == LinqItemType.Keyword)
+                else if (item.Type == LinqItemType.CSharp_Keywords)
                 {
                     sb.AppendLine(item.Text.Trim());
                 }
@@ -88,6 +88,10 @@ namespace VSIXLinqPadForVS.Commands
                     sb.AppendLine(item.Text.Trim());
                 }
                 else if (item.Type == LinqItemType.Number)
+                {
+                    sb.AppendLine(item.Text.Trim());
+                }
+                else if (item.Type == LinqItemType.CSharp_ContextualKeywords)
                 {
                     sb.AppendLine(item.Text.Trim());
                 }

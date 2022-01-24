@@ -97,6 +97,20 @@ namespace VSIXLinqPadForVS.LinqParser
             // Return the reference if it exist; otherwise the item
             return reference ?? item;
         }
+        public static IEnumerable<string> GetPreProcSymbols(string runtimeVersion, bool isAutomated = false)
+        {
+            IEnumerable<string> enumerable = LinqPreProcSymbols.PreProcSymbols.AsEnumerable();
+            if (runtimeVersion.StartsWith("6."))
+            {
+                enumerable = enumerable.Append("NET5").Append("NET6");
+            }
+            else if (runtimeVersion.StartsWith("5."))
+            {
+                enumerable = enumerable.Append("NET5");
+            }
+            return isAutomated ? enumerable.Append("CMD") : enumerable;
+        }
+
 
         public void Dispose()
         {

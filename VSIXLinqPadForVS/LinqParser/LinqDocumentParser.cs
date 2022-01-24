@@ -45,42 +45,42 @@ namespace VSIXLinqPadForVS.LinqParser
             {
                 items.Add(ToParseItem(line, start, LinqItemType.Identifier, false));
             }
-            // Keyword
+            // CSharp_Keywords
             else if (trimmedLine.StartsWith("using"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("namespace"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("class"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("struct") || trimmedLine.StartsWith("enum"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("public") || trimmedLine.StartsWith("private"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("static"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("void"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("foreach"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("IEnumerable"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("Console") || trimmedLine.StartsWith("Debug"))
             {
@@ -88,19 +88,19 @@ namespace VSIXLinqPadForVS.LinqParser
             }
             else if (trimmedLine.StartsWith("var"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Keyword, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("string"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Literal, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("int"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Literal, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("double"))
             {
-                items.Add(ToParseItem(line, start, LinqItemType.Literal, false));
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("Enumerable"))
             {
