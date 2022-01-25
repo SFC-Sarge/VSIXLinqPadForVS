@@ -7,7 +7,7 @@ using VSIXLinqPadForVS.LinqParser;
 
 namespace VSIXLinqPadForVS.Commands
 {
-    public class LinqFormatting
+    public class LinqFormatDocument
     {
         public static async Task InitializeAsync()
         {
@@ -32,7 +32,7 @@ namespace VSIXLinqPadForVS.Commands
         private static void LinqFormat(ITextBuffer buffer)
         {
             LinqDocument doc = buffer.GetDocument();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             foreach (LinqParseItem item in doc.Items)
             {

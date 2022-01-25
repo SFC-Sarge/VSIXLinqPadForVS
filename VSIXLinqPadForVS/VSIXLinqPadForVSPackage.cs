@@ -50,8 +50,8 @@ namespace VSIXLinqPadForVS
             ((IServiceContainer)this).AddService(typeof(LinqLanguageFactory), Linqlanguage, true);
 
             await this.RegisterCommandsAsync();
-            await LinqFormatting.InitializeAsync();
-            await LinqCommenting2.InitializeAsync();
+            await LinqFormatDocument.InitializeAsync();
+            await LinqCommentDocument.InitializeAsync();
 
             this.RegisterToolWindows();
         }

@@ -27,7 +27,7 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public string GetFormattedText()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             if (RegistryKey != null)
             {

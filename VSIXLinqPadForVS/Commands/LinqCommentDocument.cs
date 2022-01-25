@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace VSIXLinqPadForVS.Commands
 {
-    public class LinqCommenting2
+    public class LinqCommentDocument
     {
         public static async Task InitializeAsync()
         {

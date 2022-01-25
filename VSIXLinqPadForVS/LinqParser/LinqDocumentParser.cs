@@ -54,16 +54,38 @@ namespace VSIXLinqPadForVS.LinqParser
             {
                 items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
-            else if (trimmedLine.StartsWith("class"))
+            else if (trimmedLine.StartsWith("public partial class"))
             {
+                // Reference URL for Access Modifiers: ()
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
+            }
+            else if (trimmedLine.StartsWith("class") || trimmedLine.StartsWith("abstract class"))
+            {
+                // Reference URL for abstract class modifier: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract)
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
+            }
+            else if (trimmedLine.StartsWith("const") || trimmedLine.StartsWith("public const"))
+            {
+                // Reference URL for Access Modifiers: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/const)
                 items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("struct") || trimmedLine.StartsWith("enum"))
             {
                 items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
-            else if (trimmedLine.StartsWith("public") || trimmedLine.StartsWith("private"))
+            else if (trimmedLine.StartsWith("public async") || trimmedLine.StartsWith("private async"))
             {
+                // Reference URL for Access Modifiers: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/async)
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
+            }
+            else if (trimmedLine.StartsWith("public event") || trimmedLine.StartsWith("private event") || trimmedLine.StartsWith("private protected event") || trimmedLine.StartsWith("internal event") || trimmedLine.StartsWith("protected internal event") || trimmedLine.StartsWith("protected event"))
+            {
+                // Reference URL for Access Modifiers: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/event)
+                items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
+            }
+            else if (trimmedLine.StartsWith("public") || trimmedLine.StartsWith("private") || trimmedLine.StartsWith("private protected") || trimmedLine.StartsWith("internal") || trimmedLine.StartsWith("protected internal") || trimmedLine.StartsWith("protected") || trimmedLine.StartsWith("public abstract"))
+            {
+                // Reference URL for Access Modifiers: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/access-modifiers)
                 items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
             }
             else if (trimmedLine.StartsWith("static"))
