@@ -11,8 +11,8 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_EqualityOperators
         {
-            Equality,
-            Inequality
+            equality,
+            inequality
         }
     }
 }

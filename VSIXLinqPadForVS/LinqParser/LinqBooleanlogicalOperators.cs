@@ -15,12 +15,12 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_BooleanlogicalOperators
         {
-            Negation,
-            And,
-            Or,
+            negation,
+            and,
+            or,
             Xor,
-            Conditional_And,
-            Conditional_Or
+            Conditional_and,
+            Conditional_or
         }
     }
 }

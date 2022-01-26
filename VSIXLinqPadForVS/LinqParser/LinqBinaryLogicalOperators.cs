@@ -12,8 +12,8 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_BinaryLogicalOperators
         {
-            And,
-            Or,
+            and,
+            or,
             Xor,
         }
     }

@@ -9,20 +9,20 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_QueryKeywords
         {
-            From,
-            Where,
-            Select,
+            from,
+            where,
+            select,
             Group,
-            Into,
-            Orderby,
-            Join,
-            Let,
+            into,
+            orderby,
+            join,
+            let,
             In,
-            On,
-            Equals,
-            By,
-            Ascending,
-            Descending,
+            on,
+            equals,
+            by,
+            ascending,
+            descending,
         }
     }
 }

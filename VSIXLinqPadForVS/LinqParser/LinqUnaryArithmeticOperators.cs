@@ -15,7 +15,7 @@ namespace VSIXLinqPadForVS.LinqParser
             Increment,
             Decrement,
             Plus,
-            UMinus
+            Minus
         }
     }
 }
