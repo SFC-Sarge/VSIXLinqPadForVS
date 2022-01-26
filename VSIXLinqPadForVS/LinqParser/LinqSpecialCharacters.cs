@@ -3,7 +3,7 @@
 // Author UserID    : sfcsarge
 // Author Full Name : Danny C. McNaught
 // Author Phone     : #-###-###-####
-// Created          : 01-26-2022
+// Company Name     : Computer Question// Created          : 01-26-2022
 //
 // Created By       : Danny C. McNaught
 // Last Modified By : Danny C. McNaught
@@ -12,7 +12,7 @@
 // Version Number   :
 // Description      :
 // File Name        : LinqSpecialCharacters.cs
-// Copyright        : Open Source Apache License Version 2.0
+// License          : Open Source Apache License Version 2.0. Eee included License file.
 // <summary></summary>
 // ***********************************************************************
 using System.Linq;
@@ -35,7 +35,7 @@ using System.Linq;
 ///  				<devName>
 /// 		Developer: Danny C. McNaught
 /// 		<para>Date: Wednesday, January 26, 2022</para>
-/// 		<para>Time: 14:39</para>
+/// 		<para>Time: 17:17</para>
 /// 	</devName>
 ///  			<devCompany>Computer Question</devCompany>
 ///  			<devPhone>#-###-###-####</devPhone>
@@ -51,7 +51,7 @@ using System.Linq;
 ///  				<devName>
 /// 		Developer: Danny C. McNaught
 /// 		<para>Date: Wednesday, January 26, 2022</para>
-/// 		<para>Time: 14:39</para>
+/// 		<para>Time: 17:17</para>
 /// 	</devName>
 ///  			<devCompany>Computer Question</devCompany>
 ///  			<devPhone>#-###-###-####</devPhone>
@@ -78,7 +78,7 @@ namespace VSIXLinqPadForVS.LinqParser
     /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
     /// </item>
     /// <item>
-    /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 14:39</para><b>Code Changes:</b><para>Created XML Comment</para></description>
+    /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
     /// </item>
     /// </list>
     /// </remarks>
@@ -98,13 +98,14 @@ namespace VSIXLinqPadForVS.LinqParser
         /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
         /// </item>
         /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 14:39</para><b>Code Changes:</b><para>Created XML Comment</para></description>
+        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
         /// </item>
         /// </list>
         /// </remarks>
         public static readonly string[] SpecialCharacters = "$ @".Split().ToArray();
 
-        /// <summary>CSharp Special Characters enum</summary>
+        /// <summary>Enum CSharp_SpecialCharacters
+        /// </summary>
         /// <remarks>
         /// <para><b>History:</b></para>
         /// <list type="table">
@@ -115,7 +116,7 @@ namespace VSIXLinqPadForVS.LinqParser
         /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
         /// </item>
         /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 14:39</para><b>Code Changes:</b><para>Created XML Comment</para></description>
+        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
         /// </item>
         /// </list>
         /// </remarks>
@@ -132,7 +133,7 @@ namespace VSIXLinqPadForVS.LinqParser
             /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
             /// </item>
             /// <item>
-            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 14:39</para><b>Code Changes:</b><para>Created XML Comment</para></description>
+            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
             /// </item>
             /// </list>
             /// </remarks>
@@ -148,7 +149,7 @@ namespace VSIXLinqPadForVS.LinqParser
             /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
             /// </item>
             /// <item>
-            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 14:39</para><b>Code Changes:</b><para>Created XML Comment</para></description>
+            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
             /// </item>
             /// </list>
             /// </remarks>
