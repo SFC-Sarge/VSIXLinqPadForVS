@@ -10,8 +10,8 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_AcessKeywords
         {
-            AcessKeyword_base,
-            AcessKeyword_this
+            Base,
+            This
         }
     }
 }

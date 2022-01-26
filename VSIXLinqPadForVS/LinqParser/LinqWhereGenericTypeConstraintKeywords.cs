@@ -9,7 +9,7 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_WhereGenericTypeConstraintKeywords
         {
-            WhereGenericTypeConstraintKeyword_where
+            Where
         }
     }
 }

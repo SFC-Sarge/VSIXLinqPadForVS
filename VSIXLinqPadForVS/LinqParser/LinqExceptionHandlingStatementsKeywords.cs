@@ -12,10 +12,10 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_ExceptionHandlingStatementsKeywords
         {
-            ExceptionHandlingStatementKeyword_throw,
-            ExceptionHandlingStatementKeyword_try_catch,
-            ExceptionHandlingStatementKeyword_try_finally,
-            ExceptionHandlingStatementKeyword_try_catch_finally
+            Throw,
+            Try_catch,
+            Try_finally,
+            Try_catch_finally
         }
     }
 }

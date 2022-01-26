@@ -9,8 +9,8 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_SelectionStatementKeywords
         {
-            SelectStatementKeyword_if,
-            SelectStatementKeyword_switch
+            If,
+            Switch
         }
     }
 }

@@ -9,7 +9,7 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_LockStatementKeywords
         {
-            LockStatementKeyword_lock
+            Lock
         }
     }
 }

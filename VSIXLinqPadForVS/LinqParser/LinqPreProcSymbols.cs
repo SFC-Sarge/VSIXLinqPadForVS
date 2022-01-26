@@ -7,9 +7,9 @@
 
         public enum CSharp_PreProcSymbols
         {
-            PreProc_LINQPAD,
-            PreProc_NETCORE,
-            PreProc_DEBUG
+            LINQPAD,
+            NETCORE,
+            DEBUG
         }
     }
 }

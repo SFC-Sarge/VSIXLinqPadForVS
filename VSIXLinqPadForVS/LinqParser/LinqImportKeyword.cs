@@ -6,7 +6,7 @@
 
         public enum CSharp_ImportKeyword
         {
-            ImportKeyword_using
+            Using
         }
     }
 }

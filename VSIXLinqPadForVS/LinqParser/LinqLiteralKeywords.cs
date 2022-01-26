@@ -11,9 +11,9 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_LiteralKeywords
         {
-            LiteralKeyword_null,
-            LiteralKeyword_bool,
-            LiteralKeyword_default
+            Null,
+            Bool,
+            Default
         }
     }
 }

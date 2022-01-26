@@ -9,8 +9,8 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_CheckedUncheckedKeywords
         {
-            CheckedUncheckedKeyword_checked,
-            CheckedUncheckedKeyword_unchecked
+            Checked,
+            Unchecked
         }
     }
 }

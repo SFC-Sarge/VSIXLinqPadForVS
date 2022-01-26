@@ -9,7 +9,7 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_UsingStatementKeywords
         {
-            UsingStatementKeyword_using
+            Using
         }
     }
 }

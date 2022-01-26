@@ -13,10 +13,10 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_MethodParametersKeywords
         {
-            MethodParametersKeyword_params,
-            MethodParametersKeyword_in,
-            MethodParametersKeyword_ref,
-            MethodParametersKeyword_out
+            Params,
+            In,
+            Ref,
+            Out
         }
     }
 }

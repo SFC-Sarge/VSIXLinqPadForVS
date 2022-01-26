@@ -9,10 +9,10 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_IterationStatementKeywords
         {
-            IterationStatementKeyword_do,
-            IterationStatementKeyword_for,
-            IterationStatementKeyword_foreach,
-            IterationStatementKeyword_while
+            Do,
+            For,
+            Foreach,
+            While
         }
     }
 }

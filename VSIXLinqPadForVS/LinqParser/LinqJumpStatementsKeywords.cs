@@ -9,10 +9,10 @@ namespace VSIXLinqPadForVS.LinqParser
 
         public enum CSharp_JumpStatementKeywords
         {
-            JumpStatementKeyword_break,
-            JumpStatementKeyword_continue,
-            JumpStatementKeyword_goto,
-            JumpStatementKeyword_return
+            Break,
+            Continue,
+            Goto,
+            Return
         }
     }
 }
