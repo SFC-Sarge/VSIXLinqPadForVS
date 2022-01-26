@@ -120,12 +120,15 @@
     <Compile Include="LinqParser\LinqProperty.cs" />
     <Compile Include="LinqParser\LinqQuerykeywords.cs" />
     <Compile Include="LinqParser\LinqSelectionStatementKeywords.cs" />
+    <Compile Include="LinqParser\LinqSpecialCharacters.cs" />
     <Compile Include="LinqParser\LinqTypeTestingAndCastOperators.cs" />
     <Compile Include="LinqParser\LinqUnaryArithmeticOperators.cs" />
     <Compile Include="LinqParser\LinqUserDefinedConversionOperators.cs" />
     <Compile Include="LinqParser\LinqUsingDirectiveKeywords.cs" />
     <Compile Include="LinqParser\LinqUsingStatementKeywords.cs" />
     <Compile Include="LinqParser\LinqWhereGenericTypeConstraintKeywords.cs" />
+    <Compile Include="LinqParser\LinqXMLDocumentationComments.cs" />
+    <Compile Include="LinqParser\LinqXMLDocumentationCommentTags.cs" />
     <Compile Include="LinqParser\LinqYieldStatementKeywords.cs" />
     <Compile Include="LinqParser\UnaryBitwiseComplementOperators.cs" />
     <Compile Include="Options\AdvancedOptions.cs" />
