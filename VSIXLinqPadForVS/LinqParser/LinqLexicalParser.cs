@@ -1,14 +1,9 @@
-﻿using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace VSIXLinqPadForVS.LinqParser
 {
     public class LinqLexicalParser
     {
-        //readonly string[] keywords = "abstract as base bool break by byte case catch char checked class const continue decimal default delegate do double descending else enum event explicit extern false finally fixed float for foreach from goto group if implicit in int interface internal into is lock long new null namespace object operator out override orderby params private protected public readonly ref return switch struct sbyte sealed select short sizeof stackalloc static string struct this throw true try typeof uint ulong unchecked unsafe ushort using var virtual void volatile while where yield".Split().ToArray();
-        readonly string[] separator = "; { } \r \n \r\n".Split().ToArray();
-        readonly string[] comments = "/// // /* */".Split().ToArray();
-        readonly string[] operators = "+ - * / % & ( ) [ ] | ^ ! ~ && || , ++ -- << >> == != < > <= >= = += -= *= /= %= &= |= ^= <<= >>= . [] () ?: => ??".Split().ToArray();
         public string Parse(string item)
         {
             StringBuilder str = new();
@@ -41,13 +36,13 @@ namespace VSIXLinqPadForVS.LinqParser
         }
         private bool CheckOperator(string str)
         {
-            if (Array.IndexOf(operators, str) > -1)
+            if (Array.IndexOf(LinqOperators.Operators, str) > -1)
                 return true;
             return false;
         }
         private bool CheckDelimiter(string str)
         {
-            if (Array.IndexOf(separator, str) > -1)
+            if (Array.IndexOf(LinqSeparators.Separators, str) > -1)
                 return true;
             return false;
         }
@@ -59,7 +54,7 @@ namespace VSIXLinqPadForVS.LinqParser
         }
         private bool CheckComments(string str)
         {
-            if (Array.IndexOf(comments, str) > -1)
+            if (Array.IndexOf(LinqComments.Comments, str) > -1)
                 return true;
             return false;
         }

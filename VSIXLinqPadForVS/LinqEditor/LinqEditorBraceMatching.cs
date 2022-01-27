@@ -1,21 +1,4 @@
-﻿//***********************************************************************
-// Assembly         : VSIXLinqPadForVS
-// Author UserID    : sfcsarge
-// Author Full Name : Danny C. McNaught
-// Author Phone     : #-###-###-####
-// Company Name     : Computer Question// Created          : 01-26-2022
-//
-// Created By       : Danny C. McNaught
-// Last Modified By : Danny C. McNaught
-// Last Modified On : 01-26-2022
-// Change Request # :
-// Version Number   :
-// Description      :
-// File Name        : LinqEditorBraceMatching.cs
-// License          : Open Source Apache License Version 2.0. Eee included License file.
-// <summary></summary>
-// ***********************************************************************
-using Microsoft.VisualStudio.Text;
+﻿using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Tagging;
 using Microsoft.VisualStudio.Utilities;
@@ -24,158 +7,15 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-/// <summary>
-/// The LinqEditor namespace.
-/// </summary>
-/// <remarks>
-///  	<para><b>History:</b></para>
-///  	<list type="table">
-///  		<listheader>
-///  			<devName>Developer\Date\Time</devName>
-///  			<devCompany>Developer Company</devCompany>
-///  			<devPhone>Developer Phone</devPhone>
-///  			<devEmail>Developer Email</devEmail>
-///  			<devMachine>Developer On</devMachine>
-///  			<description>Description</description>
-///  		</listheader>
-///  		<item>
-///  				<devName>
-/// 		Developer: Danny C. McNaught
-/// 		<para>Date: Wednesday, January 26, 2022</para>
-/// 		<para>Time: 17:16</para>
-/// 	</devName>
-///  			<devCompany>Computer Question</devCompany>
-///  			<devPhone>#-###-###-####</devPhone>
-///  				<devEmail>
-/// 		<a href="mailto:danny.mcnaught@dannymcnaught.com">mailto:danny.mcnaught@dannymcnaught.com</a>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 	</devEmail>
-///  			<devMachine>WINDOWS11DEV</devMachine>
-///  			<description>Created XML Comment</description>
-///  		</item>
-///  		<item>
-///  				<devName>
-/// 		Developer: Danny C. McNaught
-/// 		<para>Date: Wednesday, January 26, 2022</para>
-/// 		<para>Time: 17:16</para>
-/// 	</devName>
-///  			<devCompany>Computer Question</devCompany>
-///  			<devPhone>#-###-###-####</devPhone>
-///  				<devEmail>
-/// 		<a href="mailto:danny.mcnaught@dannymcnaught.com">mailto:danny.mcnaught@dannymcnaught.com</a>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 	</devEmail>
-///  			<devMachine>WINDOWS11DEV</devMachine>
-///  			<description>Updated XML Comment</description>
-///  		</item>
-///  	</list>
-/// </remarks>
 namespace VSIXLinqPadForVS.LinqEditor
 {
-    /// <summary>Class LinqEditorBraceMatchingTagger</summary>
-    /// <remarks>
-    /// <para><b>History:</b></para>
-    /// <list type="table">
-    /// <item>
-    /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-    /// </item>
-    /// <item>
-    /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-    /// </item>
-    /// <item>
-    /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-    /// </item>
-    /// </list>
-    /// </remarks>
     internal class LinqEditorBraceMatchingTagger : ITagger<TextMarkerTag>
     {
-        /// <summary>Gets or sets the view.</summary>
-        /// <value>The view.</value>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         ITextView View { get; set; }
-        /// <summary>Gets or sets the source buffer.</summary>
-        /// <value>The source buffer.</value>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         ITextBuffer SourceBuffer { get; set; }
-        /// <summary>Gets or sets the current character.</summary>
-        /// <value>The current character.</value>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         SnapshotPoint? CurrentChar { get; set; }
-        /// <summary>The m brace list</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private Dictionary<char, char> m_braceList;
 
-        /// <summary>Initializes a new instance of the <see cref="LinqEditorBraceMatchingTagger"/> class.</summary>
-        /// <param name="view">The view.</param>
-        /// <param name="sourceBuffer">The source buffer.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         internal LinqEditorBraceMatchingTagger(ITextView view, ITextBuffer sourceBuffer)
         {
             //here the keys are the open braces, and the values are the close braces
@@ -191,40 +31,8 @@ namespace VSIXLinqPadForVS.LinqEditor
             this.View.LayoutChanged += ViewLayoutChanged;
         }
 
-        /// <summary>Occurs when tags are added to or removed from the provider.</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
-        /// <summary>Views the layout changed.</summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="TextViewLayoutChangedEventArgs"/> instance containing the event data.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         void ViewLayoutChanged(object sender, TextViewLayoutChangedEventArgs e)
         {
             if (e.NewSnapshot != e.OldSnapshot) //make sure that there has really been a change
@@ -233,43 +41,10 @@ namespace VSIXLinqPadForVS.LinqEditor
             }
         }
 
-        /// <summary>Carets the position changed.</summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="CaretPositionChangedEventArgs"/> instance containing the event data.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         void CaretPositionChanged(object sender, CaretPositionChangedEventArgs e)
         {
             UpdateAtCaretPosition(e.NewPosition);
         }
-        /// <summary>Updates at caret position.</summary>
-        /// <param name="caretPosition">The caret position.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         void UpdateAtCaretPosition(CaretPosition caretPosition)
         {
             CurrentChar = caretPosition.Point.GetPoint(SourceBuffer, caretPosition.Affinity);
@@ -283,26 +58,6 @@ namespace VSIXLinqPadForVS.LinqEditor
                     SourceBuffer.CurrentSnapshot.Length)));
         }
 
-        /// <summary>Gets all the tags that intersect the <paramref name="spans" />.</summary>
-        /// <param name="spans">The spans to visit.</param>
-        /// <returns>A <see cref="T:Microsoft.VisualStudio.Text.Tagging.ITagSpan`1" /> for each tag.</returns>
-        /// <remarks><para>Taggers are not required to return their tags in any specific order.</para>
-        /// <para>The recommended way to implement this method is by using generators ("yield return"),
-        /// which allows lazy evaluation of the entire tagging stack.</para></remarks>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public IEnumerable<ITagSpan<TextMarkerTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
             if (spans.Count == 0)   //there is no content in the buffer
@@ -356,27 +111,6 @@ namespace VSIXLinqPadForVS.LinqEditor
                 }
             }
         }
-        /// <summary>Finds the matching close character.</summary>
-        /// <param name="startPoint">The start point.</param>
-        /// <param name="open">The open.</param>
-        /// <param name="close">The close.</param>
-        /// <param name="maxLines">The maximum lines.</param>
-        /// <param name="pairSpan">The pair span.</param>
-        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private static bool FindMatchingCloseChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan)
         {
             pairSpan = new SnapshotSpan(startPoint.Snapshot, 1, 1);
@@ -426,27 +160,6 @@ namespace VSIXLinqPadForVS.LinqEditor
 
             return false;
         }
-        /// <summary>Finds the matching open character.</summary>
-        /// <param name="startPoint">The start point.</param>
-        /// <param name="open">The open.</param>
-        /// <param name="close">The close.</param>
-        /// <param name="maxLines">The maximum lines.</param>
-        /// <param name="pairSpan">The pair span.</param>
-        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private static bool FindMatchingOpenChar(SnapshotPoint startPoint, char open, char close, int maxLines, out SnapshotSpan pairSpan)
         {
             pairSpan = new SnapshotSpan(startPoint, startPoint);
@@ -511,45 +224,11 @@ namespace VSIXLinqPadForVS.LinqEditor
 
 
     }
-    /// <summary>Class BraceMatchingTaggerProvider</summary>
-    /// <remarks>
-    /// <para><b>History:</b></para>
-    /// <list type="table">
-    /// <item>
-    /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-    /// </item>
-    /// <item>
-    /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-    /// </item>
-    /// <item>
-    /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-    /// </item>
-    /// </list>
-    /// </remarks>
     [Export(typeof(IViewTaggerProvider))]
     [ContentType(Constants.LinqLanguageName)]
     [TagType(typeof(TextMarkerTag))]
     internal class BraceMatchingTaggerProvider : IViewTaggerProvider
     {
-        /// <summary>Creates the tagger.</summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="textView">The text view.</param>
-        /// <param name="buffer">The buffer.</param>
-        /// <returns>ITagger&lt;T&gt;.</returns>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:16</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer) where T : ITag
         {
             if (textView == null)

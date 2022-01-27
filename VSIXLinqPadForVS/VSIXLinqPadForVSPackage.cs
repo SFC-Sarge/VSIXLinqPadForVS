@@ -1,21 +1,4 @@
-﻿//***********************************************************************
-// Assembly         : VSIXLinqPadForVS
-// Author UserID    : sfcsarge
-// Author Full Name : Danny C. McNaught
-// Author Phone     : #-###-###-####
-// Company Name     : Computer Question// Created          : 01-25-2022
-//
-// Created By       : Danny C. McNaught
-// Last Modified By : Danny C. McNaught
-// Last Modified On : 01-26-2022
-// Change Request # :
-// Version Number   :
-// Description      :
-// File Name        : VSIXLinqPadForVSPackage.cs
-// License          : Open Source Apache License Version 2.0. Eee included License file.
-// <summary></summary>
-// ***********************************************************************
-global using Community.VisualStudio.Toolkit;
+﻿global using Community.VisualStudio.Toolkit;
 
 global using Microsoft.VisualStudio.Shell;
 

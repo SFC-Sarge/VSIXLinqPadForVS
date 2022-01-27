@@ -11,22 +11,17 @@
 // Change Request # :
 // Version Number   :
 // Description      :
-// File Name        : LinqPreProcSymbols.cs
+// File Name        : LinqOperators.cs
 // License          : Open Source Apache License Version 2.0. Eee included License file.
 // <summary></summary>
 // ***********************************************************************
+using System.Linq;
+
 namespace VSIXLinqPadForVS.LinqParser
 {
-    public class LinqPreProcSymbols
+    public class LinqSeparators
     {
-        //private static readonly string[] PreProcSymbols = new string[3] { "PreProc_LINQPAD,", "PreProc_NETCORE,", "PreProc_DEBUG" };
-        public static readonly string[] PreProcSymbols = new string[3] { "LINQPAD", "NETCORE", "DEBUG" };
-
-        public enum CSharp_PreProcSymbols
-        {
-            LINQPAD,
-            NETCORE,
-            DEBUG
-        }
+        // Query Keywords reference URL: (https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords)
+        public static readonly string[] Separators = "; { } \r \n \r\n".Split().ToArray();
     }
 }

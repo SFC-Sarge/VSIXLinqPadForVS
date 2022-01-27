@@ -1,21 +1,4 @@
-﻿//***********************************************************************
-// Assembly         : VSIXLinqPadForVS
-// Author UserID    : sfcsarge
-// Author Full Name : Danny C. McNaught
-// Author Phone     : #-###-###-####
-// Company Name     : Computer Question// Created          : 01-26-2022
-//
-// Created By       : Danny C. McNaught
-// Last Modified By : Danny C. McNaught
-// Last Modified On : 01-26-2022
-// Change Request # :
-// Version Number   :
-// Description      :
-// File Name        : MyToolWindowControl.xaml.cs
-// License          : Open Source Apache License Version 2.0. Eee included License file.
-// <summary></summary>
-// ***********************************************************************
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Emit;
@@ -39,219 +22,19 @@ using OutputWindowPane = Community.VisualStudio.Toolkit.OutputWindowPane;
 using Path = System.IO.Path;
 using Project = Community.VisualStudio.Toolkit.Project;
 
-/// <summary>
-/// The ToolWindows namespace.
-/// </summary>
-/// <remarks>
-///  	<para><b>History:</b></para>
-///  	<list type="table">
-///  		<listheader>
-///  			<devName>Developer\Date\Time</devName>
-///  			<devCompany>Developer Company</devCompany>
-///  			<devPhone>Developer Phone</devPhone>
-///  			<devEmail>Developer Email</devEmail>
-///  			<devMachine>Developer On</devMachine>
-///  			<description>Description</description>
-///  		</listheader>
-///  		<item>
-///  				<devName>
-/// 		Developer: Danny C. McNaught
-/// 		<para>Date: Wednesday, January 26, 2022</para>
-/// 		<para>Time: 17:17</para>
-/// 	</devName>
-///  			<devCompany>Computer Question</devCompany>
-///  			<devPhone>#-###-###-####</devPhone>
-///  				<devEmail>
-/// 		<a href="mailto:danny.mcnaught@dannymcnaught.com">mailto:danny.mcnaught@dannymcnaught.com</a>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 	</devEmail>
-///  			<devMachine>WINDOWS11DEV</devMachine>
-///  			<description>Created XML Comment</description>
-///  		</item>
-///  		<item>
-///  				<devName>
-/// 		Developer: Danny C. McNaught
-/// 		<para>Date: Wednesday, January 26, 2022</para>
-/// 		<para>Time: 17:17</para>
-/// 	</devName>
-///  			<devCompany>Computer Question</devCompany>
-///  			<devPhone>#-###-###-####</devPhone>
-///  				<devEmail>
-/// 		<a href="mailto:danny.mcnaught@dannymcnaught.com">mailto:danny.mcnaught@dannymcnaught.com</a>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 		<para><a href="mailto:">mailto:</a></para>
-/// 	</devEmail>
-///  			<devMachine>WINDOWS11DEV</devMachine>
-///  			<description>Updated XML Comment</description>
-///  		</item>
-///  	</list>
-/// </remarks>
 namespace VSIXLinqPadForVS.ToolWindows
 {
-    /// <summary>Class MyToolWindowControl</summary>
-    /// <remarks>
-    /// <para><b>History:</b></para>
-    /// <list type="table">
-    /// <item>
-    /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-    /// </item>
-    /// <item>
-    /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-    /// </item>
-    /// <item>
-    /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-    /// </item>
-    /// </list>
-    /// </remarks>
     public partial class MyToolWindowControl : UserControl
     {
-        /// <summary>The pane</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         OutputWindowPane _pane = null;
-        /// <summary>The tool window messenger</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public ToolWindowMessenger ToolWindowMessenger = null;
-        /// <summary>The active project</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public Project _activeProject;
-        /// <summary>The active file</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public string _activeFile;
-        /// <summary>My namespace</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public string _myNamespace = null;
-        /// <summary>The query result</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public string queryResult = null;
-        /// <summary>The dir lp run7</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public string dirLPRun7 = null;
-        /// <summary>The file lp run7</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public string fileLPRun7 = null;
 
-        /// <summary>Initializes a new instance of the <see cref="MyToolWindowControl"/> class.</summary>
-        /// <param name="activeProject">The active project.</param>
-        /// <param name="toolWindowMessenger">The tool window messenger.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public MyToolWindowControl(Project activeProject, ToolWindowMessenger toolWindowMessenger)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -272,108 +55,15 @@ namespace VSIXLinqPadForVS.ToolWindows
                 await DoOutputWindowsAsync();
             }).FireAndForget();
         }
-        /// <summary>Enum LinqType
-        /// </summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         [Flags]
         public enum LinqType
         {
-            /// <summary>The none</summary>
-            /// <remarks>
-            /// <para><b>History:</b></para>
-            /// <list type="table">
-            /// <item>
-            /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-            /// </item>
-            /// </list>
-            /// </remarks>
             None = 0,
-            /// <summary>The statement</summary>
-            /// <remarks>
-            /// <para><b>History:</b></para>
-            /// <list type="table">
-            /// <item>
-            /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-            /// </item>
-            /// </list>
-            /// </remarks>
             Statement = 1,
-            /// <summary>The method</summary>
-            /// <remarks>
-            /// <para><b>History:</b></para>
-            /// <list type="table">
-            /// <item>
-            /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-            /// </item>
-            /// </list>
-            /// </remarks>
             Method = 2,
-            /// <summary>The file</summary>
-            /// <remarks>
-            /// <para><b>History:</b></para>
-            /// <list type="table">
-            /// <item>
-            /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-            /// </item>
-            /// <item>
-            /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-            /// </item>
-            /// </list>
-            /// </remarks>
             File = 3
         }
 
-        /// <summary>Called when [message received].</summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The e.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private void OnMessageReceived(object sender, string e)
         {
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
@@ -394,21 +84,6 @@ namespace VSIXLinqPadForVS.ToolWindows
                 }
             }).FireAndForget();
         }
-        /// <summary>Called when [after close solution].</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private void OnAfterCloseSolution()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -419,25 +94,6 @@ namespace VSIXLinqPadForVS.ToolWindows
             }).FireAndForget();
         }
 
-        /// <summary>Opens the document with specific editor asynchronous.</summary>
-        /// <param name="file">The file.</param>
-        /// <param name="editorType">Type of the editor.</param>
-        /// <param name="LogicalView">The logical view.</param>
-        /// <returns>DocumentView.</returns>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public async Task<DocumentView> OpenDocumentWithSpecificEditorAsync(string file, Guid editorType, Guid LogicalView)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -446,22 +102,6 @@ namespace VSIXLinqPadForVS.ToolWindows
             return await nativeView.ToDocumentViewAsync();
         }
 
-        /// <summary>Runs the editor linq query asynchronous.</summary>
-        /// <param name="linqType">Type of the linq.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public async Task RunEditorLinqQueryAsync(LinqType linqType)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -625,45 +265,11 @@ namespace VSIXLinqPadForVS.ToolWindows
             }).FireAndForget();
         }
 
-        /// <summary>Does the output windows asynchronous.</summary>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private async Task DoOutputWindowsAsync()
         {
             _pane = await VS.Windows.CreateOutputWindowPaneAsync(Constants.linpPadDump);
             return;
         }
-        /// <summary>Gets the template file path asynchronous.</summary>
-        /// <param name="project">The project.</param>
-        /// <param name="nameSpace">The name space.</param>
-        /// <param name="file">The file.</param>
-        /// <returns>System.String.</returns>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         public async Task<string> GetTemplateFilePathAsync(Project project, string nameSpace, string file)
         {
             var name = Path.GetFileName(file);
@@ -676,26 +282,6 @@ namespace VSIXLinqPadForVS.ToolWindows
             return NormalizeLineEndings(template);
         }
 
-        /// <summary>Replaces the tokens asynchronous.</summary>
-        /// <param name="project">The project.</param>
-        /// <param name="name">The name.</param>
-        /// <param name="nameSpace">The name space.</param>
-        /// <param name="templateFile">The template file.</param>
-        /// <returns>System.String.</returns>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private async Task<string> ReplaceTokensAsync(Project project, string name, string nameSpace, string templateFile)
         {
             if (string.IsNullOrEmpty(templateFile))
@@ -711,23 +297,6 @@ namespace VSIXLinqPadForVS.ToolWindows
                               .Replace("{itemname}", name);
             }
         }
-        /// <summary>Normalizes the line endings.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>System.String.</returns>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private string NormalizeLineEndings(string content)
         {
             if (string.IsNullOrEmpty(content))
@@ -737,23 +306,6 @@ namespace VSIXLinqPadForVS.ToolWindows
 
             return Regex.Replace(content, @"\r\n|\n\r|\n|\r", "\r\n");
         }
-        /// <summary>Compiles the result.</summary>
-        /// <param name="selectedCode">The selected code.</param>
-        /// <param name="comment">The comment.</param>
-        /// <remarks>
-        /// <para><b>History:</b></para>
-        /// <list type="table">
-        /// <item>
-        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
-        /// </item>
-        /// <item>
-        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 17:17</para><b>Code Changes:</b><para>Created XML Comment</para></description>
-        /// </item>
-        /// </list>
-        /// </remarks>
         private void CompileResult(string selectedCode, string comment)
         {
             //string code = "using System; using System.Linq; class Program{ private static void Main(string[] args) { Sample_Aggregate_Lambda_Simple(); } private static void Sample_Aggregate_Lambda_Simple() { var result = new int[] { 1, 2, 3, 4, 5 }.Aggregate((a, b) => a * b); Console.WriteLine(\"Aggregated numbers by multiplication: \" + result); } }";
