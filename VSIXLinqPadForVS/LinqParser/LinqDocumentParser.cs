@@ -151,6 +151,19 @@ namespace VSIXLinqPadForVS.LinqParser
             }
 
             Items = items;
+
+
+            //string text = System.IO.File.ReadAllText(@"C:\temp\TempParseToken.cs");
+            //LinqLexicalParser analyzer = new LinqLexicalParser();
+            //while (text != null)
+            //{
+            //    text = text.Trim(' ', '\t');
+            //    string token = analyzer.GetNextLexicalAtom(ref text);
+            //    //var result = text.Length;
+            //    if (text == "") return;
+            //}
+
+
         }
 
         /// <summary>The current entry</summary>

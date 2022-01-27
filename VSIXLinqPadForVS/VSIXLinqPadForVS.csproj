@@ -107,6 +107,7 @@
     <Compile Include="LinqParser\LinqJumpStatementsKeywords.cs" />
     <Compile Include="LinqParser\LinqKeywords.cs" />
     <Compile Include="LinqParser\LinqLambdaExpressions.cs" />
+    <Compile Include="LinqParser\LinqLexicalParser.cs" />
     <Compile Include="LinqParser\LinqLiteralKeywords.cs" />
     <Compile Include="LinqParser\LinqLockStatementKeywords.cs" />
     <Compile Include="LinqParser\LinqMemberAccessOperators.cs" />
