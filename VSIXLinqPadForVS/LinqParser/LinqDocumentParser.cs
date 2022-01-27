@@ -270,6 +270,11 @@ namespace VSIXLinqPadForVS.LinqParser
             else if (trimmedLine.StartsWith("var"))
             {
                 items.Add(ToParseItem(line, start, LinqItemType.CSharp_Keywords, false));
+                //LinqParseItem variable = new LinqParseItem(start, line, this, LinqItemType.variable);
+                //_currentEntry = new LinqVariableEntry(variable, this);
+                //items.Add(_currentEntry);
+                ////items.Add(key);
+                ////AddVariableReferences(key);
             }
             else if (trimmedLine.StartsWith("string"))
             {

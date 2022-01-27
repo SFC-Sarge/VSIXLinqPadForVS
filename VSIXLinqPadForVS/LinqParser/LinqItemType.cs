@@ -338,6 +338,22 @@ namespace VSIXLinqPadForVS.LinqParser
         /// </item>
         /// </list>
         /// </remarks>
-        Punctuation
+        Punctuation,
+        /// <summary>The variable</summary>
+        /// <remarks>
+        /// <para><b>History:</b></para>
+        /// <list type="table">
+        /// <item>
+        /// <description><b>Code Changed by:</b><para>Danny C. McNaught</para><para><para><a href="mailto:danny.mcnaught@dannymcnaught.com">danny.mcnaught@dannymcnaught.com</a></para></para></description>
+        /// </item>
+        /// <item>
+        /// <description><b>Code changed on Visual Studio Host Machine:</b><para>WINDOWS11DEV</para></description>
+        /// </item>
+        /// <item>
+        /// <description><b>Code Change Date and Time:</b><para>Wednesday, January 26, 2022 18:42</para><b>Code Changes:</b><para>Created XML Comment</para></description>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        variable
     }
 }
