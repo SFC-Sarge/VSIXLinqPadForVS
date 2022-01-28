@@ -9,7 +9,8 @@ namespace VSIXLinqPadForVS.LinqParser
             StringBuilder str = new();
             if (Int32.TryParse(item, out _))
             {
-                str.Append("(numerical constant, " + item + ") ");
+                str.Append("NumericalConstant" + item);
+                //str.Append(item);
                 return str.ToString();
             }
             if (item.Equals("\r\n"))
@@ -18,20 +19,24 @@ namespace VSIXLinqPadForVS.LinqParser
             }
             if (CheckKeyword(item) == true)
             {
-                str.Append("(keyword, " + item + ") ");
+                str.Append("Keyword" + item);
+                //str.Append(item);
                 return str.ToString();
             }
             if (CheckOperator(item) == true)
             {
-                str.Append("(operator, " + item + ") ");
+                str.Append("Operator" + item);
+                //str.Append(item);
                 return str.ToString();
             }
             if (CheckDelimiter(item) == true)
             {
-                str.Append("(separator, " + item + ") ");
+                str.Append("Separator" + item);
+                //str.Append(item);
                 return str.ToString();
             }
-            str.Append("(identifier, " + item + ") ");
+            str.Append("Identifier" + item);
+            //str.Append(item);
             return str.ToString();
         }
         private bool CheckOperator(string str)
@@ -152,14 +157,14 @@ namespace VSIXLinqPadForVS.LinqParser
                 else
                     if (item[i + 1].ToString().Equals(" ") || CheckDelimiter(item[i + 1].ToString()) == true || CheckOperator(item[i + 1].ToString()) == true)
                 {
-                    if (Parse(item.Substring(0, i + 1)).Contains("numerical constant") && item[i + 1] == '.')
+                    if (Parse(item.Substring(0, i + 1)).Contains("numericalconstant") && item[i + 1] == '.')
                     {
                         int j = i + 2;
                         while (item[j].ToString().Equals(" ") == false && CheckDelimiter(item[j].ToString()) == false && CheckOperator(item[j].ToString()) == false)
                             j++;
                         if (Int32.TryParse(item.Substring(i + 2, j - i - 2), out _))
                         {
-                            token.Append("(numerical constant, ").Append(item.Substring(0, j)).Append(") ");
+                            token.Append("(numericalconstant, ").Append(item.Substring(0, j)).Append(") ");
                             item = item.Remove(0, j);
                             return token.ToString();
                         }
