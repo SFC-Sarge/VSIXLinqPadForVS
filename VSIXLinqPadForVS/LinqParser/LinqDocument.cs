@@ -20,8 +20,7 @@ namespace VSIXLinqPadForVS.LinqParser
             ProcessAsync().FireAndForget();
         }
 
-        public LinqDocument(ITextBuffer buffer)
-            : this(buffer.CurrentSnapshot.Lines.Select(line => line.GetTextIncludingLineBreak()).ToArray())
+        public LinqDocument(ITextBuffer buffer) : this(buffer.CurrentSnapshot.Lines.Select(line => line.GetTextIncludingLineBreak()).ToArray())
         {
             _buffer = buffer;
             _buffer.Changed += BufferChanged;

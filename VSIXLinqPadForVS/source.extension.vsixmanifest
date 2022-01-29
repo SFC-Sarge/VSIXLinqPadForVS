@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="VSIXLinqPadForVS.63e06039-0f82-42ab-a4b9-a44c88ece194" Version="1.10" Language="en-US" Publisher="Danny McNaught" />
+        <Identity Id="VSIXLinqPadForVS.63e06039-0f82-42ab-a4b9-a44c88ece194" Version="1.11" Language="en-US" Publisher="Danny McNaught" />
         <DisplayName>VSIXLinqPadForVS</DisplayName>
         <Description xml:space="preserve">Using LinqPad inside of Visual Studio ToolWindow to run linq queries.</Description>
         <MoreInfo>https://github.com/SFC-Sarge/VSIXLinqPadForVS</MoreInfo>

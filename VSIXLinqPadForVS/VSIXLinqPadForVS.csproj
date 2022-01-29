@@ -92,6 +92,7 @@
     <Compile Include="LinqParser\LinqItemType.cs" />
     <Compile Include="LinqParser\LinqKeywords.cs" />
     <Compile Include="LinqParser\LinqLexicalParser.cs" />
+    <Compile Include="LinqParser\LinqPunctuations.cs" />
     <Compile Include="LinqParser\LinqParseItem.cs" />
     <Compile Include="LinqParser\LinqPredefinedVariables.cs" />
     <Compile Include="LinqParser\LinqPreProcSymbols.cs" />
@@ -120,11 +121,17 @@
       <Link>Resources\LICENSE</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Grammars\Linq.tmLanguage">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.cs</LastGenOutput>
     </None>
+    <Content Include="languages.pkgdef">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\.cs.txt" />
     <Content Include="ToolWindows\LINQPad.Runtime.dll">
       <IncludeInVSIX>true</IncludeInVSIX>

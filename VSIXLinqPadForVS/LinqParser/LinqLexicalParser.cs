@@ -1,8 +1,10 @@
-﻿using System.Text;
+﻿using Microsoft.VisualStudio.TextManager.Interop;
+
+using System.Text;
 
 namespace VSIXLinqPadForVS.LinqParser
 {
-    public class LinqLexicalParser
+    public class LinqLexicalParser : IVsColorizer
     {
         public string Parse(string item)
         {
@@ -29,9 +31,21 @@ namespace VSIXLinqPadForVS.LinqParser
                 //str.Append(item);
                 return str.ToString();
             }
+            if (CheckPunctuation(item) == true)
+            {
+                str.Append("Punctuation" + item);
+                //str.Append(item);
+                return str.ToString();
+            }
             if (CheckDelimiter(item) == true)
             {
                 str.Append("Separator" + item);
+                //str.Append(item);
+                return str.ToString();
+            }
+            if (CheckComments(item) == true)
+            {
+                str.Append("Comments" + item);
                 //str.Append(item);
                 return str.ToString();
             }
@@ -48,6 +62,12 @@ namespace VSIXLinqPadForVS.LinqParser
         private bool CheckDelimiter(string str)
         {
             if (Array.IndexOf(LinqSeparators.Separators, str) > -1)
+                return true;
+            return false;
+        }
+        private bool CheckPunctuation(string str)
+        {
+            if (Array.IndexOf(LinqPunctuations.Punctuations, str) > -1)
                 return true;
             return false;
         }
@@ -120,7 +140,6 @@ namespace VSIXLinqPadForVS.LinqParser
                             item = item.Trim(' ', '\t', '\r', '\n');
                             i = -1;
                         }
-
                     }
                     else
                     {
@@ -131,8 +150,7 @@ namespace VSIXLinqPadForVS.LinqParser
                         return Parse(token.ToString());
                     }
                 }
-                else
-                    if (item[i] == '\'')
+                else if (item[i] == '\'')
                 {
                     int j = i + 1;
                     if (item[j] == '\\')
@@ -144,8 +162,7 @@ namespace VSIXLinqPadForVS.LinqParser
                     item = item.Remove(i, j - i + 1);
                     return token.ToString();
                 }
-                else
-                    if (item[i] == '"')
+                else if (item[i] == '"')
                 {
                     int j = i + 1;
                     while (item[j] != '"')
@@ -154,8 +171,7 @@ namespace VSIXLinqPadForVS.LinqParser
                     item = item.Remove(i, j - i + 1);
                     return token.ToString();
                 }
-                else
-                    if (item[i + 1].ToString().Equals(" ") || CheckDelimiter(item[i + 1].ToString()) == true || CheckOperator(item[i + 1].ToString()) == true)
+                else if (item[i + 1].ToString().Equals(" ") || CheckDelimiter(item[i + 1].ToString()) == true || CheckOperator(item[i + 1].ToString()) == true)
                 {
                     if (Parse(item.Substring(0, i + 1)).Contains("numericalconstant") && item[i + 1] == '.')
                     {
@@ -176,6 +192,31 @@ namespace VSIXLinqPadForVS.LinqParser
                 }
             }
             return null;
+        }
+
+        public int GetStateMaintenanceFlag(out int pfFlag)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetStartState(out int piStartState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ColorizeLine(int iLine, int iLength, IntPtr pszText, int iState, uint[] pAttributes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetStateAtEndOfLine(int iLine, int iLength, IntPtr pText, int iState)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CloseColorizer()
+        {
+            throw new NotImplementedException();
         }
     }
 }

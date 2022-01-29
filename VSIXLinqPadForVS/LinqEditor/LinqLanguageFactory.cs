@@ -21,7 +21,7 @@ namespace VSIXLinqPadForVS.LinqEditor
 
         [Export]
         [FileExtension(Constants.LinqExt)]
-        [ContentType(Constants.LinqLanguageName)]
+        [ContentType("CSharp")]
         internal static FileExtensionToContentTypeDefinition LinqFileExtensionDefinition { get; set; }
 
         [Export]
